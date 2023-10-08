@@ -1,13 +1,19 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:frame/app/modules/ForgetPassword/forget_password_view.dart';
 import 'package:frame/app/modules/Home/home_view.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'app/modules/CreateNewPassword/create_new_password_view.dart';
+import 'app/modules/Login/login_view.dart';
+import 'app/modules/OTP/otp_view.dart';
+import 'app/routes/pages.dart';
+
 void main() async {
   await GetStorage.init();
-  // runApp(DevicePreview(builder: (context) => MyApp(),));
-  runApp( MyApp());
+  runApp(DevicePreview(builder: (context) => MyApp(),));
+  //runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,10 +21,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      // locale: DevicePreview.locale(context),
-      // builder: DevicePreview.appBuilder,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       title: 'Frame GetX',
-      home: HomePage(),
+      home: OTPPage(),
     );
   }
 }
