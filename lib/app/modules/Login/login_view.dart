@@ -36,7 +36,7 @@ class LoginPage extends StatelessWidget {
   LoginPage._internal();
 
   final formKey = GlobalKey<FormState>();
-  final Controller pageController = Controller();
+  final pageController = Controller();
   TextEditingController phoneNumber = TextEditingController();
   TextEditingController password = TextEditingController();
 
