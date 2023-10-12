@@ -3,11 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Controller extends GetxController{
-  static final _controllerInstance = Controller._internal();
-  factory Controller() => _controllerInstance;
-  Controller._internal();
-
+class OTPController extends GetxController{
   List<String> otp = List<String>.filled(4, "");
 }
 
@@ -16,7 +12,7 @@ class OTPPage extends StatelessWidget {
   factory OTPPage() => _pageInstance;
   OTPPage._internal();
 
-  final Controller pageController = Controller();
+  final pageController = Get.put(OTPController());
 
   @override
   Widget build(BuildContext context) {
@@ -75,29 +71,33 @@ class OTPPage extends StatelessWidget {
                 ],
               ),
               Expanded(child: Container()),
-              Container(
-                width: 10000,
-                margin: const EdgeInsets.fromLTRB(15, 10, 15, 15),
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.all(15),
-                      backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25)
-                      )
-                    ),
-                    onPressed: (){
-
-                    },
-                    child: const Text(
-                      'Sign In',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Urbanist',
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600
-                      ),
-                    )),
+              Row(
+                children: [
+                  Expanded(
+                      child: Container(
+                    margin: const EdgeInsets.fromLTRB(15, 10, 15, 15),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.all(15),
+                            backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25)
+                            )
+                        ),
+                        onPressed: (){
+                          print(pageController.otp);
+                        },
+                        child: const Text(
+                          'Sign In',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Urbanist',
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600
+                          ),
+                        )),
+                  ))
+                ],
               )
             ],
           ),
@@ -112,7 +112,7 @@ class OTPPage extends StatelessWidget {
 class OtpForm extends StatelessWidget {
   OtpForm({super.key});
 
-  final Controller pageController = Controller();
+  final OTPController pageController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -260,10 +260,10 @@ class OtpForm extends StatelessWidget {
               ),
               onChanged: (value){
                 if(value.length == 1){
-                  pageController.otp[0] = value;
+                  pageController.otp[3] = value;
                 }
                 if(value.isEmpty){
-                  pageController.otp[0] = "";
+                  pageController.otp[3] = "";
                   FocusScope.of(context).nextFocus();
                 }
               },
