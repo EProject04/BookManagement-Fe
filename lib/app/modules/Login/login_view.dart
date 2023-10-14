@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Controller extends GetxController{
-  static final _controllerInstance = Controller._internal();
-  factory Controller() => _controllerInstance;
-  Controller._internal();
 
+
+class LoginController extends GetxController{
   RxBool isHidden = true.obs;
   String? usernameValidate(String? username){
     if(username!.isEmpty){
@@ -30,13 +28,15 @@ class Controller extends GetxController{
   }
 }
 
+
+
 class LoginPage extends StatelessWidget {
   static final _pageInstance = LoginPage._internal();
   factory LoginPage() => _pageInstance;
   LoginPage._internal();
 
   final formKey = GlobalKey<FormState>();
-  final Controller pageController = Controller();
+  final pageController = LoginController();
   TextEditingController phoneNumber = TextEditingController();
   TextEditingController password = TextEditingController();
 
@@ -191,31 +191,36 @@ class LoginPage extends StatelessWidget {
                   fontFamily: 'Urbanist'
               ),),
               Expanded(child: Container()),
-              Container(
-                width: 10000,
-                margin: const EdgeInsets.fromLTRB(15, 10, 15, 15),
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.all(15),
-                      backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25)
+              Row(
+                children: [
+                  Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.fromLTRB(15, 10, 15, 15),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.all(15),
+                                backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25)
+                                )
+                            ),
+                            onPressed: (){
+                              if(formKey.currentState!.validate()){
+                                pageController.login(phoneNumber.text,password.text);
+                              }
+                            },
+                            child: const Text(
+                              'Sign In',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Urbanist',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600
+                              ),
+                            )),
                       )
-                    ),
-                    onPressed: (){
-                      if(formKey.currentState!.validate()){
-                        pageController.login(phoneNumber.text,password.text);
-                      }
-                    },
-                    child: const Text(
-                      'Sign In',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Urbanist',
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600
-                      ),
-                    )),
+                  )
+                ],
               )
             ],
           ),

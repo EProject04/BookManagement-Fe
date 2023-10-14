@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'dart:async';
+
+class CreateNewPasswordController extends GetxController{
+  RxBool passwordIsHidden = true.obs;
+  RxBool confirmPasswordIsHidden = true.obs;
+
+  void showHidePassword(){
+    passwordIsHidden.value = !passwordIsHidden.value;
+  }
+
+  void showHideConfirmPassword(){
+    passwordIsHidden.value = !passwordIsHidden.value;
+  }
+}
 
 class CreateNewPasswordPage extends StatelessWidget {
   static final _pageInstance = CreateNewPasswordPage._internal();
   factory CreateNewPasswordPage() => _pageInstance;
   CreateNewPasswordPage._internal();
 
+  final pageController = CreateNewPasswordController();
   final formKey = GlobalKey<FormState>();
-  RxBool passwordIsHidden = true.obs;
-  RxBool confirmPasswordIsHidden = true.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -74,10 +85,8 @@ class CreateNewPasswordPage extends StatelessWidget {
                             left: 0,
                             child: Obx( ()=> TextFormField(
                               decoration: InputDecoration(
-                                suffixIcon: GestureDetector(onTap: (){
-                                  passwordIsHidden.value = !passwordIsHidden.value;
-                                },
-                                    child: passwordIsHidden.value ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility)
+                                suffixIcon: GestureDetector(onTap: pageController.showHidePassword,
+                                    child: pageController.passwordIsHidden.value ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility)
                                 ),
                                 focusedBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(
@@ -97,7 +106,7 @@ class CreateNewPasswordPage extends StatelessWidget {
                                     fontWeight: FontWeight.w800,
                                   )
                               ),
-                              obscureText: passwordIsHidden.value,
+                              obscureText: pageController.passwordIsHidden.value,
                               validator: (password){
                                 if(password!.isEmpty){
                                   return "Please enter your new password";
@@ -126,10 +135,8 @@ class CreateNewPasswordPage extends StatelessWidget {
                           child: Obx(
                                   () => TextFormField(
                                 decoration: InputDecoration(
-                                  suffixIcon: GestureDetector(onTap: (){
-                                    confirmPasswordIsHidden.value = !confirmPasswordIsHidden.value;
-                                  },
-                                    child: confirmPasswordIsHidden.value ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility),
+                                  suffixIcon: GestureDetector(onTap: pageController.showHideConfirmPassword,
+                                    child: pageController.confirmPasswordIsHidden.value ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility),
                                   ),
                                   focusedBorder: const UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -149,7 +156,7 @@ class CreateNewPasswordPage extends StatelessWidget {
                                       fontWeight: FontWeight.w800,
                                     )
                                 ),
-                                obscureText: confirmPasswordIsHidden.value,
+                                obscureText: pageController.confirmPasswordIsHidden.value,
                                 validator: (password){
                                   if(password!.isEmpty){
                                     return "Please re-enter your password";
@@ -166,97 +173,101 @@ class CreateNewPasswordPage extends StatelessWidget {
               ),
 
               Expanded(child: Container()),
-              Container(
-                width: 10000,
-                margin: const EdgeInsets.fromLTRB(15, 10, 15, 15),
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.all(15),
-                      backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25)
-                      )
-                    ),
-                    onPressed: (){
-                      // if(formKey.currentState!.validate()){
-                        showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                                title: Center(
-                                    child: Container(
-                                      margin: EdgeInsets.only(top: 10),
-                                      child: Text(
+              Row(
+                children: [
+                  Expanded(
+                      child: Container(
+                    margin: const EdgeInsets.fromLTRB(15, 10, 15, 15),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.all(15),
+                            backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25)
+                            )
+                        ),
+                        onPressed: (){
+                          // if(formKey.currentState!.validate()){
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                  title: Center(
+                                      child: Container(
+                                        margin: EdgeInsets.only(top: 10),
+                                        child: Text(
                                           "New Password",
                                           style: TextStyle(
-                                            color: Color.fromRGBO(248, 147, 0, 1),
-                                            fontWeight: FontWeight.w600
+                                              color: Color.fromRGBO(248, 147, 0, 1),
+                                              fontWeight: FontWeight.w600
                                           ),
-                                      ),
-                                    )),
-                                content: Builder(
-                                    builder: (context){
-                                      return Container(
-                                        height: 424,
-                                        child: Center(
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                "Reset Pasword",
-                                                style: TextStyle(
-                                                    color: Color.fromRGBO(248, 147, 0, 1),
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.w600
-                                                ),
-                                              ),
-                                              Text(
-                                                "Successful!",
-                                                style: TextStyle(
-                                                    color: Color.fromRGBO(248, 147, 0, 1),
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.w600
-                                                ),
-                                              ),
-                                              Container(
-                                                  margin: EdgeInsets.fromLTRB(0, 10, 0, 20),
-                                                  child: Text("Your password has been successfully changed.",
-                                                    textAlign: TextAlign.center,
-                                                  )
-                                              ),
-                                              Container(
-                                                width: 1000,
-                                                margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                                                child: TextButton(
-                                                  style: TextButton.styleFrom(
-                                                      backgroundColor: Color.fromRGBO(248, 147, 0, 1),
-                                                      shape: RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(25)
-                                                      )
+                                        ),
+                                      )),
+                                  content: Builder(
+                                      builder: (context){
+                                        return Container(
+                                          height: 424,
+                                          child: Center(
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  "Reset Pasword",
+                                                  style: TextStyle(
+                                                      color: Color.fromRGBO(248, 147, 0, 1),
+                                                      fontSize: 20,
+                                                      fontWeight: FontWeight.w600
                                                   ),
-                                                  child: Text(
-                                                    "Go to Home",
-                                                    style: TextStyle(
-                                                        color: Colors.white
+                                                ),
+                                                Text(
+                                                  "Successful!",
+                                                  style: TextStyle(
+                                                      color: Color.fromRGBO(248, 147, 0, 1),
+                                                      fontSize: 20,
+                                                      fontWeight: FontWeight.w600
+                                                  ),
+                                                ),
+                                                Container(
+                                                    margin: EdgeInsets.fromLTRB(0, 10, 0, 20),
+                                                    child: Text("Your password has been successfully changed.",
+                                                      textAlign: TextAlign.center,
+                                                    )
+                                                ),
+                                                Container(
+                                                  width: 1000,
+                                                  margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                                  child: TextButton(
+                                                    style: TextButton.styleFrom(
+                                                        backgroundColor: Color.fromRGBO(248, 147, 0, 1),
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.circular(25)
+                                                        )
                                                     ),
+                                                    child: Text(
+                                                      "Go to Home",
+                                                      style: TextStyle(
+                                                          color: Colors.white
+                                                      ),
+                                                    ),
+                                                    onPressed: null,
                                                   ),
-                                                  onPressed: null,
-                                                ),
-                                              )
-                                            ],),
-                                        )
-                                        ,);
-                                    })
-                            ));
-                      // }
-                    },
-                    child: const Text(
-                      'Continue',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Urbanist',
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600
-                      ),
-                    )),
+                                                )
+                                              ],),
+                                          )
+                                          ,);
+                                      })
+                              ));
+                          // }
+                        },
+                        child: const Text(
+                          'Continue',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Urbanist',
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600
+                          ),
+                        )),
+                  ))
+                ],
               )
             ],
           ),

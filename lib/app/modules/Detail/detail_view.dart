@@ -1,10 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+class Book{
+  final int id;
+  final String title;
+  final String description;
+  final String content;
+  final String status;
+  final String imagePath;
+  final String author;
+
+  Book({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.content,
+    required this.status,
+    required this.imagePath,
+    required this.author
+  });
+}
+
+class Controller extends GetxController{
+
+}
 
 class DetailPage extends StatelessWidget {
   static final _pageInstance = DetailPage._internal();
   factory DetailPage() => _pageInstance;
   DetailPage._internal();
+  late Book bookDetail;
+
+  final pageController = Controller();
+  @override
+  void initState(){
+    bookDetail = Book(
+        id: 1,
+        content: "",
+        description: "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        title: "Ta muốn trở thành chúa tể bóng tối",
+        status: "",
+        imagePath: "https://product.hstatic.net/200000343865/product/1---lmt_c6192d87264a4ed8b015befdb10e4379_master.jpg",
+        author: "J.K. Rowling"
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,86 +78,86 @@ class DetailPage extends StatelessWidget {
                         height: 212,
                         width: 150,
                         child: Container(
-                          color: Colors.yellow,
+                          child: Image.network(bookDetail.imagePath),
                         ),
                       ),
-                      Container(
-                        width: 200,
-                        margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Harry Potter & the Deadly Hallows",
-                              style: GoogleFonts.urbanist(
-                                  textStyle: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black
-                                  )
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.fromLTRB(0, 15, 0, 5),
-                              child: Text(
-                                "J.K. Rowling",
-                                style: GoogleFonts.urbanist(
-                                    textStyle: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color.fromRGBO(248, 147, 0, 1)
-                                    )
-                                ),
-                              ),
-                            ),
-                            Text(
-                              "Release date",
-                              style: GoogleFonts.urbanist(
-                                  textStyle: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: Color.fromRGBO(50, 50, 50, 1)
-                                  )
-                              ),
-                            ),
-                            Row(
+                      Expanded(
+                          child: Container(
+                            margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                Text(
+                                  bookDetail.title,
+                                  style: GoogleFonts.urbanist(
+                                      textStyle: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black
+                                      )
+                                  ),
+                                ),
                                 Container(
-                                  margin: EdgeInsets.fromLTRB(0, 10, 5, 5),
-                                  padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
-                                  color: Color.fromRGBO(230, 230, 230, 1),
+                                  margin: EdgeInsets.fromLTRB(0, 15, 0, 5),
                                   child: Text(
-                                    "Fantasy",
+                                    bookDetail.author,
                                     style: GoogleFonts.urbanist(
                                         textStyle: TextStyle(
-                                            fontSize: 12,
+                                            fontSize: 15,
                                             fontWeight: FontWeight.w600,
-                                            color: Color.fromRGBO(50, 50, 50, 1)
+                                            color: Color.fromRGBO(248, 147, 0, 1)
                                         )
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(0, 10, 5, 5),
-                                  padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
-                                  color: Color.fromRGBO(230, 230, 230, 1),
-                                  child: Text(
-                                    "Fantasy",
-                                    style: GoogleFonts.urbanist(
-                                        textStyle: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color.fromRGBO(50, 50, 50, 1)
-                                        )
-                                    ),
+                                Text(
+                                  "Release date",
+                                  style: GoogleFonts.urbanist(
+                                      textStyle: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: Color.fromRGBO(50, 50, 50, 1)
+                                      )
                                   ),
-                                )
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.fromLTRB(0, 10, 5, 5),
+                                      padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
+                                      color: Color.fromRGBO(230, 230, 230, 1),
+                                      child: Text(
+                                        "Fantasy",
+                                        style: GoogleFonts.urbanist(
+                                            textStyle: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600,
+                                                color: Color.fromRGBO(50, 50, 50, 1)
+                                            )
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.fromLTRB(0, 10, 5, 5),
+                                      padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
+                                      color: Color.fromRGBO(230, 230, 230, 1),
+                                      child: Text(
+                                        "Fantasy",
+                                        style: GoogleFonts.urbanist(
+                                            textStyle: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600,
+                                                color: Color.fromRGBO(50, 50, 50, 1)
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+
                               ],
                             ),
-
-                          ],
-                        ),
-                      )
+                          ))
                     ],
                   ),
                 ),
@@ -149,11 +189,11 @@ class DetailPage extends StatelessWidget {
                                 Text(
                                   "View",
                                   style: GoogleFonts.urbanist(
-                                    textStyle: TextStyle(
-                                      color: Color.fromRGBO(100, 100, 100, 1),
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w600
-                                    )
+                                      textStyle: TextStyle(
+                                          color: Color.fromRGBO(100, 100, 100, 1),
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w600
+                                      )
                                   ),
                                 )
                               ],
@@ -161,69 +201,74 @@ class DetailPage extends StatelessWidget {
                           )
                       ),
                       Expanded(
-                        flex: 1,
+                          flex: 1,
                           child: Column(
-                        children: [
-                          Row(
                             children: [
-                              Expanded(
-                                flex: 1,
-                                child: Container(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  "4.9",
-                                  style: GoogleFonts.urbanist(
-                                      textStyle: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black)
-                                  ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          "4.9",
+                                          style: GoogleFonts.urbanist(
+                                              textStyle: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.black)
+                                          ),
+                                        ),
+                                      )),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        alignment: Alignment.centerLeft,
+                                        child: Icon(Icons.star),))
+                                ],
+                              ),
+                              Text(
+                                "6.8k reviews",
+                                style: GoogleFonts.urbanist(
+                                    textStyle: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color.fromRGBO(100, 100, 100, 1)
+                                    )
                                 ),
-                              )),
-                              Expanded(
-                                flex: 1,
-                                  child: Container(
-                                alignment: Alignment.centerLeft,
-                                child: Icon(Icons.star),))
+                              )
                             ],
-                          ),
-                          Text(
-                            "6.8k reviews",
-                            style: GoogleFonts.urbanist(
-                                textStyle: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color.fromRGBO(100, 100, 100, 1)
-                                )
-                            ),
-                          )
-                        ],
-                      ))
+                          ))
                     ],
                   ),
                 ),
-                Container(
-                  width: 1000,
-                  margin: EdgeInsets.fromLTRB(13, 10, 13, 10),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(248, 147, 0, 1),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25)
-                      )
-                    ),
-                    onPressed: (){},
-                    child: Text(
-                      "Read",
-                      style: GoogleFonts.urbanist(
-                        textStyle: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white
+                Row(
+                  children: [
+                    Expanded(
+                        child: Container(
+                          margin: EdgeInsets.fromLTRB(13, 10, 13, 10),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Color.fromRGBO(248, 147, 0, 1),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25)
+                                )
+                            ),
+                            onPressed: (){},
+                            child: Text(
+                              "Read",
+                              style: GoogleFonts.urbanist(
+                                  textStyle: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white
+                                  )
+                              ),
+                            ),
+                          ),
                         )
-                      ),
-                    ),
-                  ),
+                    )
+                  ],
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(13, 10, 13, 10),
@@ -234,11 +279,11 @@ class DetailPage extends StatelessWidget {
                           Text(
                             "About this novel",
                             style: GoogleFonts.urbanist(
-                              textStyle: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black
-                              )
+                                textStyle: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black
+                                )
                             ),
                           ),
                           Expanded(
@@ -251,7 +296,16 @@ class DetailPage extends StatelessWidget {
                           )
                         ],
                       ),
-                      Text("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"),
+                      Text(
+                        bookDetail.description,
+                        style: GoogleFonts.urbanist(
+                            textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black
+                            )
+                        ),
+                      ),
                       Row(
                         children: [
                           Container(
@@ -353,7 +407,7 @@ class DetailPage extends StatelessWidget {
                 )
               ],
             ),
-          ),
+          )
         )
     );
   }
