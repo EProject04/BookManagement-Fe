@@ -97,7 +97,7 @@ class HomePage extends StatelessWidget {
                           child: Container()
                       ),
                       IconButton(
-                          onPressed: null,
+                          onPressed: (){},
                           icon: Icon(Icons.arrow_forward))
                     ],
                   ),
