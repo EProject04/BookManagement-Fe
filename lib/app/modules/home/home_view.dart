@@ -92,69 +92,69 @@ class HomePage extends StatelessWidget {
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black)),),
-                        Expanded(
-                            child: Container()
-                        ),
-                        IconButton(
-                            onPressed: null,
-                            icon: Icon(Icons.arrow_forward))
-                      ],
-                    ),
-                    SizedBox(
-                      height: 70,
-                      child: ListView.builder(
-                        itemCount: 8,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                          width: 150,
-                          color: Colors.red,
-                          child: Text("Genre"),),),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Read History",
-                          style: GoogleFonts.urbanist(
-                              textStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600)),),
-                        Expanded(
-                            child: Container()
-                        ),
-                        IconButton(
-                            onPressed: null,
-                            icon: Icon(Icons.arrow_forward))
-                      ],
-                    ),
-                    SizedBox(
-                      height: 282,
-                      child: ListView.builder(
-                        itemCount: 8,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                          width: 150,
-                          color: Colors.red,
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 212,
-                                color: Colors.yellow,
-                              ),
-                              Text(
-                                "The House of Hades (Heroes of Olympus) and the",
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.urbanist(
-                                    textStyle: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black,
-                                    )),)],),),),
-                    ),
 
+                      Expanded(
+                          child: Container()
+                      ),
+                      IconButton(
+                          onPressed: (){},
+                          icon: Icon(Icons.arrow_forward))
+                    ],
+                  ),
+                  SizedBox(
+                    height: 70,
+                    child: ListView.builder(
+                      itemCount: 8,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => Container(
+                        margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
+                        width: 150,
+                        color: Colors.red,
+                        child: Text("Genre"),),),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Read History",
+                        style: GoogleFonts.urbanist(
+                            textStyle: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600)),),
+                      Expanded(
+                          child: Container()
+                      ),
+                      IconButton(
+                          onPressed: null,
+                          icon: Icon(Icons.arrow_forward))
+                    ],
+                  ),
+                  SizedBox(
+                    height: 282,
+                    child: ListView.builder(
+                      itemCount: 8,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => Container(
+                        margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
+                        width: 150,
+                        color: Colors.red,
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 212,
+                              color: Colors.yellow,
+                            ),
+                            Text(
+                              "The House of Hades (Heroes of Olympus) and the",
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.urbanist(
+                                  textStyle: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  )),)],),),),
+                  ),
                   ],
                 ),
               )
