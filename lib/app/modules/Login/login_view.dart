@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
 class LoginController extends GetxController{
   RxBool isHidden = true.obs;
-  String? usernameValidate(String? username){
-    if(username!.isEmpty){
+  String? usernameValidate(String? phoneNumber){
+    if(phoneNumber!.isEmpty){
       return "Please enter your phone number";
     }
-    if(!RegExp(r'^(?:[+0][1-9])?[0-9]{10,12}$').hasMatch(username)){
+    if(!RegExp(r'^(?:[+0][1-9])?[0-9]{10,12}$').hasMatch(phoneNumber)){
       return "Incorrect phone number";
     }
   }
@@ -22,13 +20,11 @@ class LoginController extends GetxController{
       return "Length greater than 8 and no special key";
     }
   }
+  //call login api
   void login(String phoneNumber, String password){
-    print(phoneNumber);
-    print(password);
+    Get.toNamed('/home');
   }
 }
-
-
 
 class LoginPage extends StatelessWidget {
   static final _pageInstance = LoginPage._internal();
@@ -49,7 +45,7 @@ class LoginPage extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                margin: const EdgeInsets.fromLTRB(5, 0, 15, 0),
+                margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                 alignment: Alignment.bottomLeft,
                 child: const IconButton(onPressed: null, icon: Icon(Icons.arrow_back)),
               ),
@@ -184,11 +180,14 @@ class LoginPage extends StatelessWidget {
                     )
                 ),
               ),
-              const Text('Forgot Password', style: TextStyle(
-                  color: Color.fromRGBO(248, 147, 0, 1),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
-                  fontFamily: 'Urbanist'
+              GestureDetector(
+                onTap: () => Get.toNamed("/forgetPassword"),
+                child: const Text('Forgot Password', style: TextStyle(
+                    color: Color.fromRGBO(248, 147, 0, 1),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                    fontFamily: 'Urbanist'
+                ),
               ),),
               Expanded(child: Container()),
               Row(

@@ -25,7 +25,16 @@ class MyApp extends StatelessWidget {
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       title: 'Frame GetX',
-      home: OTPPage(),
+      initialRoute: '/login',
+      getPages: [
+        GetPage(name: '/login', page: () => LoginPage()),
+        GetPage(name: '/home', page: () => HomePage()),
+        GetPage(name: '/forgetPassword', page: () => ForgetPasswordPage()),
+        GetPage(name: '/createNewPassword', page: () => CreateNewPasswordPage()),
+        GetPage(name: '/detail', page: () => DetailPage()),
+        GetPage(name: '/otp', page: () => OTPPage()),
+      ],
+
     );
   }
 }

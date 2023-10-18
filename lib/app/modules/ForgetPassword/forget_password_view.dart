@@ -2,13 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+class ForgetPasswordController extends GetxController{
+  String? emailValidate(String? email){
+      if (email!.isEmpty) {
+        return "Please enter your email";
+      }
+      if (!RegExp(r'[a-z 0-9]+@(?:gmail\.)+[a-z 0-9]')
+          .hasMatch(email)) {
+        return "Incorrect email";
+      }
+  }
+  void sendOTP(){
+    Get.toNamed('/otp');
+  }
+}
+
 class ForgetPasswordPage extends StatelessWidget {
   static final _pageInstance = ForgetPasswordPage._internal();
   factory ForgetPasswordPage() => _pageInstance;
   ForgetPasswordPage._internal();
 
+  final pageController = ForgetPasswordController();
   final formKey = GlobalKey<FormState>();
-  RxBool isHidden = true.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +34,10 @@ class ForgetPasswordPage extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                margin: const EdgeInsets.fromLTRB(5, 0, 15, 0),
+                margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                 alignment: Alignment.bottomLeft,
-                child: const IconButton(
-                    onPressed: null, icon: Icon(Icons.arrow_back)),
+                child: IconButton(
+                    onPressed: () => Get.toNamed('/login'), icon: Icon(Icons.arrow_back)),
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -95,15 +110,7 @@ class ForgetPasswordPage extends StatelessWidget {
                                     fontWeight: FontWeight.w800,
                                   )
                               ),
-                              validator: (account) {
-                                if (account!.isEmpty) {
-                                  return "Please enter your email";
-                                }
-                                if (!RegExp(r'[a-z 0-9]+@(?:gmail\.)+[a-z 0-9]')
-                                    .hasMatch(account)) {
-                                  return "Incorrect email";
-                                }
-                              },
+                              validator: (value) => pageController.emailValidate(value),
                             )
                         ),
                       ],
@@ -124,11 +131,11 @@ class ForgetPasswordPage extends StatelessWidget {
                     ),
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-
+                        pageController.sendOTP();
                       }
                     },
                     child: const Text(
-                      'Sign In',
+                      'Continue',
                       style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Urbanist',

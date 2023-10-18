@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
 
 class Book{
   final int id;
@@ -22,7 +22,7 @@ class Book{
   });
 }
 
-class Controller extends GetxController{
+class DetailController extends GetxController{
 
 }
 
@@ -32,7 +32,7 @@ class DetailPage extends StatelessWidget {
   DetailPage._internal();
   late Book bookDetail;
 
-  final pageController = Controller();
+  final pageController = DetailController();
   @override
   void initState(){
     bookDetail = Book(
@@ -57,7 +57,7 @@ class DetailPage extends StatelessWidget {
                 Row(
                   children: [
                     IconButton(
-                        onPressed: null,
+                        onPressed: () => Get.toNamed('/home'),
                         icon: Icon(Icons.arrow_back)),
                     Expanded(
                         child: Container(
