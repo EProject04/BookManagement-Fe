@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frame/app/view/explore_by_genre/explore_by_genre_view.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -97,7 +98,9 @@ class HomePage extends StatelessWidget {
                           child: Container()
                       ),
                       IconButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ExploreByGenreView()));
+                          },
                           icon: Icon(Icons.arrow_forward))
                     ],
                   ),
