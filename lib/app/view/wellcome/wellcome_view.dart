@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:frame/app/view/create_new_account/create_new_account.dart';
+import 'package:frame/app/view/login/login_view.dart';
+import 'package:get/get.dart';
 
 class WellComeScreen extends StatelessWidget {
   const WellComeScreen({Key? key}) : super(key: key);
@@ -106,7 +109,9 @@ class WellComeScreen extends StatelessWidget {
                     Container(
                       width: MediaQuery.of(context).size.width*0.8,
                       child: ElevatedButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          Get.to(CreateAccount());
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.orangeAccent,
                           shape: RoundedRectangleBorder(
@@ -131,7 +136,9 @@ class WellComeScreen extends StatelessWidget {
                     Container(
                       width: MediaQuery.of(context).size.width*0.8,
                       child: ElevatedButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          Get.to(LoginPage());
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xffFEF4E6),
                           shape: RoundedRectangleBorder(

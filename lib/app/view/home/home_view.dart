@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:frame/app/view/bookdetail/book_detail_new_view.dart';
 import 'package:frame/app/view/explore_by_genre/explore_by_genre_view.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -63,26 +65,31 @@ class HomePage extends StatelessWidget {
                       child: ListView.builder(
                         itemCount: 8,
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                          width: 150,
-                          color: Colors.red,
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 212,
-                                color: Colors.yellow,
-                              ),
-                              Text(
-                                "The House of Hades (Heroes of Olympus) and the",
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.urbanist(
-                                    textStyle: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black,
-                                    )),)],),),),
+                        itemBuilder: (context, index) => InkWell(
+                          onTap: (){
+                            Get.to(BookDetailScreenNew());
+                          },
+                          child: Container(
+                            margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
+                            width: 150,
+                            color: Colors.red,
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 212,
+                                  color: Colors.yellow,
+                                ),
+                                Text(
+                                  "The House of Hades (Heroes of Olympus) and the",
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.urbanist(
+                                      textStyle: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black,
+                                      )),)],),),
+                        ),),
                     ),
                     Row(
                       children: [
