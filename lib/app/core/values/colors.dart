@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frame/app/core/utils/extensions.dart';
 
 const purple = Color(0xFF756BFC);
 const pink = Color(0xfff1a39a);

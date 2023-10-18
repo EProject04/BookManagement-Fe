@@ -1,6 +1,8 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:frame/app/modules/Home/home_view.dart';
+import 'package:frame/app/modules/OTP/otp_view.dart';
+import 'package:frame/app/modules/wellcome/wellcome_view.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       title: 'Frame GetX',
-      home: OTPPage(),
+      home: WellComeScreen(),
     );
   }
 }
