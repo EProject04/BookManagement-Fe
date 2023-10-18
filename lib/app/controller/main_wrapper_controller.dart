@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frame/app/view/bookdetail/book_detail_view.dart';
 import 'package:frame/app/view/explore_by_genre/explore_by_genre_view.dart';
 import 'package:frame/app/view/home/home_view.dart';
 import 'package:frame/app/view/login/login_view.dart';
