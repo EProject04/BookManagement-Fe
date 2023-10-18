@@ -26,10 +26,10 @@ class Controller extends GetxController{
 
 }
 
-class DetailPage extends StatelessWidget {
-  static final _pageInstance = DetailPage._internal();
-  factory DetailPage() => _pageInstance;
-  DetailPage._internal();
+class BookDetailPage extends StatelessWidget {
+  static final _pageInstance = BookDetailPage._internal();
+  factory BookDetailPage() => _pageInstance;
+  BookDetailPage._internal();
   late Book bookDetail;
 
   final pageController = Controller();
