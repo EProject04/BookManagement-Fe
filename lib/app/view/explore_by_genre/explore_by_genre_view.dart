@@ -117,22 +117,3 @@ class _ExploreByGenreViewState extends State<ExploreByGenreView>{
 
 }
 
-class ExploreByListView extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-  return Container();
-  }
-
-}
-
-class ExploreByGenreGridView extends StatelessWidget{
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-
-    );
-  }
-
-}
