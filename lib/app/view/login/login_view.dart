@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frame/app/view/forget_password/forget_password_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -51,7 +52,11 @@ class LoginPage extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.fromLTRB(5, 0, 15, 0),
                 alignment: Alignment.bottomLeft,
-                child: const IconButton(onPressed: null, icon: Icon(Icons.arrow_back)),
+                child:  IconButton(
+                    onPressed: (){
+                      Get.back();
+                    },
+                    icon: Icon(Icons.arrow_back)),
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -174,22 +179,27 @@ class LoginPage extends StatelessWidget {
                     ),
                   )
               ),
-              Container(
-                margin: const EdgeInsets.fromLTRB(15, 0, 15, 15),
-                decoration: const BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide(
-                            color: Color.fromRGBO(238, 238, 238, 1)
-                        )
-                    )
-                ),
-              ),
-              const Text('Forgot Password', style: TextStyle(
-                  color: Color.fromRGBO(248, 147, 0, 1),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
-                  fontFamily: 'Urbanist'
+              // Container(
+              //   margin: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+              //   decoration: const BoxDecoration(
+              //       border: Border(
+              //           bottom: BorderSide(
+              //               color: Color.fromRGBO(238, 238, 238, 1)
+              //           )
+              //       )
+              //   ),
+              // ),
+               InkWell(
+                 onTap: (){
+                   Get.to(ForgetPasswordPage());
+                 },
+                 child: Text('Forgot Password', style: TextStyle(
+                    color: Color.fromRGBO(248, 147, 0, 1),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                    fontFamily: 'Urbanist'
               ),),
+               ),
               Expanded(child: Container()),
               Row(
                 children: [
