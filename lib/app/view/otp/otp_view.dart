@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:frame/app/view/creat_new_password/create_new_password_view.dart';
+import 'package:frame/app/view/login/login_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OTPController extends GetxController{
-  List<String> otp = List<String>.filled(4, "");
+  List<String> otp = List<String>.filled(5, "");
+  RxBool wrongOTP = false.obs;
+  void otpConfirm(){
+    if(otp[0]+otp[1]+otp[2]+otp[3]+otp[4] == "12345"){
+      Get.to(CreateNewPasswordPage());
+    }else{
+      wrongOTP.value = true;
+    }
+  }
 }
 
 class OTPPage extends StatelessWidget {
@@ -23,9 +33,9 @@ class OTPPage extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                margin: const EdgeInsets.fromLTRB(5, 0, 15, 0),
+                margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                 alignment: Alignment.bottomLeft,
-                child: const IconButton(onPressed: null, icon: Icon(Icons.arrow_back)),
+                child: IconButton(onPressed: () => Get.to(LoginPage()), icon: Icon(Icons.arrow_back)),
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -54,6 +64,23 @@ class OTPPage extends StatelessWidget {
                   width: 350,
                   child: OtpForm()
               ),
+              Obx(
+                      () => Container(
+                    child: pageController.wrongOTP.value ? Container(
+                      margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
+                      child: Text(
+                        "Wrong OTP",
+                        style: GoogleFonts.urbanist(
+                            textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.red
+                            )
+                        ),
+                      ),
+                    ) : null,
+                  )
+              ),
               Container(
                 margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: const Text(
@@ -75,28 +102,26 @@ class OTPPage extends StatelessWidget {
                 children: [
                   Expanded(
                       child: Container(
-                    margin: const EdgeInsets.fromLTRB(15, 10, 15, 15),
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.all(15),
-                            backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25)
-                            )
-                        ),
-                        onPressed: (){
-                          print(pageController.otp);
-                        },
-                        child: const Text(
-                          'Sign In',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Urbanist',
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600
-                          ),
-                        )),
-                  ))
+                        margin: const EdgeInsets.fromLTRB(15, 10, 15, 15),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.all(15),
+                                backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25)
+                                )
+                            ),
+                            onPressed: () => pageController.otpConfirm(),
+                            child: const Text(
+                              'Confirm',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Urbanist',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600
+                              ),
+                            )),
+                      ))
                 ],
               )
             ],
@@ -148,7 +173,7 @@ class OtpForm extends StatelessWidget {
                 }
                 if(value.isEmpty){
                   pageController.otp[0] = "";
-                  FocusScope.of(context).nextFocus();
+                  pageController.wrongOTP.value = false;
                 }
               },
               keyboardType: TextInputType.number,
@@ -187,7 +212,8 @@ class OtpForm extends StatelessWidget {
                 }
                 if(value.isEmpty){
                   pageController.otp[1] = "";
-                  FocusScope.of(context).nextFocus();
+                  pageController.wrongOTP.value = false;
+                  FocusScope.of(context).previousFocus();
                 }
               },
               keyboardType: TextInputType.number,
@@ -226,7 +252,8 @@ class OtpForm extends StatelessWidget {
                 }
                 if(value.isEmpty){
                   pageController.otp[2] = "";
-                  FocusScope.of(context).nextFocus();
+                  pageController.wrongOTP.value = false;
+                  FocusScope.of(context).previousFocus();
                 }
               },
               keyboardType: TextInputType.number,
@@ -261,10 +288,51 @@ class OtpForm extends StatelessWidget {
               onChanged: (value){
                 if(value.length == 1){
                   pageController.otp[3] = value;
+                  FocusScope.of(context).nextFocus();
                 }
                 if(value.isEmpty){
                   pageController.otp[3] = "";
-                  FocusScope.of(context).nextFocus();
+                  pageController.wrongOTP.value = false;
+                  FocusScope.of(context).previousFocus();
+                }
+              },
+              keyboardType: TextInputType.number,
+              textAlign: TextAlign.center,
+              inputFormatters: [
+                LengthLimitingTextInputFormatter(1),
+                FilteringTextInputFormatter.digitsOnly,
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 68,
+            width: 64,
+            child: TextFormField(
+              cursorColor: const Color.fromRGBO(248, 147, 0, 1),
+              decoration: const InputDecoration(
+                fillColor: Color.fromRGBO(240, 240, 240, 0.3),
+                focusColor: Color.fromRGBO(248, 147, 0, 1),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(13)),
+                    borderSide: BorderSide(
+                        color: Color.fromRGBO(248, 147, 0, 1)
+                    )
+                ),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(13)),
+                    borderSide: BorderSide(
+                        color: Color.fromRGBO(210, 210, 210, 1)
+                    )
+                ),
+              ),
+              onChanged: (value){
+                if(value.length == 1){
+                  pageController.otp[4] = value;
+                }
+                if(value.isEmpty){
+                  pageController.otp[4] = "";
+                  pageController.wrongOTP.value = false;
+                  FocusScope.of(context).previousFocus();
                 }
               },
               keyboardType: TextInputType.number,

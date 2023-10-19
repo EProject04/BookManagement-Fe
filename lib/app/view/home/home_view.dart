@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frame/app/view/bookdetail/book_detail_new_view.dart';
+import 'package:frame/app/view/bookdetail/book_detail_view.dart';
 import 'package:frame/app/view/explore_by_genre/explore_by_genre_view.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
