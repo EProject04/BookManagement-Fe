@@ -13,7 +13,6 @@ class WellComeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          reverse: true,
           child: Column(
             children: [
               Container(

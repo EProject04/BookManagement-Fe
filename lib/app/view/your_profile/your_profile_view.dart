@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:frame/app/view/create_new_account/create_new_account.dart';
 import 'package:frame/app/view/home/home_view.dart';
+import 'package:frame/main_wrapper.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -236,7 +237,7 @@ class _YourProfileState extends State<YourProfile>{
                         backgroundColor: MaterialStateProperty.all(Colors.orange)
                     ),
                     onPressed: () {
-                      Get.to(HomePage());
+                      Get.to(MainWrapper());
                     },
                     child: const Center(
                       child: Text('Continue',style: TextStyle(color: Colors.white,fontSize: 18),),
