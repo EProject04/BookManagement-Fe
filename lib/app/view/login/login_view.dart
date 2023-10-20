@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:frame/app/view/forget_password/forget_password_view.dart';
+import 'package:frame/app/view/home/home_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
 class LoginController extends GetxController{
   RxBool isHidden = true.obs;
-  String? usernameValidate(String? username){
-    if(username!.isEmpty){
+  String? usernameValidate(String? phoneNumber){
+    if(phoneNumber!.isEmpty){
       return "Please enter your phone number";
     }
-    if(!RegExp(r'^(?:[+0][1-9])?[0-9]{10,12}$').hasMatch(username)){
+    if(!RegExp(r'^(?:[+0][1-9])?[0-9]{10,12}$').hasMatch(phoneNumber)){
       return "Incorrect phone number";
     }
   }
@@ -23,13 +22,11 @@ class LoginController extends GetxController{
       return "Length greater than 8 and no special key";
     }
   }
+  //call login api
   void login(String phoneNumber, String password){
-    print(phoneNumber);
-    print(password);
+    Get.to(HomePage());
   }
 }
-
-
 
 class LoginPage extends StatelessWidget {
   static final _pageInstance = LoginPage._internal();
@@ -50,13 +47,9 @@ class LoginPage extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                margin: const EdgeInsets.fromLTRB(5, 0, 15, 0),
+                margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                 alignment: Alignment.bottomLeft,
-                child:  IconButton(
-                    onPressed: (){
-                      Get.back();
-                    },
-                    icon: Icon(Icons.arrow_back)),
+                child: const IconButton(onPressed: null, icon: Icon(Icons.arrow_back)),
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -151,7 +144,7 @@ class LoginPage extends StatelessWidget {
                                   suffixIcon: GestureDetector(onTap: (){
                                     pageController.isHidden.value = !pageController.isHidden.value;
                                   },
-                                    child: pageController.isHidden.value ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility)
+                                      child: pageController.isHidden.value ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility)
                                   ),
                                   focusedBorder: const UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -179,27 +172,25 @@ class LoginPage extends StatelessWidget {
                     ),
                   )
               ),
-              // Container(
-              //   margin: const EdgeInsets.fromLTRB(15, 0, 15, 15),
-              //   decoration: const BoxDecoration(
-              //       border: Border(
-              //           bottom: BorderSide(
-              //               color: Color.fromRGBO(238, 238, 238, 1)
-              //           )
-              //       )
-              //   ),
-              // ),
-               InkWell(
-                 onTap: (){
-                   Get.to(ForgetPasswordPage());
-                 },
-                 child: Text('Forgot Password', style: TextStyle(
+              Container(
+                margin: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+                decoration: const BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(
+                            color: Color.fromRGBO(238, 238, 238, 1)
+                        )
+                    )
+                ),
+              ),
+              GestureDetector(
+                onTap: () => Get.to(ForgetPasswordPage()),
+                child: const Text('Forgot Password', style: TextStyle(
                     color: Color.fromRGBO(248, 147, 0, 1),
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
                     fontFamily: 'Urbanist'
-              ),),
-               ),
+                ),
+                ),),
               Expanded(child: Container()),
               Row(
                 children: [

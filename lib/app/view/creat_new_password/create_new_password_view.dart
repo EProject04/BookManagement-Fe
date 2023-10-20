@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frame/app/view/login/login_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -34,7 +35,7 @@ class CreateNewPasswordPage extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.fromLTRB(5, 0, 15, 0),
                 alignment: Alignment.bottomLeft,
-                child: const IconButton(onPressed: null, icon: Icon(Icons.arrow_back)),
+                child: IconButton(onPressed: () => Get.to(LoginPage()), icon: Icon(Icons.arrow_back)),
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -177,96 +178,96 @@ class CreateNewPasswordPage extends StatelessWidget {
                 children: [
                   Expanded(
                       child: Container(
-                    margin: const EdgeInsets.fromLTRB(15, 10, 15, 15),
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.all(15),
-                            backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25)
-                            )
-                        ),
-                        onPressed: (){
-                          // if(formKey.currentState!.validate()){
-                          showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                  title: Center(
-                                      child: Container(
-                                        margin: EdgeInsets.only(top: 10),
-                                        child: Text(
-                                          "New Password",
-                                          style: TextStyle(
-                                              color: Color.fromRGBO(248, 147, 0, 1),
-                                              fontWeight: FontWeight.w600
-                                          ),
-                                        ),
-                                      )),
-                                  content: Builder(
-                                      builder: (context){
-                                        return Container(
-                                          height: 424,
-                                          child: Center(
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  "Reset Pasword",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(248, 147, 0, 1),
-                                                      fontSize: 20,
-                                                      fontWeight: FontWeight.w600
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "Successful!",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(248, 147, 0, 1),
-                                                      fontSize: 20,
-                                                      fontWeight: FontWeight.w600
-                                                  ),
-                                                ),
-                                                Container(
-                                                    margin: EdgeInsets.fromLTRB(0, 10, 0, 20),
-                                                    child: Text("Your password has been successfully changed.",
-                                                      textAlign: TextAlign.center,
-                                                    )
-                                                ),
-                                                Container(
-                                                  width: 1000,
-                                                  margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                                                  child: TextButton(
-                                                    style: TextButton.styleFrom(
-                                                        backgroundColor: Color.fromRGBO(248, 147, 0, 1),
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(25)
-                                                        )
-                                                    ),
-                                                    child: Text(
-                                                      "Go to Home",
+                        margin: const EdgeInsets.fromLTRB(15, 10, 15, 15),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.all(15),
+                                backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25)
+                                )
+                            ),
+                            onPressed: (){
+                              // if(formKey.currentState!.validate()){
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                      title: Center(
+                                          child: Container(
+                                            margin: EdgeInsets.only(top: 10),
+                                            child: Text(
+                                              "New Password",
+                                              style: TextStyle(
+                                                  color: Color.fromRGBO(248, 147, 0, 1),
+                                                  fontWeight: FontWeight.w600
+                                              ),
+                                            ),
+                                          )),
+                                      content: Builder(
+                                          builder: (context){
+                                            return Container(
+                                              height: 424,
+                                              child: Center(
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                      "Reset Pasword",
                                                       style: TextStyle(
-                                                          color: Colors.white
+                                                          color: Color.fromRGBO(248, 147, 0, 1),
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.w600
                                                       ),
                                                     ),
-                                                    onPressed: null,
-                                                  ),
-                                                )
-                                              ],),
-                                          )
-                                          ,);
-                                      })
-                              ));
-                          // }
-                        },
-                        child: const Text(
-                          'Continue',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Urbanist',
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600
-                          ),
-                        )),
-                  ))
+                                                    Text(
+                                                      "Successful!",
+                                                      style: TextStyle(
+                                                          color: Color.fromRGBO(248, 147, 0, 1),
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.w600
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                        margin: EdgeInsets.fromLTRB(0, 10, 0, 20),
+                                                        child: Text("Your password has been successfully changed.",
+                                                          textAlign: TextAlign.center,
+                                                        )
+                                                    ),
+                                                    Container(
+                                                      width: 1000,
+                                                      margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                                      child: TextButton(
+                                                        style: TextButton.styleFrom(
+                                                            backgroundColor: Color.fromRGBO(248, 147, 0, 1),
+                                                            shape: RoundedRectangleBorder(
+                                                                borderRadius: BorderRadius.circular(25)
+                                                            )
+                                                        ),
+                                                        child: Text(
+                                                          "Go to Home",
+                                                          style: TextStyle(
+                                                              color: Colors.white
+                                                          ),
+                                                        ),
+                                                        onPressed: null,
+                                                      ),
+                                                    )
+                                                  ],),
+                                              )
+                                              ,);
+                                          })
+                                  ));
+                              // }
+                            },
+                            child: const Text(
+                              'Continue',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Urbanist',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600
+                              ),
+                            )),
+                      ))
                 ],
               )
             ],
