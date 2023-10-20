@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frame/app/view/forget_password/forget_password_view.dart';
+import 'package:frame/app/view/home/home_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -22,7 +24,7 @@ class LoginController extends GetxController{
   }
   //call login api
   void login(String phoneNumber, String password){
-    Get.toNamed('/home');
+    Get.to(HomePage());
   }
 }
 
@@ -142,7 +144,7 @@ class LoginPage extends StatelessWidget {
                                   suffixIcon: GestureDetector(onTap: (){
                                     pageController.isHidden.value = !pageController.isHidden.value;
                                   },
-                                    child: pageController.isHidden.value ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility)
+                                      child: pageController.isHidden.value ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility)
                                   ),
                                   focusedBorder: const UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -181,14 +183,14 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: () => Get.toNamed("/forgetPassword"),
+                onTap: () => Get.to(ForgetPasswordPage()),
                 child: const Text('Forgot Password', style: TextStyle(
                     color: Color.fromRGBO(248, 147, 0, 1),
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
                     fontFamily: 'Urbanist'
                 ),
-              ),),
+                ),),
               Expanded(child: Container()),
               Row(
                 children: [

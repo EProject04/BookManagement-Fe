@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:frame/app/view/login/login_view.dart';
+import 'package:frame/app/view/otp/otp_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ForgetPasswordController extends GetxController{
   String? emailValidate(String? email){
-      if (email!.isEmpty) {
-        return "Please enter your email";
-      }
-      if (!RegExp(r'[a-z 0-9]+@(?:gmail\.)+[a-z 0-9]')
-          .hasMatch(email)) {
-        return "Incorrect email";
-      }
+    if (email!.isEmpty) {
+      return "Please enter your email";
+    }
+    if (!RegExp(r'[a-z 0-9]+@(?:gmail\.)+[a-z 0-9]')
+        .hasMatch(email)) {
+      return "Incorrect email";
+    }
   }
   void sendOTP(){
-    Get.toNamed('/otp');
+    Get.to(OTPPage());
   }
 }
 
@@ -37,7 +39,7 @@ class ForgetPasswordPage extends StatelessWidget {
                 margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                 alignment: Alignment.bottomLeft,
                 child: IconButton(
-                    onPressed: () => Get.toNamed('/login'), icon: Icon(Icons.arrow_back)),
+                    onPressed: () => Get.to(LoginPage()), icon: Icon(Icons.arrow_back)),
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -123,11 +125,11 @@ class ForgetPasswordPage extends StatelessWidget {
                 margin: const EdgeInsets.fromLTRB(15, 10, 15, 15),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.all(15),
-                      backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25)
-                      )
+                        padding: const EdgeInsets.all(15),
+                        backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25)
+                        )
                     ),
                     onPressed: () {
                       if (formKey.currentState!.validate()) {

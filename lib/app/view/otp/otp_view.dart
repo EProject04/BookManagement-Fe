@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:frame/app/view/creat_new_password/create_new_password_view.dart';
+import 'package:frame/app/view/login/login_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,7 +10,7 @@ class OTPController extends GetxController{
   RxBool wrongOTP = false.obs;
   void otpConfirm(){
     if(otp[0]+otp[1]+otp[2]+otp[3]+otp[4] == "12345"){
-      Get.toNamed('createNewPassword');
+      Get.to(CreateNewPasswordPage());
     }else{
       wrongOTP.value = true;
     }
@@ -33,7 +35,7 @@ class OTPPage extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                 alignment: Alignment.bottomLeft,
-                child: IconButton(onPressed: () => Get.toNamed('/login'), icon: Icon(Icons.arrow_back)),
+                child: IconButton(onPressed: () => Get.to(LoginPage()), icon: Icon(Icons.arrow_back)),
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -69,11 +71,11 @@ class OTPPage extends StatelessWidget {
                       child: Text(
                         "Wrong OTP",
                         style: GoogleFonts.urbanist(
-                          textStyle: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.red
-                          )
+                            textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.red
+                            )
                         ),
                       ),
                     ) : null,
@@ -100,26 +102,26 @@ class OTPPage extends StatelessWidget {
                 children: [
                   Expanded(
                       child: Container(
-                    margin: const EdgeInsets.fromLTRB(15, 10, 15, 15),
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.all(15),
-                            backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25)
-                            )
-                        ),
-                        onPressed: () => pageController.otpConfirm(),
-                        child: const Text(
-                          'Confirm',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Urbanist',
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600
-                          ),
-                        )),
-                  ))
+                        margin: const EdgeInsets.fromLTRB(15, 10, 15, 15),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.all(15),
+                                backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25)
+                                )
+                            ),
+                            onPressed: () => pageController.otpConfirm(),
+                            child: const Text(
+                              'Confirm',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Urbanist',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600
+                              ),
+                            )),
+                      ))
                 ],
               )
             ],
