@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frame/app/controller/main_wrapper_controller.dart';
 import 'package:frame/app/data/utils/colors.dart';
+import 'package:frame/app/logic/controller/main_wrapper_controller.dart';
 
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';

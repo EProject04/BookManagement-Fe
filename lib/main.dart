@@ -1,7 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:frame/app/controller/main_wrapper_controller.dart';
 import 'package:frame/app/data/utils/themes.dart';
+import 'package:frame/app/logic/controller/main_wrapper_controller.dart';
 import 'package:frame/app/view/wellcome/wellcome_view.dart';
 import 'package:frame/main_wrapper.dart';
 import 'package:get/get.dart';
