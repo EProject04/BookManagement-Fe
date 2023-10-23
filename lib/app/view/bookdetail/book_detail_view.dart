@@ -17,8 +17,6 @@ class BookDetailScreenNew extends StatelessWidget {
   void initState(){
 
   }
-
-
   @override
   Widget build(BuildContext context) {
     // var bookDetail;
@@ -96,39 +94,57 @@ class BookDetailScreenNew extends StatelessWidget {
                                         )
                                     ),
                                   ),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.fromLTRB(0, 10, 5, 5),
-                                        padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
-                                        color: Color.fromRGBO(230, 230, 230, 1),
-                                        child: Text(
-                                          "Fantasy",
-                                          style: GoogleFonts.urbanist(
-                                              textStyle: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color.fromRGBO(50, 50, 50, 1)
-                                              )
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.fromLTRB(0, 10, 5, 5),
+                                          padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
+                                          color: Color.fromRGBO(230, 230, 230, 1),
+                                          child: Text(
+                                            "Fantasy",
+                                            style: GoogleFonts.urbanist(
+                                                textStyle: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Color.fromRGBO(50, 50, 50, 1)
+                                                )
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Container(
-                                        margin: EdgeInsets.fromLTRB(0, 10, 5, 5),
-                                        padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
-                                        color: Color.fromRGBO(230, 230, 230, 1),
-                                        child: Text(
-                                          "Fantasy",
-                                          style: GoogleFonts.urbanist(
-                                              textStyle: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color.fromRGBO(50, 50, 50, 1)
-                                              )
+                                        Container(
+                                          margin: EdgeInsets.fromLTRB(0, 10, 5, 5),
+                                          padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
+                                          color: Color.fromRGBO(230, 230, 230, 1),
+                                          child: Text(
+                                            "Fantasy",
+                                            style: GoogleFonts.urbanist(
+                                                textStyle: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Color.fromRGBO(50, 50, 50, 1)
+                                                )
+                                            ),
                                           ),
                                         ),
-                                      )
-                                    ],
+                                        Container(
+                                          margin: EdgeInsets.fromLTRB(0, 10, 5, 5),
+                                          padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
+                                          color: Color.fromRGBO(230, 230, 230, 1),
+                                          child: Text(
+                                            "Fantasy",
+                                            style: GoogleFonts.urbanist(
+                                                textStyle: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Color.fromRGBO(50, 50, 50, 1)
+                                                )
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
 
                                 ],

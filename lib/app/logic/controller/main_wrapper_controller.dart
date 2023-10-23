@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frame/app/view/account/account_view.dart';
 import 'package:frame/app/view/explore_by_genre/explore_by_genre_view.dart';
 import 'package:frame/app/view/home/home_view.dart';
 import 'package:frame/app/view/login/login_view.dart';
@@ -20,7 +21,7 @@ class MainWrapperController extends GetxController {
     HomePage(),
     ExploreByGenreView(),
      WellComeScreen(),
-     YourProfile(),
+     AccountView(),
   ];
 
   ThemeMode get theme => Get.isDarkMode ? ThemeMode.dark : ThemeMode.light;
