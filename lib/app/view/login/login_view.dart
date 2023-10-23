@@ -49,7 +49,9 @@ class LoginPage extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                 alignment: Alignment.bottomLeft,
-                child: const IconButton(onPressed: null, icon: Icon(Icons.arrow_back)),
+                child:  IconButton(onPressed: (){
+                  Get.back();
+                }, icon: Icon(Icons.arrow_back)),
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),

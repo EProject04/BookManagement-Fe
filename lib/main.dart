@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:frame/app/data/utils/themes.dart';
 import 'package:frame/app/logic/controller/main_wrapper_controller.dart';
+import 'package:frame/app/routes/routes.dart';
 import 'package:frame/app/view/account/account_view.dart';
 import 'package:frame/app/view/help_center/help_center_view.dart';
 import 'package:frame/app/view/home/home_view.dart';
@@ -25,6 +26,8 @@ class MyApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       theme: Themes.lightTheme,
       darkTheme: Themes.darkTheme,
+      getPages: Routes.routePage,
+      initialRoute: '/',
       themeMode: Get.put(MainWrapperController()).theme,
       title: 'ib Book App',
       home: WellComeScreen(),
