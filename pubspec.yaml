@@ -42,6 +42,8 @@ dependencies:
   google_fonts: ^6.1.0
   iconly: ^1.0.1
   zoom_tap_animation: ^1.1.0
+
+  fluttertoast: ^8.2.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
