@@ -1,5 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:frame/app/data/utils/dialog_common_style.dart';
+import 'package:frame/app/data/utils/dialog_loading.dart';
 import 'package:frame/app/data/utils/themes.dart';
 import 'package:frame/app/logic/controller/main_wrapper_controller.dart';
 import 'package:frame/app/routes/routes.dart';
