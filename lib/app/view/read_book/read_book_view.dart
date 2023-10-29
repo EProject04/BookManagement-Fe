@@ -14,6 +14,14 @@ class FontFamily{
   FontFamily(this.id, this.fontName, this.isSelectedFont);
 }
 
+class ListIcon{
+  final int id;
+  final Icon iconName;
+  bool isSelectedIcon;
+
+  ListIcon(this.id, this.iconName, this.isSelectedIcon);
+}
+
 class ReadBookView extends StatefulWidget {
   const ReadBookView({super.key});
 
@@ -238,9 +246,10 @@ class BottomSheetWidget extends StatefulWidget {
 class _BottomSheetWidgetState extends State<BottomSheetWidget> {
   final double _brightnessValue = 0.1;
   double _fontSize = 15;
-
+  bool selectedAlign = false;
 
   List<FontFamily> fontFamily = <FontFamily>[];
+  List<ListIcon> icons = <ListIcon>[];
   @override
   void initState(){
     super.initState();
@@ -253,6 +262,11 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
     // fontFamily.add(FontFamily(6, 'Sans Serif', false));
     fontFamily.add(FontFamily(5, 'Goudy', false));
 
+
+    icons.add(ListIcon(1, Icon(Icons.format_align_left), true));
+    icons.add(ListIcon(2, Icon(Icons.format_align_center), false));
+    icons.add(ListIcon(3, Icon(Icons.format_align_right), false));
+    icons.add(ListIcon(4, Icon(Icons.format_align_justify), false));
   }
 
   Future<void> _setBrightness(double brightness) async {
@@ -380,67 +394,33 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                 height: size.height*0.05,
 
                 decoration: BoxDecoration(
-                  color: Colors.grey,
+                  color: Colors.grey[300],
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: GridView(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
-                    childAspectRatio: 2
+                    childAspectRatio: 2,
+
                   ),
-                  children: <Widget>[
-                    InkWell(
-                      onTap: (){},
-                      child: Container(
+                  physics: NeverScrollableScrollPhysics(),
+                  children: icons.map((item) =>  InkWell(
+                    onTap: (){
+                      setState(() {
+                        icons.forEach((element) =>element.isSelectedIcon = false );
+                        item.isSelectedIcon = true;
+                      });
+                    },
+                    child: Container(
 
-                        child: Icon(
-                          Icons.format_align_left
-                        ),
-                        decoration: BoxDecoration(
-                            color: Colors.orange,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            bottomLeft: Radius.circular(8),
-                          )
-                        ),
+                      child: item.iconName,
+                      decoration: BoxDecoration(
+                        color: item.isSelectedIcon? Colors.orange: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    InkWell(
-                      onTap: (){},
-                      child: Container(
-                        color: Colors.orange,
-                        child: Icon(
-                            Icons.format_align_center
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: (){},
-                      child: Container(
-                        color: Colors.orange,
-                        child: Icon(
-                            Icons.format_align_right
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: (){},
-                      child: Container(
-
-                        child: Icon(
-                            Icons.format_align_justify
-                        ),
-                        decoration: BoxDecoration(
-                            color: Colors.orange,
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(8),
-                              bottomRight: Radius.circular(8),
-                            )
-                        ),
-                      ),
-                    ),
-
-                  ],
+                  ),
+                  ).toList(),
                 ),
               )
             ],
