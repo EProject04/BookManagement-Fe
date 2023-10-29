@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frame/app/view/genre_detail/genre_detail_view.dart';
+import 'package:get/get.dart';
 
 class BookGenre{
   final int id;
@@ -81,7 +82,7 @@ class _ExploreByGenreViewState extends State<ExploreByGenreView>{
                 (item)=>InkWell(
                   onTap:(){
                     setState(() {
-                       Navigator.push(context, MaterialPageRoute(builder: (context)=>GenreDetailView()));
+                      Get.to(GenreDetailView());
                       // bookGenre.forEach((element) {
                       //
                       // });

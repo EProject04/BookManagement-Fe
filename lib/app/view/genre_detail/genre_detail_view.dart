@@ -585,7 +585,7 @@ class GenreDetailGridView extends StatelessWidget{
         ),
         children: <Widget>[
           Container(
-            // color: Colors.orange,
+            color: Colors.orange,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children:<Widget>[

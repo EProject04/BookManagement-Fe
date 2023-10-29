@@ -179,6 +179,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_screen_wake:
+    dependency: "direct main"
+    description:
+      name: flutter_screen_wake
+      sha256: "7c69295d1405a5e7b673f5fe938d116076a4e8620cacdf04e884242622296f65"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -429,6 +437,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.5"
+  screen_brightness:
+    dependency: "direct main"
+    description:
+      name: screen_brightness
+      sha256: fe1bf87a39232fe87cfcdab766ce68b8cf3c20aa6d7e38445b45869b1e6c76f1
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.4"
+  screen_brightness_android:
+    dependency: transitive
+    description:
+      name: screen_brightness_android
+      sha256: "633c6d1ae4a01ced176fe87e80492ebc40954eb8c07f2fca1386eff5451a1364"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4"
+  screen_brightness_ios:
+    dependency: transitive
+    description:
+      name: screen_brightness_ios
+      sha256: "1f40d1ded2a7fb326f646324e753eba41bd0873bdeea5cdd5277697edf1aac3c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
+  screen_brightness_platform_interface:
+    dependency: transitive
+    description:
+      name: screen_brightness_platform_interface
+      sha256: d70e77806e678a6dcb3c19c1f52bf79707a6db06f21174de57344785050036ee
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4"
   shared_preferences:
     dependency: "direct main"
     description:
