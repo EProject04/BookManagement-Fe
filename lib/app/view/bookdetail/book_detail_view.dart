@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frame/app/data/models/book.dart';
+import 'package:frame/app/view/about_this_ebook/about_this_ebook_view.dart';
 import 'package:frame/app/view/read_book/read_book_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -285,7 +286,9 @@ class BookDetailScreenNew extends StatelessWidget {
                                 child:Container(
                                   alignment: Alignment.centerRight,
                                   child: IconButton(
-                                      onPressed: null,
+                                      onPressed: (){
+                                        Get.to(AboutThisEbookView());
+                                      },
                                       icon: Icon(Icons.arrow_forward)),
                                 )
                             )
