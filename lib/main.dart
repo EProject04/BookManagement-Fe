@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       themeMode: Get.put(MainWrapperController()).theme,
       title: 'ib Book App',
-      home: SearchView(),
+      home: WellComeScreen(),
     );
   }
 }
