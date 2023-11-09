@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screen_wake/flutter_screen_wake.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:screen_brightness/screen_brightness.dart';
+
 
 class FontFamily{
   final int id;
@@ -269,14 +269,14 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
     icons.add(ListIcon(4, Icon(Icons.format_align_justify), false));
   }
 
-  Future<void> _setBrightness(double brightness) async {
-    try {
-      await ScreenBrightness().setScreenBrightness(brightness);
-    } catch (e) {
-      debugPrint(e.toString());
-      throw 'Failed to set brightness';
-    }
-  }
+  // Future<void> _setBrightness(double brightness) async {
+  //   try {
+  //     await ScreenBrightness().setScreenBrightness(brightness);
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //     throw 'Failed to set brightness';
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -309,7 +309,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                   value: _brightnessValue,
                   onChanged: (value) {
                     setState(() {
-                      _setBrightness(value);
+                      // _setBrightness(value);
                     });
                   },
                 ),

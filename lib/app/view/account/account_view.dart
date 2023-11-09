@@ -6,14 +6,9 @@ import 'package:frame/app/view/help_center/help_center_view.dart';
 import 'package:frame/app/view/personal_info/personal_info_view.dart';
 import 'package:get/get.dart';
 
-class AccountView extends StatefulWidget {
+class AccountView extends StatelessWidget {
   const AccountView({super.key});
 
-  @override
-  State<AccountView> createState() => _AccountViewState();
-}
-
-class _AccountViewState extends State<AccountView> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -28,13 +23,13 @@ class _AccountViewState extends State<AccountView> {
             ),
             actions: <Widget>[
               IconButton(
-                  onPressed: (){
+                onPressed: (){
 
-                  },
-                  icon: Icon(
-                      Icons.pending_outlined,
-                    size: 30,
-                  ),
+                },
+                icon: Icon(
+                  Icons.pending_outlined,
+                  size: 30,
+                ),
               ),
             ],
           ),
@@ -47,7 +42,7 @@ class _AccountViewState extends State<AccountView> {
                   child: ListTile(
                     leading: CircleAvatar(
                       backgroundImage: NetworkImage(
-                        'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o='
+                          'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o='
                       ),
                     ),
                     title:Text('Tran Thanh Nhat',
@@ -222,92 +217,89 @@ class _AccountViewState extends State<AccountView> {
                   child: InkWell(
                     onTap: (){
                       showModalBottomSheet<void>(
-                        context: context,
-                        builder: (BuildContext context){
-                          return SizedBox(
+                          context: context,
+                          builder: (BuildContext context){
+                            return SizedBox(
 
-                            height: size.height*0.3,
-                            child: Center(
-                              child: Column(
-
-
-                                children: <Widget>[
-                                  Padding(
-                                    padding: EdgeInsets.all(30.0),
-                                    child: Text('Logout',
-                                      style: TextStyle(
+                              height: size.height*0.3,
+                              child: Center(
+                                child: Column(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.all(30.0),
+                                      child: Text('Logout',
+                                        style: TextStyle(
                                           color: Colors.redAccent,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(15,0,15,0),
-                                    child: Divider(height: 0,),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.all(30.0),
-                                    child: Text('Are you sure you want to log out?',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(15,0,15,0),
+                                      child: Divider(height: 0,),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(30.0),
+                                      child: Text('Are you sure you want to log out?',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-
-                                      Container(
-                                        width: size.width * 0.3,
-                                        child: ElevatedButton(
-                                          child: Text('Cancel',
-                                            style: TextStyle(
-                                                color: Colors.orange
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Container(
+                                          width: size.width * 0.3,
+                                          child: ElevatedButton(
+                                            child: Text('Cancel',
+                                              style: TextStyle(
+                                                  color: Colors.orange
+                                              ),
                                             ),
-                                          ),
-                                          onPressed: () => Navigator.pop(context),
-                                          style: ButtonStyle(
-                                            backgroundColor: MaterialStateProperty.all<Color>(Colors.white70),
-                                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(25),)
+                                            onPressed: () => Get.back(),
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: Color(0xfff5e4cb),
+                                              elevation: 0.0,
+                                              shadowColor: Colors.transparent,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(25)
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(width: size.width*0.05,),
-                                      Container(
-                                        width: size.width * 0.3,
-                                        child: ElevatedButton(
-                                          child: Text('Yes, Logout',
-                                            style: TextStyle(
-                                                color: Colors.white
+                                        SizedBox(width: size.width*0.05,),
+                                        Container(
+                                          width: size.width * 0.3,
+                                          child: ElevatedButton(
+                                            child: Text('Yes, Logout',
+                                              style: TextStyle(
+                                                  color: Colors.white
+                                              ),
                                             ),
-                                          ),
-                                          onPressed: () => Navigator.pop(context),
-                                          style: ButtonStyle(
-
-                                            backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
-                                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                                RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(25),)
+                                            onPressed: () => Get.back(),
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.orange,
+                                              elevation: 0.0,
+                                              shadowColor: Colors.transparent,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(25)
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25)
-                        )
+                            );
+                          },
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25)
+                          )
                       );
                     },
                     child: ListTile(
@@ -332,3 +324,5 @@ class _AccountViewState extends State<AccountView> {
     );
   }
 }
+
+

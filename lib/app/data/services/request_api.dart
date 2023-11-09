@@ -20,9 +20,9 @@ class RequestApi {
   static const String API_CATEGORIES_SEARCH ="/api/Categories/search";
   static const String API_CATEGORIES_POST ="/api/Categories";
 
-  static const String API_LOGIN ="/api/Users/login";
-  static const String API_REGISTER ="/api/Users/register";
-  static const String API_LOGOUT ="/api/Users/logout";
+  static const String API_LOGIN ="/api/users/login";
+  static const String API_REGISTER ="/api/users/register";
+  static const String API_LOGOUT ="/api/users/logout";
 
   static const String API_USERPROFILE_GET ="/api/UserProfiles";
   static const String API_USERPROFILE_PUT ="/api/UserProfiles?id=";
