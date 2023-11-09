@@ -12,8 +12,8 @@ class WishlistView extends StatelessWidget {
     return SafeArea(
       child:Scaffold(
         appBar: AppBar(
-          leading: BackButton(
-            color: Colors.black,
+          leading:Image(
+            image: NetworkImage('https://st3.depositphotos.com/11953928/32310/v/450/depositphotos_323108450-stock-illustration-isolated-books-flat-design.jpg'),
           ),
           elevation: 0.0,// remove app bar shadow
           backgroundColor: Colors.white,

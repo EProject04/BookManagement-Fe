@@ -15,6 +15,9 @@ class AccountView extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
           appBar: AppBar(
+            leading: Image(
+              image: NetworkImage('https://st3.depositphotos.com/11953928/32310/v/450/depositphotos_323108450-stock-illustration-isolated-books-flat-design.jpg'),
+            ),
             title: Text('Account',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
