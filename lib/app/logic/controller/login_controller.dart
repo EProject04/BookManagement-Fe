@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:frame/app/data/models/user.dart';
 import 'package:frame/app/data/services/request_api.dart';
 import 'package:frame/app/view/home/home_view.dart';
+import 'package:frame/main_wrapper.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:http/http.dart' as http;
@@ -49,7 +50,7 @@ class LoginController extends GetxController{
       if(response.statusCode == 200){
         print('login successful');
         print(response.body);
-        Get.to(()=>HomePage());
+        Get.to(()=>MainWrapper());
       }else{
         print('failed');
       }
