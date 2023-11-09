@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frame/app/view/about_ibbook/about_ibbook_view.dart';
@@ -24,17 +25,17 @@ class AccountView extends StatelessWidget {
                   fontSize: 25
               ),
             ),
-            actions: <Widget>[
-              IconButton(
-                onPressed: (){
-
-                },
-                icon: Icon(
-                  Icons.pending_outlined,
-                  size: 30,
-                ),
-              ),
-            ],
+            // actions: <Widget>[
+            //   IconButton(
+            //     onPressed: (){
+            //
+            //     },
+            //     icon: Icon(
+            //       Icons.pending_outlined,
+            //       size: 30,
+            //     ),
+            //   ),
+            // ],
           ),
           body: Container(
 
@@ -54,7 +55,7 @@ class AccountView extends StatelessWidget {
                       ),
                     ),
                     subtitle: Text('nhat.tt.dev@gmail.com',style: TextStyle(color: Colors.grey),),
-                    trailing: Icon(Icons.edit_rounded),
+                    // trailing: Icon(Icons.edit_rounded),
                   ),
                 ),
                 Padding(
@@ -86,80 +87,80 @@ class AccountView extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  // color: Colors.orange,
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Color(0xFFD8EEF8),
-                      child: Icon(Icons.settings,
-                        color: Colors.blue,
-                      ),
-                    ),
-                    title:Text('Preferences',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold
-                      ),
-                    ),
-                    trailing: IconButton(
-                      padding: EdgeInsets.zero,//bo padding
-                      constraints: BoxConstraints(),//bo gioi han de can sat le
-                      icon: Icon(Icons.arrow_forward_ios_rounded),
-                      onPressed: (){
+                // Container(
+                //   // color: Colors.orange,
+                //   child: ListTile(
+                //     leading: CircleAvatar(
+                //       backgroundColor: Color(0xFFD8EEF8),
+                //       child: Icon(Icons.settings,
+                //         color: Colors.blue,
+                //       ),
+                //     ),
+                //     title:Text('Preferences',
+                //       style: TextStyle(
+                //           fontWeight: FontWeight.bold
+                //       ),
+                //     ),
+                //     trailing: IconButton(
+                //       padding: EdgeInsets.zero,//bo padding
+                //       constraints: BoxConstraints(),//bo gioi han de can sat le
+                //       icon: Icon(Icons.arrow_forward_ios_rounded),
+                //       onPressed: (){
+                //
+                //       },
+                //     ),
+                //   ),
+                // ),
 
-                      },
-                    ),
-                  ),
-                ),
-
-                Container(
-                  // color: Colors.orange,
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Color(0xFFD8EEF8),
-                      child: Icon(Icons.grid_view_rounded,
-                        color: Colors.blue,
-                      ),
-                    ),
-                    title:Text('Languages',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold
-                      ),
-                    ),
-                    subtitle: Text('English (US)', style: TextStyle(fontWeight: FontWeight.bold),),
-                    trailing: IconButton(
-                      padding: EdgeInsets.zero,//bo padding
-                      constraints: BoxConstraints(),//bo gioi han de can sat le
-                      icon: Icon(Icons.arrow_forward_ios_rounded),
-                      onPressed: (){
-
-                      },
-                    ),
-                  ),
-                ),
-                Container(
-                  // color: Colors.orange,
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Color(0xFFD8EEF8),
-                      child: Icon(Icons.remove_red_eye,
-                        color: Colors.blue,
-                      ),
-                    ),
-                    title:Text('Dark Mode',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold
-                      ),
-                    ),
-                    trailing: IconButton(
-                      padding: EdgeInsets.zero,//bo padding
-                      constraints: BoxConstraints(),//bo gioi han de can sat le
-                      icon: Icon(Icons.arrow_forward_ios_rounded),
-                      onPressed: (){
-
-                      },
-                    ),
-                  ),
-                ),
+                // Container(
+                //   // color: Colors.orange,
+                //   child: ListTile(
+                //     leading: CircleAvatar(
+                //       backgroundColor: Color(0xFFD8EEF8),
+                //       child: Icon(Icons.grid_view_rounded,
+                //         color: Colors.blue,
+                //       ),
+                //     ),
+                //     title:Text('Languages',
+                //       style: TextStyle(
+                //           fontWeight: FontWeight.bold
+                //       ),
+                //     ),
+                //     subtitle: Text('English (US)', style: TextStyle(fontWeight: FontWeight.bold),),
+                //     trailing: IconButton(
+                //       padding: EdgeInsets.zero,//bo padding
+                //       constraints: BoxConstraints(),//bo gioi han de can sat le
+                //       icon: Icon(Icons.arrow_forward_ios_rounded),
+                //       onPressed: (){
+                //
+                //       },
+                //     ),
+                //   ),
+                // ),
+                // Container(
+                //   // color: Colors.orange,
+                //   child: ListTile(
+                //     leading: CircleAvatar(
+                //       backgroundColor: Color(0xFFD8EEF8),
+                //       child: Icon(Icons.remove_red_eye,
+                //         color: Colors.blue,
+                //       ),
+                //     ),
+                //     title:Text('Dark Mode',
+                //       style: TextStyle(
+                //           fontWeight: FontWeight.bold
+                //       ),
+                //     ),
+                //     trailing: IconButton(
+                //       padding: EdgeInsets.zero,//bo padding
+                //       constraints: BoxConstraints(),//bo gioi han de can sat le
+                //       icon: Icon(Icons.arrow_forward_ios_rounded),
+                //       onPressed: (){
+                //
+                //       },
+                //     ),
+                //   ),
+                // ),
 
                 Padding(
                   padding: EdgeInsets.fromLTRB(15,10,15,10),
@@ -215,6 +216,7 @@ class AccountView extends StatelessWidget {
                     ),
                   ),
                 ),
+
                 Container(
                   // color: Colors.orange,
                   child: InkWell(
@@ -320,6 +322,30 @@ class AccountView extends StatelessWidget {
                     ),
                   ),
                 ),
+                Container(
+                  // color: Colors.orange,
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Color(0xFFD8EEF8),
+                      child: Icon(Icons.delete,
+                        color: Colors.blue,
+                      ),
+                    ),
+                    title:Text('Delete Account',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    trailing: IconButton(
+                      padding: EdgeInsets.zero,//bo padding
+                      constraints: BoxConstraints(),//bo gioi han de can sat le
+                      icon: Icon(Icons.arrow_forward_ios_rounded),
+                      onPressed: (){
+
+                      },
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -327,5 +353,6 @@ class AccountView extends StatelessWidget {
     );
   }
 }
+
 
 

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frame/app/view/bookdetail/book_detail_view.dart';
+import 'package:frame/app/view/read_book/read_book_view.dart';
 import 'package:get/get.dart';
 
 class WishlistView extends StatelessWidget {
@@ -52,7 +53,7 @@ class WishlistView extends StatelessWidget {
               // color: Colors.amber[600],
               child: InkWell(
                 onTap: (){
-                  Get.to(BookDetailScreenNew());
+                  Get.to(()=>BookDetailScreenNew());
                 },
                 child: Row(
                   children: <Widget>[
@@ -119,23 +120,23 @@ class WishlistView extends StatelessWidget {
                                 ],
                               )
                           ),
-                          PopupMenuItem(
-                              value: 2,
-                              child:  Row(
-                                children: [
-                                  Icon(Icons.share),
-                                  SizedBox(width: 10,),
-                                  Text('Share')
-                                ],
-                              )
-                          ),
+                          // PopupMenuItem(
+                          //     value: 2,
+                          //     child:  Row(
+                          //       children: [
+                          //         Icon(Icons.share),
+                          //         SizedBox(width: 10,),
+                          //         Text('Share')
+                          //       ],
+                          //     )
+                          // ),
                           PopupMenuItem(
                             value: 3,
                             child:  Row(
                               children: [
                                 Icon(Icons.info_outline_rounded),
                                 SizedBox(width: 10,),
-                                Text('About ibBook')
+                                Text('About this eBook')
                               ],
                             ),
                           ),

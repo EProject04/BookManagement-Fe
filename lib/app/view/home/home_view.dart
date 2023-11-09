@@ -43,7 +43,7 @@ class HomePage extends GetView<MainWrapperController> {
                         ),
                         IconButton(
                             onPressed: (){
-                              Get.to(SearchView());
+                              Get.to(()=>SearchView());
                             },
                             icon: Icon(Icons.search)),
                         IconButton(
@@ -75,7 +75,7 @@ class HomePage extends GetView<MainWrapperController> {
                         scrollDirection: Axis.horizontal,
                         itemBuilder:(context, index) => InkWell(
                           onTap: (){
-                            Get.to(BookDetailScreenNew());
+                            Get.to(()=>BookDetailScreenNew());
                           },
                           child: Padding(
                             padding: EdgeInsets.only(right: 15),
@@ -145,7 +145,7 @@ class HomePage extends GetView<MainWrapperController> {
                       ),
                       IconButton(
                           onPressed: (){
-                            Get.to(ExploreByGenreView());
+                            Get.to(()=>ExploreByGenreView());
                           },
                           icon: Icon(Icons.arrow_forward))
                     ],
@@ -191,7 +191,7 @@ class HomePage extends GetView<MainWrapperController> {
                       scrollDirection: Axis.horizontal,
                       itemBuilder:(context, index) => InkWell(
                         onTap: (){
-                          Get.to(BookDetailScreenNew());
+                          Get.to(()=>BookDetailScreenNew());
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: 15),
