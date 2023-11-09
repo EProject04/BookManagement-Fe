@@ -1,41 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:frame/app/logic/controller/login_controller.dart';
 import 'package:frame/app/view/forget_password/forget_password_view.dart';
-import 'package:frame/app/view/home/home_view.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginController extends GetxController{
-  RxBool isHidden = true.obs;
-  String? usernameValidate(String? phoneNumber){
-    if(phoneNumber!.isEmpty){
-      return "Please enter your phone number";
-    }
-    if(!RegExp(r'^(?:[+0][1-9])?[0-9]{10,12}$').hasMatch(phoneNumber)){
-      return "Incorrect phone number";
-    }
-  }
-  String? passwordValidate(String? password){
-    if(password!.isEmpty){
-      return "Please enter your password";
-    }
-    if(password.length < 8 || RegExp(r'[!#$%&*"+/=?^_`{|}~-]').hasMatch(password)){
-      return "Length greater than 8 and no special key";
-    }
-  }
-  //call login api
-  void login(String phoneNumber, String password){
-    Get.to(HomePage());
-  }
-}
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends GetView<LoginController> {
   static final _pageInstance = LoginPage._internal();
   factory LoginPage() => _pageInstance;
   LoginPage._internal();
 
   final formKey = GlobalKey<FormState>();
   final pageController = LoginController();
-  TextEditingController phoneNumber = TextEditingController();
+  TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
 
   @override
@@ -101,7 +79,7 @@ class LoginPage extends StatelessWidget {
                             right: 0,
                             left: 0,
                             child: TextFormField(
-                              controller: phoneNumber,
+                              controller: username,
                               decoration: InputDecoration(
                                 focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
@@ -209,7 +187,7 @@ class LoginPage extends StatelessWidget {
                             ),
                             onPressed: (){
                               if(formKey.currentState!.validate()){
-                                pageController.login(phoneNumber.text,password.text);
+                                pageController.login(username.text,password.text);
                               }
                             },
                             child: const Text(

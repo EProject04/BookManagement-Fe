@@ -1,27 +1,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:frame/app/view/your_profile/your_profile_view.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Country{
-  final int id;
-  final String country_name;
-
-  Country(this.id, this.country_name);
-}
-List<String> list = <String>['Vietnamese', 'United States', 'Korea', 'Japan'];
-class CreateAccount extends StatefulWidget{
-  @override
-  State<CreateAccount> createState() => _CreateAccountState();
-}
-
-class _CreateAccountState extends State<CreateAccount>{
-
-  List<Country> country = <Country>[];
-  String dropdownValue = list.first;
+class CreateAccount extends StatelessWidget {
+  const CreateAccount({super.key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
+
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -179,8 +168,7 @@ class _CreateAccountState extends State<CreateAccount>{
                       backgroundColor: MaterialStateProperty.all(Colors.orange)
                   ),
                   onPressed: () {
-                    // Navigator.push(context,MaterialPageRoute(builder: (context)=> ChooseAge()));
-                    Navigator.push(context,MaterialPageRoute(builder: (context)=> YourProfile()));
+                    Get.to(()=>YourProfile());
                   },
                   child: const Center(
                     child: Text('Continue',style: TextStyle(color: Colors.white,fontSize: 18),),
@@ -194,4 +182,6 @@ class _CreateAccountState extends State<CreateAccount>{
     );
   }
 }
+
+
 

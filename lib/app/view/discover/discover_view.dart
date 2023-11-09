@@ -2,21 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frame/app/view/bookdetail/book_detail_view.dart';
 import 'package:get/get.dart';
-
-class DiscoverView extends StatefulWidget {
+class DiscoverView extends StatelessWidget {
   const DiscoverView({super.key});
 
-  @override
-  State<DiscoverView> createState() => _DiscoverViewState();
-}
-
-class _DiscoverViewState extends State<DiscoverView> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
           appBar: AppBar(
+            leading: Image(
+              image: NetworkImage('https://st3.depositphotos.com/11953928/32310/v/450/depositphotos_323108450-stock-illustration-isolated-books-flat-design.jpg'),
+            ),
             title: Text('Dicover',
               style: TextStyle(
                 color: Colors.black,
@@ -86,7 +83,7 @@ class _DiscoverViewState extends State<DiscoverView> {
                                   color: Colors.red,
                                   image: DecorationImage(
                                     image: NetworkImage(
-                                        'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
+                                      'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
                                     ),
                                     fit: BoxFit.fill,
                                   ),
@@ -96,7 +93,7 @@ class _DiscoverViewState extends State<DiscoverView> {
                               SizedBox(height: 5,),
                               Container(
                                 width: size.width*0.4,
-                                child: Text('Harry Potter và hòn đá phù thuỷ',
+                                child: Text('Harry Potter và hòn đá phù thuỷf',
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -227,3 +224,4 @@ class _DiscoverViewState extends State<DiscoverView> {
     );
   }
 }
+

@@ -1,7 +1,7 @@
-import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 
 class SearchView extends StatefulWidget {
   const SearchView({super.key});

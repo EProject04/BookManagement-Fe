@@ -1,14 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HelpCenterView extends StatefulWidget {
+class HelpCenterView extends StatelessWidget {
   const HelpCenterView({super.key});
 
-  @override
-  State<HelpCenterView> createState() => _HelfCenterViewState();
-}
-
-class _HelfCenterViewState extends State<HelpCenterView> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -48,7 +43,7 @@ class _HelfCenterViewState extends State<HelpCenterView> {
                       child: TextField(
                         maxLines: 8,
                         decoration: InputDecoration.collapsed(
-                            hintText: "Enter your question.",
+                          hintText: "Enter your question.",
                         ),
                       ),
                     ),
@@ -83,9 +78,12 @@ class _HelfCenterViewState extends State<HelpCenterView> {
                 ),
               ],
             ),
-            
+
           ),
         )
     );
   }
 }
+
+
+

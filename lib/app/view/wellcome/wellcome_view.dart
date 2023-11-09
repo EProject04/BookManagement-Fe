@@ -17,7 +17,7 @@ class WellComeScreen extends StatelessWidget {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                height:MediaQuery.of(context).size.height*0.5,
+                height:MediaQuery.of(context).size.height*0.4,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
                   image: DecorationImage(
@@ -136,7 +136,7 @@ class WellComeScreen extends StatelessWidget {
                       width: MediaQuery.of(context).size.width*0.8,
                       child: ElevatedButton(
                         onPressed: (){
-                          Get.to(LoginPage());
+                          Get.to(()=>LoginPage());
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xffFEF4E6),
