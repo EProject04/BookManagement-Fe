@@ -1,27 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:frame/app/data/models/book.dart';
 import 'package:frame/app/view/about_this_ebook/about_this_ebook_view.dart';
+import 'package:frame/app/view/rate_this_ebook/rate_view.dart';
+import 'package:frame/app/view/ratings_and_reviews/ratings_and_reviews.dart';
 import 'package:frame/app/view/read_book/read_book_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+class BookDetail{
+  String content;
+  String description;
+  String title;
+  bool status;
+  String imagePath;
+
+  BookDetail(
+      this.content, this.description, this.title, this.status, this.imagePath);
+}
+
 class BookDetailScreenNew extends StatelessWidget {
-   BookDetailScreenNew({super.key});
-  Book bookDetail = Book(
-    content: "",
-    description: "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-    title: "Ta muốn trở thành chúa tể bóng tối",
-    status: true,
-    imagePath: "https://product.hstatic.net/200000343865/product/1---lmt_c6192d87264a4ed8b015befdb10e4379_master.jpg",
+  const BookDetailScreenNew({super.key});
 
-  );
-  @override
-  void initState(){
-
-  }
   @override
   Widget build(BuildContext context) {
+    Book bookDetail = Book(
+      content: "",
+      description: "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      title: "Ta muốn trở thành chúa tể bóng tối",
+      status: true,
+      imagePath: "https://product.hstatic.net/200000343865/product/1---lmt_c6192d87264a4ed8b015befdb10e4379_master.jpg",
+
+    );
     // var bookDetail;
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
             backgroundColor: Colors.white,
@@ -46,7 +58,7 @@ class BookDetailScreenNew extends StatelessWidget {
                     ],
                   ),
                   Container(
-                    margin: EdgeInsets.fromLTRB(13, 0, 13, 0),
+                    margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -240,7 +252,7 @@ class BookDetailScreenNew extends StatelessWidget {
                     children: [
                       Expanded(
                           child: Container(
-                            margin: EdgeInsets.fromLTRB(13, 10, 13, 10),
+                            margin: EdgeInsets.fromLTRB(15, 10, 15, 10),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Color.fromRGBO(248, 147, 0, 1),
@@ -267,7 +279,7 @@ class BookDetailScreenNew extends StatelessWidget {
                     ],
                   ),
                   Container(
-                    margin: EdgeInsets.fromLTRB(13, 10, 13, 10),
+                    margin: EdgeInsets.fromLTRB(15, 10, 15, 10),
                     child: Column(
                       children: [
                         Row(
@@ -294,6 +306,7 @@ class BookDetailScreenNew extends StatelessWidget {
                             )
                           ],
                         ),
+
                         Text(
                           bookDetail.description,
                           style: GoogleFonts.urbanist(
@@ -302,6 +315,173 @@ class BookDetailScreenNew extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black
                               )
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "Ratings & Reviews",
+                              style: GoogleFonts.urbanist(
+                                  textStyle: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                                child:Container(
+                                  alignment: Alignment.centerRight,
+                                  child: IconButton(
+                                      onPressed: (){
+                                        Get.to(()=> RatingsAndReviewsView());
+                                      },
+                                      icon: Icon(Icons.arrow_forward)),
+                                )
+                            )
+                          ],
+                        ),
+                        IntrinsicHeight( // wrap it to show vertical divider
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: size.width*0.4,
+                                height: size.height*0.12,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text('4.9',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    SizedBox(height: 5,),
+                                    RatingBar.builder(
+                                      ignoreGestures: true,
+                                      initialRating: 5,
+                                      minRating: 1,
+                                      allowHalfRating: true,
+                                      direction: Axis.horizontal,
+                                      itemCount: 5,
+                                      itemSize: 15,
+                                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                      itemBuilder: (context, index) => Icon(
+                                        Icons.star_rounded,
+                                        color: Colors.orange,
+                                      ),
+                                      onRatingUpdate: (rating) {
+                                        print(rating);
+                                      },
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Text('(6.8k reviews)',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              VerticalDivider(
+                                thickness: 1,
+                                color: Colors.grey[300],
+                              ),
+                              Container(
+                                // color: Colors.cyanAccent,
+                                width: size.width*0.47,
+                                height: size.height*0.20,
+                                child: ListView.builder(
+                                  itemCount: 5,
+                                  itemBuilder: (context,index) => Container
+                                    (
+                                    padding: EdgeInsets.only(bottom: 10),
+                                    child: Row(
+                                      children: [
+                                        Text("${index+1}"),
+                                        SizedBox(width: 5,),
+                                        SliderTheme(
+                                          data: SliderTheme.of(context).copyWith(
+
+                                            overlayShape: SliderComponentShape.noThumb,
+                                            thumbShape: RoundSliderThumbShape(
+                                                enabledThumbRadius: 0.0
+                                            ), // set the thumb shape to 0.0 radius
+                                          ),
+                                          child: Slider(
+                                            activeColor: Colors.orange,
+                                            value: 50,
+                                            onChanged: (double newValue) {
+
+                                            },
+                                            min: 0,
+                                            max: 100,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                            ],
+                          ),
+                        ),
+                        Divider(thickness: 1,color: Colors.grey[300]),
+
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Text(
+                                "Rate this Ebook",
+                                style: GoogleFonts.urbanist(
+                                    textStyle: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black
+                                    )
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        RatingBar.builder(
+
+                          initialRating: 3,
+                          minRating: 1,
+                          allowHalfRating: true,
+                          direction: Axis.horizontal,
+                          itemCount: 5,
+                          itemSize: 20,
+                          itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                          itemBuilder: (context, index) => Icon(
+                            Icons.star_rounded,
+                            color: Colors.orange,
+                          ),
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                          },
+                        ),
+                        SizedBox(height: 5,),
+                        ElevatedButton(onPressed: (){
+                          Get.to(()=>RateView());
+                        },
+                            child: Text('Read a Review',
+                              style: TextStyle(color: Colors.orange),
+                            ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            elevation: 0.0,
+                            shadowColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              side: BorderSide(color: Colors.orange)
+                            ),
                           ),
                         ),
                         Row(
@@ -331,26 +511,62 @@ class BookDetailScreenNew extends StatelessWidget {
                           child: ListView.builder(
                             itemCount: 8,
                             scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) => Container(
-                              margin: EdgeInsets.all(5),
-                              width: 150,
-                              color: Colors.red,
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 212,
-                                    color: Colors.yellow,
-                                  ),
-                                  Text(
-                                    "The House of Hades (Heroes of Olympus) and the",
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: GoogleFonts.urbanist(
-                                        textStyle: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black,
-                                        )),)],),),),
+                            itemBuilder:(context, index) => InkWell(
+                              onTap: (){
+                                Get.to(BookDetailScreenNew());
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 15),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: size.width*0.4,
+                                      height: size.height*0.25,
+                                      decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                            'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
+                                          ),
+                                          fit: BoxFit.fill,
+                                        ),
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Container(
+                                      width: size.width*0.4,
+                                      child: Text('Harry Potter và hòn đá phù thuỷf',
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          size:20,
+                                          Icons.star_half,
+                                          color: Colors.grey,
+                                        ),
+                                        Text('4.9',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                         Row(
                           children: [
@@ -379,26 +595,62 @@ class BookDetailScreenNew extends StatelessWidget {
                           child: ListView.builder(
                             itemCount: 8,
                             scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) => Container(
-                              margin: EdgeInsets.all(5),
-                              width: 150,
-                              color: Colors.red,
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 212,
-                                    color: Colors.yellow,
-                                  ),
-                                  Text(
-                                    "The House of Hades (Heroes of Olympus) and the",
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: GoogleFonts.urbanist(
-                                        textStyle: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black,
-                                        )),)],),),),
+                            itemBuilder:(context, index) => InkWell(
+                              onTap: (){
+                                Get.to(BookDetailScreenNew());
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 15),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: size.width*0.4,
+                                      height: size.height*0.25,
+                                      decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                            'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
+                                          ),
+                                          fit: BoxFit.fill,
+                                        ),
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Container(
+                                      width: size.width*0.4,
+                                      child: Text('Harry Potter và hòn đá phù thuỷf',
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          size:20,
+                                          Icons.star_half,
+                                          color: Colors.grey,
+                                        ),
+                                        Text('4.9',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),

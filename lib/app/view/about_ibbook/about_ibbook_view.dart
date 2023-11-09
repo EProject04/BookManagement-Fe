@@ -1,14 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AboutIbBookView extends StatefulWidget {
+class AboutIbBookView extends StatelessWidget {
   const AboutIbBookView({super.key});
 
-  @override
-  State<AboutIbBookView> createState() => _AboutIbBookViewState();
-}
-
-class _AboutIbBookViewState extends State<AboutIbBookView> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -17,8 +12,8 @@ class _AboutIbBookViewState extends State<AboutIbBookView> {
           appBar: AppBar(
             title: Text('About ibBook',
               style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
               ),
             ),
           ),
@@ -33,7 +28,7 @@ class _AboutIbBookViewState extends State<AboutIbBookView> {
                   child: Center(
                     child: Image(
                       image: NetworkImage(
-                        'https://st3.depositphotos.com/11953928/32310/v/450/depositphotos_323108450-stock-illustration-isolated-books-flat-design.jpg'
+                          'https://st3.depositphotos.com/11953928/32310/v/450/depositphotos_323108450-stock-illustration-isolated-books-flat-design.jpg'
                       ),
                     ),
                   ),
@@ -41,9 +36,9 @@ class _AboutIbBookViewState extends State<AboutIbBookView> {
                 Center(
                   child: Text('ibBook',
                     style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black
                     ),
                   ),
                 ),
