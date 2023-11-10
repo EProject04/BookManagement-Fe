@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:frame/app/view/rate_this_ebook/rate_view.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -71,34 +72,34 @@ class _ReadBookViewState extends State<ReadBookView> {
               Get.back();
             },
           ),
-          title: Text('The Dark Lord,,,,,,,,,,,,,,,,',
+          title: Text('The Dark Lord,dfgdfgdfgdfgdfgdfg',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 30,
             ),
           ),
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                  Icons.search
-              ),
-            ),
-
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                  Icons.mic_none_rounded
-              ),
-            ),
-
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.pending_outlined,
-              ),
-            ),
-          ],
+          // actions: <Widget>[
+          //   IconButton(
+          //     onPressed: () {},
+          //     icon: Icon(
+          //         Icons.search
+          //     ),
+          //   ),
+          //
+          //   IconButton(
+          //     onPressed: () {},
+          //     icon: Icon(
+          //         Icons.mic_none_rounded
+          //     ),
+          //   ),
+          //
+          //   IconButton(
+          //     onPressed: () {},
+          //     icon: Icon(
+          //       Icons.pending_outlined,
+          //     ),
+          //   ),
+          // ],
         ) : null,
         drawer: Drawer(
           child: Column(
@@ -153,17 +154,19 @@ class _ReadBookViewState extends State<ReadBookView> {
             ],
           ),
         ),
-        body: GestureDetector(
-          onTap: () {
-            _toggleVisibility();
-          },
-          child: Container(
-            width: size.width * 1,
-            height: size.height * 1,
-            padding: EdgeInsets.all(15),
-            child: Text(bookcontent,
-              textAlign: TextAlign.justify,
-              style: GoogleFonts.getFont('Urbanist', fontSize: 15),
+        body: SingleChildScrollView(
+          child: GestureDetector(
+            onTap: () {
+              _toggleVisibility();
+            },
+            child: Container(
+              width: size.width * 1,
+              height: size.height * 1,
+              padding: EdgeInsets.all(15),
+              child: Text(bookcontent,
+                textAlign: TextAlign.justify,
+                style: GoogleFonts.getFont('Urbanist', fontSize: 15),
+              ),
             ),
           ),
         ),
@@ -187,9 +190,14 @@ class _ReadBookViewState extends State<ReadBookView> {
             ),
 
             BottomNavigationBarItem(
-                icon: Icon(
-                    Icons.comment_outlined
+                icon: IconButton(
+
+                  icon:Icon(Icons.comment_outlined),
+                  onPressed: (){
+                      Get.to(()=>RateView());
+                  },
                 ),
+
                 label: 'Comments'
             ),
 

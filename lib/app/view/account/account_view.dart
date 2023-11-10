@@ -259,13 +259,12 @@ Future<void> _showBottomSheet(BuildContext context) async{
       context: context,
       builder: (BuildContext context){
         return SizedBox(
-
           height: size.height*0.3,
           child: Center(
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.all(30.0),
+                  padding: EdgeInsets.all(15.0),
                   child: Text('Logout',
                     style: TextStyle(
                       color: Colors.redAccent,
@@ -279,7 +278,7 @@ Future<void> _showBottomSheet(BuildContext context) async{
                   child: Divider(height: 0,),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(30.0),
+                  padding: EdgeInsets.all(15.0),
                   child: Text('Are you sure you want to log out?',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -288,7 +287,8 @@ Future<void> _showBottomSheet(BuildContext context) async{
                   ),
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Container(
                       width: size.width * 0.3,
@@ -309,7 +309,7 @@ Future<void> _showBottomSheet(BuildContext context) async{
                         ),
                       ),
                     ),
-                    SizedBox(width: size.width*0.05,),
+                    // SizedBox(width: size.width*0.05,),
                     Container(
                       width: size.width * 0.3,
                       child: ElevatedButton(
@@ -374,7 +374,7 @@ Future<void> _showMyDialog(BuildContext context) async {
             style: TextButton.styleFrom(
                 foregroundColor: Colors.orange
             ),
-            child: Text('Approve',style: TextStyle(color: Colors.orange),),
+            child: Text('Accept',style: TextStyle(color: Colors.orange),),
             onPressed: () {
               Get.back();
             },

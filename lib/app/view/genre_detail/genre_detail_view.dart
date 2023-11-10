@@ -87,135 +87,134 @@ class GenreDetailListView extends StatelessWidget{
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Expanded(
-        child: ListView.builder(
-          itemCount: 8,
-          itemBuilder: (context,index) =>
-            InkWell(
-              onTap: (){
-                Get.to(()=>BookDetailScreenNew());
-              },
-              child: Container(
-                padding: EdgeInsets.only(bottom: 20),
-                height: size.height * 0.15,
-                // color: Colors.amber[600],
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      width: size.width * 0.2,
-                        height: size.height * 0.27,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage('https://m.media-amazon.com/images/I/61fqa1gbE5L._AC_UF1000,1000_QL80_.jpg'),
-                              fit: BoxFit.fill,
-                            ),
-                            borderRadius: BorderRadius.circular(10)
-                        ),
-                    ),
-                    SizedBox(width: 10,),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text('Reign of Blood',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                            ),
+      child: ListView.builder(
+        itemCount: 8,
+        itemBuilder: (context,index) =>
+          InkWell(
+            onTap: (){
+              Get.to(()=>BookDetailScreenNew());
+            },
+            child: Container(
+              padding: EdgeInsets.only(bottom: 20),
+              height: size.height * 0.3,
+              // color: Colors.amber[600],
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    width: size.width * 0.3,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage('https://m.media-amazon.com/images/I/61fqa1gbE5L._AC_UF1000,1000_QL80_.jpg'),
+                            fit: BoxFit.fill,
                           ),
-                          SizedBox(height: 10,),
-                          Row(
-                            children: <Widget>[
-                              Icon(
-                                size:20,
-                                Icons.star_half,
-                                color: Colors.grey,
-                              ),
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                  ),
+                  SizedBox(width: 10,),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text('Reign of Blood',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Row(
+                          children: <Widget>[
+                            Icon(
+                              size:20,
+                              Icons.star_half,
+                              color: Colors.grey,
+                            ),
 
-                              Text('4.9',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey,
-                                  fontSize: 15,
+                            Text('4.9',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                height: size.height*0.03,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFEEECEC),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text('Romance',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 10,),
+                              Container(
+                                height: size.height*0.03,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFEEECEC),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text('Young Adult',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 10,),
+                              Container(
+                                height: size.height*0.03,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFEEECEC),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text('Comedy',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 10,),
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: <Widget>[
-                                Container(
-                                  height: size.height*0.03,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFEEECEC),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text('Romance',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 10,),
-                                Container(
-                                  height: size.height*0.03,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFEEECEC),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text('Young Adult',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 10,),
-                                Container(
-                                  height: size.height*0.03,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFEEECEC),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text('Comedy',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            // SizedBox(height: 20,),
-        )
+          ),
+          // SizedBox(height: 20,),
+      ),
     );
   }
 
@@ -428,7 +427,6 @@ class GenreDetailGridView extends StatelessWidget{
               ],
             ),
           ),
-
           Container(
             // color: Colors.orange,
             child: Column(
