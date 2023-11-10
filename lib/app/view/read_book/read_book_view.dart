@@ -193,12 +193,12 @@ class _ReadBookViewState extends State<ReadBookView> {
                 label: 'Comments'
             ),
 
-            BottomNavigationBarItem(
-                icon: Icon(
-                    Icons.settings
-                ),
-                label: 'Settings'
-            ),
+            // BottomNavigationBarItem(
+            //     icon: Icon(
+            //         Icons.settings
+            //     ),
+            //     label: 'Settings'
+            // ),
 
           ],
         ) : null,
