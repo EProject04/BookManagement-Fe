@@ -65,62 +65,60 @@ class DiscoverView extends StatelessWidget {
                   ),
                   SizedBox(
                     height: size.height *0.35,
-                    child: ListView.builder(
+                    child: ListView.separated(
                       itemCount: 8,
+                      separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
                       scrollDirection: Axis.horizontal,
                       itemBuilder:(context, index) => InkWell(
                         onTap: (){
                           Get.to(BookDetailScreenNew());
                         },
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 15),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: size.width*0.4,
-                                height: size.height*0.25,
-                                decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
-                                    ),
-                                    fit: BoxFit.fill,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: size.width*0.4,
+                              height: size.height*0.25,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
                                   ),
-                                  borderRadius: BorderRadius.circular(15),
+                                  fit: BoxFit.fill,
+                                ),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                            SizedBox(height: 5,),
+                            Container(
+                              width: size.width*0.4,
+                              child: Text('Harry Potter và hòn đá phù thuỷf',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 5,),
-                              Container(
-                                width: size.width*0.4,
-                                child: Text('Harry Potter và hòn đá phù thuỷf',
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(height: 5,),
+                            Row(
+                              children: [
+                                Icon(
+                                  size:20,
+                                  Icons.star_half,
+                                  color: Colors.grey,
+                                ),
+                                Text('4.9',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.grey,
+                                    fontSize: 15,
                                   ),
                                 ),
-                              ),
-                              SizedBox(height: 5,),
-                              Row(
-                                children: [
-                                  Icon(
-                                    size:20,
-                                    Icons.star_half,
-                                    color: Colors.grey,
-                                  ),
-                                  Text('4.9',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -155,62 +153,60 @@ class DiscoverView extends StatelessWidget {
                   ),
                   SizedBox(
                     height: size.height *0.35,
-                    child: ListView.builder(
+                    child: ListView.separated(
                       itemCount: 8,
+                      separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
                       scrollDirection: Axis.horizontal,
                       itemBuilder:(context, index) => InkWell(
                         onTap: (){
                           Get.to(BookDetailScreenNew());
                         },
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 15),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: size.width*0.4,
-                                height: size.height*0.25,
-                                decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
-                                    ),
-                                    fit: BoxFit.fill,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: size.width*0.4,
+                              height: size.height*0.25,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
                                   ),
-                                  borderRadius: BorderRadius.circular(15),
+                                  fit: BoxFit.fill,
+                                ),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                            SizedBox(height: 5,),
+                            Container(
+                              width: size.width*0.4,
+                              child: Text('Harry Potter và hòn đá phù thuỷ',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 5,),
-                              Container(
-                                width: size.width*0.4,
-                                child: Text('Harry Potter và hòn đá phù thuỷ',
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(height: 5,),
+                            Row(
+                              children: [
+                                Icon(
+                                  size:20,
+                                  Icons.star_half,
+                                  color: Colors.grey,
+                                ),
+                                Text('4.9',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.grey,
+                                    fontSize: 15,
                                   ),
                                 ),
-                              ),
-                              SizedBox(height: 5,),
-                              Row(
-                                children: [
-                                  Icon(
-                                    size:20,
-                                    Icons.star_half,
-                                    color: Colors.grey,
-                                  ),
-                                  Text('4.9',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
