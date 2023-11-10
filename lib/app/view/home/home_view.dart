@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:frame/app/logic/controller/home_controller.dart';
 import 'package:frame/app/logic/controller/main_wrapper_controller.dart';
@@ -69,14 +70,18 @@ class HomePage extends GetView<MainWrapperController> {
                       ],
                     ),
                     SizedBox(
-                      height: 282,
+                      height: size.height*0.35,
                       child: ListView.separated(
                         itemCount: 8,
+                        padding: EdgeInsets.only(right: 15),
                         separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
                         scrollDirection: Axis.horizontal,
                         itemBuilder:(context, index) => InkWell(
                           onTap: (){
-                            Get.to(()=>BookDetailScreenNew());
+                            Get.to(()=>BookDetailScreenNew(),
+                                transition: Transition.rightToLeft,
+                                duration: Duration(milliseconds: 600)
+                            );
                           },
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,7 +155,7 @@ class HomePage extends GetView<MainWrapperController> {
                     ],
                   ),
                   SizedBox(
-                    height: 70,
+                    height: size.height*0.1,
                     child: ListOfGenre(),
                     // ListView.builder(
                     //   itemCount: 8,
@@ -184,14 +189,18 @@ class HomePage extends GetView<MainWrapperController> {
                     ],
                   ),
                   SizedBox(
-                    height: 282,
+                    height: size.height*0.35,
                     child: ListView.separated(
                       itemCount: 8,
+                      padding: EdgeInsets.only(right: 15),
                       separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
                       scrollDirection: Axis.horizontal,
                       itemBuilder:(context, index) => InkWell(
                         onTap: (){
-                          Get.to(()=>BookDetailScreenNew());
+                          Get.to(()=>BookDetailScreenNew(),
+                              transition: Transition.rightToLeft,
+                            duration: Duration(milliseconds: 600)
+                          );
                         },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -303,6 +312,7 @@ class _ListOfGenreState extends State<ListOfGenre> {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
+
       child: Row(
           children: bookGenre.map(
                 (item)=>InkWell(
@@ -315,7 +325,7 @@ class _ListOfGenreState extends State<ListOfGenre> {
                 });
               },
               child: Padding(
-                padding: EdgeInsets.only(right: 10),
+                padding: EdgeInsets.only(right: 15),
                 child: Container(
                   width: size.width*0.35,
                   height: size.height*0.2,

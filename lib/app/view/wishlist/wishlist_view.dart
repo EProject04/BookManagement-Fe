@@ -53,7 +53,9 @@ class WishlistView extends StatelessWidget {
               // color: Colors.amber[600],
               child: InkWell(
                 onTap: (){
-                  Get.to(()=>BookDetailScreenNew());
+                  Get.to(()=>BookDetailScreenNew(),
+                      transition: Transition.rightToLeft,
+                      duration: Duration(milliseconds: 600));
                 },
                 child: Row(
                   children: <Widget>[

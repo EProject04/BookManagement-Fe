@@ -71,7 +71,10 @@ class DiscoverView extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemBuilder:(context, index) => InkWell(
                         onTap: (){
-                          Get.to(BookDetailScreenNew());
+                          Get.to(BookDetailScreenNew(),
+                              transition: Transition.rightToLeft,
+                              duration: Duration(milliseconds: 600)
+                          );
                         },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,11 +158,14 @@ class DiscoverView extends StatelessWidget {
                     height: size.height *0.35,
                     child: ListView.separated(
                       itemCount: 8,
+
                       separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
                       scrollDirection: Axis.horizontal,
                       itemBuilder:(context, index) => InkWell(
                         onTap: (){
-                          Get.to(BookDetailScreenNew());
+                          Get.to(BookDetailScreenNew(),
+                              transition: Transition.rightToLeft,
+                              duration: Duration(milliseconds: 600));
                         },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
