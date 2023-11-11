@@ -22,20 +22,20 @@ class RatingsAndReviewsView extends StatelessWidget {
                 fontSize: 25,
               ),
             ),
-            actions: <Widget>[
-              IconButton(
-                onPressed: (){
-
-                },
-                icon: Icon(
-                  Icons.pending_outlined,
-                  size: 30,
-                ),
-              ),
-            ],
+            // actions: <Widget>[
+            //   IconButton(
+            //     onPressed: (){
+            //
+            //     },
+            //     icon: Icon(
+            //       Icons.pending_outlined,
+            //       size: 30,
+            //     ),
+            //   ),
+            // ],
           ),
           body: Container(
-            padding: EdgeInsets.all(15),
+            padding: EdgeInsets.all(8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -65,7 +65,7 @@ class RatingsAndReviewsView extends StatelessWidget {
                               direction: Axis.horizontal,
                               itemCount: 5,
                               itemSize: 20,
-                              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                              itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
                               itemBuilder: (context, index) => Icon(
                                 Icons.star_rounded,
                                 color: Colors.orange,
@@ -91,7 +91,7 @@ class RatingsAndReviewsView extends StatelessWidget {
                       ),
                       Container(
                         // color: Colors.cyanAccent,
-                        width: size.width*0.47,
+                        width: size.width*0.4,
                         height: size.height*0.15,
                         child: ListView.builder(
                           itemCount: 5,
@@ -99,25 +99,33 @@ class RatingsAndReviewsView extends StatelessWidget {
                             (
                               padding: EdgeInsets.only(bottom: 10),
                                 child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text("${index+1}"),
-                                    SizedBox(width: 5,),
-                                    SliderTheme(
-                                      data: SliderTheme.of(context).copyWith(
+                                    Expanded(
+                                      flex: 1,
+                                        child: Text("${index+1}")
+                                    ),
+                                   
+                                    Expanded(
+                                      flex: 7,
+                                      child: SliderTheme(
+                                        data: SliderTheme.of(context).copyWith(
 
-                                        overlayShape: SliderComponentShape.noThumb,
-                                        thumbShape: RoundSliderThumbShape(
-                                            enabledThumbRadius: 0.0
-                                        ), // set the thumb shape to 0.0 radius
-                                      ),
-                                      child: Slider(
-                                        activeColor: Colors.orange,
-                                        value: 50,
-                                        onChanged: (double newValue) {
+                                          overlayShape: SliderComponentShape.noThumb,
+                                          thumbShape: RoundSliderThumbShape(
+                                              enabledThumbRadius: 0.0
+                                          ), // set the thumb shape to 0.0 radius
+                                        ),
+                                        child: Slider(
+                                          activeColor: Colors.orange,
+                                          value: 50,
+                                          onChanged: (double newValue) {
 
-                                        },
-                                        min: 0,
-                                        max: 100,
+                                          },
+                                          min: 0,
+                                          max: 100,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -129,23 +137,23 @@ class RatingsAndReviewsView extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
-                Divider(
-                  thickness: 1,
-                  color: Colors.grey[300],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: ChoiceRate(),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
+                // SizedBox(
+                //   height: 5,
+                // ),
+                // Divider(
+                //   thickness: 1,
+                //   color: Colors.grey[300],
+                // ),
+                // SizedBox(
+                //   height: 10,
+                // ),
+                // SingleChildScrollView(
+                //     scrollDirection: Axis.horizontal,
+                //     child: ChoiceRate(),
+                // ),
+                // SizedBox(
+                //   height: 10,
+                // ),
                 Divider(
                   thickness: 1,
                   color: Colors.grey[300],
@@ -177,7 +185,6 @@ class RatingsAndReviewsView extends StatelessWidget {
                               trailing: Container(
                                 width: size.width*0.22,
                                 height: size.height*0.04,
-
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [

@@ -189,7 +189,7 @@ class BookDetailScreenNew extends StatelessWidget {
                                     "2371",
                                     style: GoogleFonts.urbanist(
                                         textStyle: TextStyle(
-                                            fontSize: 15,
+                                            fontSize: 20,
                                             fontWeight: FontWeight.w600,
                                             color: Colors.black)),),
                                   Text(
@@ -197,7 +197,7 @@ class BookDetailScreenNew extends StatelessWidget {
                                     style: GoogleFonts.urbanist(
                                         textStyle: TextStyle(
                                             color: Color.fromRGBO(100, 100, 100, 1),
-                                            fontSize: 10,
+                                            fontSize: 15,
                                             fontWeight: FontWeight.w600
                                         )
                                     ),
@@ -220,7 +220,7 @@ class BookDetailScreenNew extends StatelessWidget {
                                             "4.9",
                                             style: GoogleFonts.urbanist(
                                                 textStyle: TextStyle(
-                                                    fontSize: 15,
+                                                    fontSize: 20,
                                                     fontWeight: FontWeight.w600,
                                                     color: Colors.black)
                                             ),
@@ -230,7 +230,7 @@ class BookDetailScreenNew extends StatelessWidget {
                                         flex: 1,
                                         child: Container(
                                           alignment: Alignment.centerLeft,
-                                          child: Icon(Icons.star),))
+                                          child: Icon(Icons.star, color: Colors.orangeAccent,size: 20,),))
                                   ],
                                 ),
                                 Text(
@@ -279,7 +279,7 @@ class BookDetailScreenNew extends StatelessWidget {
                     ],
                   ),
                   Container(
-                    margin: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                    margin: EdgeInsets.all(10),
                     child: Column(
                       children: [
                         Row(
@@ -319,14 +319,16 @@ class BookDetailScreenNew extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Text(
-                              "Ratings & Reviews",
-                              style: GoogleFonts.urbanist(
-                                  textStyle: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black
-                                  )
+                            Expanded(
+                              child: Text(
+                                "Ratings & Reviews",
+                                style: GoogleFonts.urbanist(
+                                    textStyle: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black
+                                    )
+                                ),
                               ),
                             ),
                             Expanded(
@@ -344,10 +346,11 @@ class BookDetailScreenNew extends StatelessWidget {
                         IntrinsicHeight( // wrap it to show vertical divider
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Container(
                                 width: size.width*0.4,
-                                height: size.height*0.12,
+                                height: size.height*0.18,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -367,7 +370,7 @@ class BookDetailScreenNew extends StatelessWidget {
                                       direction: Axis.horizontal,
                                       itemCount: 5,
                                       itemSize: 15,
-                                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                      itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
                                       itemBuilder: (context, index) => Icon(
                                         Icons.star_rounded,
                                         color: Colors.orange,
@@ -390,10 +393,10 @@ class BookDetailScreenNew extends StatelessWidget {
                                 thickness: 1,
                                 color: Colors.grey[300],
                               ),
-                              Container(
+                              SizedBox(
                                 // color: Colors.cyanAccent,
-                                width: size.width*0.47,
-                                height: size.height*0.20,
+                                width: size.width*0.4,
+                                height: size.height*0.18,
                                 child: ListView.builder(
                                   itemCount: 5,
                                   itemBuilder: (context,index) => Container
@@ -401,24 +404,27 @@ class BookDetailScreenNew extends StatelessWidget {
                                     padding: EdgeInsets.only(bottom: 10),
                                     child: Row(
                                       children: [
-                                        Text("${index+1}"),
-                                        SizedBox(width: 5,),
-                                        SliderTheme(
-                                          data: SliderTheme.of(context).copyWith(
-
-                                            overlayShape: SliderComponentShape.noThumb,
-                                            thumbShape: RoundSliderThumbShape(
-                                                enabledThumbRadius: 0.0
-                                            ), // set the thumb shape to 0.0 radius
-                                          ),
-                                          child: Slider(
-                                            activeColor: Colors.orange,
-                                            value: 50,
-                                            onChanged: (double newValue) {
-
-                                            },
-                                            min: 0,
-                                            max: 100,
+                                        Expanded(
+                                          flex: 1,
+                                            child: Text("${index+1}")
+                                        ),
+                                        Expanded(
+                                          flex: 7,
+                                          child: SliderTheme(
+                                            data: SliderTheme.of(context).copyWith(
+                                              overlayShape: SliderComponentShape.noThumb,
+                                              thumbShape: RoundSliderThumbShape(
+                                                  enabledThumbRadius: 0.0
+                                              ), // set the thumb shape to 0.0 radius
+                                            ),
+                                            child: Slider(
+                                              activeColor: Colors.orange,
+                                              value: 50,
+                                              onChanged: (double newValue) {
+                                              },
+                                              min: 0,
+                                              max: 100,
+                                            ),
                                           ),
                                         ),
                                       ],
