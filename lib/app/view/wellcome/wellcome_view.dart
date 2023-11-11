@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:frame/app/view/create_new_account/create_new_account.dart';
 import 'package:frame/app/view/login/login_view.dart';
 import 'package:get/get.dart';
-
 class WellComeScreen extends StatelessWidget {
   const WellComeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
