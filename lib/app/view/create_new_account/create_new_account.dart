@@ -9,8 +9,6 @@ class CreateAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -46,7 +44,7 @@ class CreateAccount extends StatelessWidget {
                           fontWeight: FontWeight.bold
                       ),
                     ),
-                    TextField(
+                    TextFormField(
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       decoration: InputDecoration(
                         // labelText: 'Full Name',
@@ -76,7 +74,7 @@ class CreateAccount extends StatelessWidget {
                           fontWeight: FontWeight.bold
                       ),
                     ),
-                    TextField(
+                    TextFormField(
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       decoration: InputDecoration(
                         // labelText: 'Full Name',
@@ -105,7 +103,7 @@ class CreateAccount extends StatelessWidget {
                           fontWeight: FontWeight.bold
                       ),
                     ),
-                    TextField(
+                    TextFormField(
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       obscureText: true,
                       decoration: InputDecoration(
@@ -139,7 +137,7 @@ class CreateAccount extends StatelessWidget {
                           fontWeight: FontWeight.bold
                       ),
                     ),
-                    TextField(
+                    TextFormField(
                       obscureText: true,
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       decoration: InputDecoration(
@@ -162,7 +160,6 @@ class CreateAccount extends StatelessWidget {
               ),
               Container(
 
-                margin: const EdgeInsets.fromLTRB(0, 180, 0, 0),
                 child: ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.orange)

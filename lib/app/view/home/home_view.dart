@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:frame/app/logic/controller/home_controller.dart';
 import 'package:frame/app/logic/controller/main_wrapper_controller.dart';
@@ -43,7 +44,7 @@ class HomePage extends GetView<MainWrapperController> {
                         ),
                         IconButton(
                             onPressed: (){
-                              Get.to(SearchView());
+                              Get.to(()=>SearchView());
                             },
                             icon: Icon(Icons.search)),
                         IconButton(
@@ -69,135 +70,23 @@ class HomePage extends GetView<MainWrapperController> {
                       ],
                     ),
                     SizedBox(
-                      height: 282,
-                      child: ListView.builder(
+                      height: size.height*0.35,
+                      child: ListView.separated(
                         itemCount: 8,
+                        padding: EdgeInsets.only(right: 15),
+                        separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
                         scrollDirection: Axis.horizontal,
                         itemBuilder:(context, index) => InkWell(
                           onTap: (){
-                            Get.to(BookDetailScreenNew());
+                            Get.to(()=>BookDetailScreenNew(),
+                                transition: Transition.rightToLeft,
+                                duration: Duration(milliseconds: 600)
+                            );
                           },
-                          child: Padding(
-                            padding: EdgeInsets.only(right: 15),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: size.width*0.4,
-                                  height: size.height*0.25,
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    image: DecorationImage(
-                                      image: NetworkImage(
-                                        'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
-                                      ),
-                                      fit: BoxFit.fill,
-                                    ),
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                ),
-                                SizedBox(height: 5,),
-                                Container(
-                                  width: size.width*0.4,
-                                  child: Text('Harry Potter và hòn đá phù thuỷf',
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 5,),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      size:20,
-                                      Icons.star_half,
-                                      color: Colors.grey,
-                                    ),
-                                    Text('4.9',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.grey,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Explore by Genre",
-                          style: GoogleFonts.urbanist(
-                              textStyle: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black)),),
-
-                      Expanded(
-                          child: Container()
-                      ),
-                      IconButton(
-                          onPressed: (){
-                            Get.to(ExploreByGenreView());
-                          },
-                          icon: Icon(Icons.arrow_forward))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 70,
-                    child: ListOfGenre(),
-                    // ListView.builder(
-                    //   itemCount: 8,
-                    //   scrollDirection: Axis.horizontal,
-                    //   itemBuilder: (context, index) => InkWell(
-                    //     onTap: (){
-                    //       Get.to(GenreDetailView());
-                    //     },
-                    //     child: Container(
-                    //       margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                    //       width: 150,
-                    //       color: Colors.red,
-                    //       child: Text("Genre"),),
-                    //   ),),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Read History",
-                        style: GoogleFonts.urbanist(
-                            textStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600)),),
-                      Expanded(
-                          child: Container()
-                      ),
-                      IconButton(
-                          onPressed: null,
-                          icon: Icon(Icons.arrow_forward))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 282,
-                    child: ListView.builder(
-                      itemCount: 8,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder:(context, index) => InkWell(
-                        onTap: (){
-                          Get.to(BookDetailScreenNew());
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 15),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+
                               Container(
                                 width: size.width*0.4,
                                 height: size.height*0.25,
@@ -242,6 +131,123 @@ class HomePage extends GetView<MainWrapperController> {
                               ),
                             ],
                           ),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Explore by Genre",
+                          style: GoogleFonts.urbanist(
+                              textStyle: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black)),),
+
+                      Expanded(
+                          child: Container()
+                      ),
+                      IconButton(
+                          onPressed: (){
+                            Get.to(()=>ExploreByGenreView());
+                          },
+                          icon: Icon(Icons.arrow_forward))
+                    ],
+                  ),
+                  SizedBox(
+                    height: size.height*0.1,
+                    child: ListOfGenre(),
+                    // ListView.builder(
+                    //   itemCount: 8,
+                    //   scrollDirection: Axis.horizontal,
+                    //   itemBuilder: (context, index) => InkWell(
+                    //     onTap: (){
+                    //       Get.to(GenreDetailView());
+                    //     },
+                    //     child: Container(
+                    //       margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
+                    //       width: 150,
+                    //       color: Colors.red,
+                    //       child: Text("Genre"),),
+                    //   ),),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Read History",
+                        style: GoogleFonts.urbanist(
+                            textStyle: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600)),),
+                      Expanded(
+                          child: Container()
+                      ),
+                      IconButton(
+                          onPressed: null,
+                          icon: Icon(Icons.arrow_forward))
+                    ],
+                  ),
+                  SizedBox(
+                    height: size.height*0.35,
+                    child: ListView.separated(
+                      itemCount: 8,
+                      padding: EdgeInsets.only(right: 15),
+                      separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder:(context, index) => InkWell(
+                        onTap: (){
+                          Get.to(()=>BookDetailScreenNew(),
+                              transition: Transition.rightToLeft,
+                            duration: Duration(milliseconds: 600)
+                          );
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: size.width*0.4,
+                              height: size.height*0.25,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
+                                  ),
+                                  fit: BoxFit.fill,
+                                ),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                            SizedBox(height: 5,),
+                            Container(
+                              width: size.width*0.4,
+                              child: Text('Harry Potter và hòn đá phù thuỷf',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 5,),
+                            Row(
+                              children: [
+                                Icon(
+                                  size:20,
+                                  Icons.star_half,
+                                  color: Colors.grey,
+                                ),
+                                Text('4.9',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -306,6 +312,7 @@ class _ListOfGenreState extends State<ListOfGenre> {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
+
       child: Row(
           children: bookGenre.map(
                 (item)=>InkWell(
@@ -318,7 +325,7 @@ class _ListOfGenreState extends State<ListOfGenre> {
                 });
               },
               child: Padding(
-                padding: EdgeInsets.only(right: 10),
+                padding: EdgeInsets.only(right: 15),
                 child: Container(
                   width: size.width*0.35,
                   height: size.height*0.2,

@@ -261,7 +261,7 @@ class BookDetailScreenNew extends StatelessWidget {
                                   )
                               ),
                               onPressed: (){
-                                Get.to(ReadBookView());
+                                Get.to(()=>ReadBookView());
                               },
                               child: Text(
                                 "Read",
