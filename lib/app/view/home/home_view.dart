@@ -1,4 +1,7 @@
 
+import 'dart:ui';
+
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:frame/app/logic/controller/home_controller.dart';
 import 'package:frame/app/logic/controller/main_wrapper_controller.dart';
@@ -10,11 +13,13 @@ import 'package:frame/main_wrapper.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class HomePage extends GetView<MainWrapperController> {
+class HomePage extends StatelessWidget {
   static final _pageInstance = HomePage._internal();
   factory HomePage() => _pageInstance;
   HomePage._internal();
+  final carouselController = CarouselController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,243 +28,335 @@ class HomePage extends GetView<MainWrapperController> {
         child: Scaffold(
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
-              child: Container(
-                margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                child: Column(
-                  children: [
-                    Row(
+            reverse: true,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Column(
                       children: [
-                        Text(
-                          "Book",
-                          style: GoogleFonts.urbanist(
-                              textStyle: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black
-                              )
-                          ),
-                        ),
-                        Expanded(
-                            child: Container()
-                        ),
-                        IconButton(
-                            onPressed: (){
-                              Get.to(()=>SearchView());
-                            },
-                            icon: Icon(Icons.search)),
-                        IconButton(
-                            onPressed: null,
-                            icon: Icon(Icons.notifications_none)),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Recommended For You",
-                          style: GoogleFonts.urbanist(
-                              textStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600)),),
-                        Expanded(
-                          child: Container(),
-                        ),
-                        IconButton(
-                            onPressed: null,
-                            icon: Icon(Icons.arrow_forward))
-                      ],
-                    ),
-                    SizedBox(
-                      height: size.height*0.35,
-                      child: ListView.separated(
-                        itemCount: 8,
-                        padding: EdgeInsets.only(right: 15),
-                        separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder:(context, index) => InkWell(
-                          onTap: (){
-                            Get.to(()=>BookDetailScreenNew(),
-                                transition: Transition.rightToLeft,
-                                duration: Duration(milliseconds: 600)
-                            );
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-
-                              Container(
-                                width: size.width*0.4,
-                                height: size.height*0.25,
-                                decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
-                                    ),
-                                    fit: BoxFit.fill,
-                                  ),
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                              ),
-                              SizedBox(height: 5,),
-                              Container(
-                                width: size.width*0.4,
-                                child: Text('Harry Potter và hòn đá phù thuỷf',
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 5,),
-                              Row(
-                                children: [
-                                  Icon(
-                                    size:20,
-                                    Icons.star_half,
-                                    color: Colors.grey,
-                                  ),
-                                  Text('4.9',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Explore by Genre",
-                          style: GoogleFonts.urbanist(
-                              textStyle: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black)),),
-
-                      Expanded(
-                          child: Container()
-                      ),
-                      IconButton(
-                          onPressed: (){
-                            Get.to(()=>ExploreByGenreView());
-                          },
-                          icon: Icon(Icons.arrow_forward))
-                    ],
-                  ),
-                  SizedBox(
-                    height: size.height*0.1,
-                    child: ListOfGenre(),
-                    // ListView.builder(
-                    //   itemCount: 8,
-                    //   scrollDirection: Axis.horizontal,
-                    //   itemBuilder: (context, index) => InkWell(
-                    //     onTap: (){
-                    //       Get.to(GenreDetailView());
-                    //     },
-                    //     child: Container(
-                    //       margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                    //       width: 150,
-                    //       color: Colors.red,
-                    //       child: Text("Genre"),),
-                    //   ),),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Read History",
-                        style: GoogleFonts.urbanist(
-                            textStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600)),),
-                      Expanded(
-                          child: Container()
-                      ),
-                      IconButton(
-                          onPressed: null,
-                          icon: Icon(Icons.arrow_forward))
-                    ],
-                  ),
-                  SizedBox(
-                    height: size.height*0.35,
-                    child: ListView.separated(
-                      itemCount: 8,
-                      padding: EdgeInsets.only(right: 15),
-                      separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder:(context, index) => InkWell(
-                        onTap: (){
-                          Get.to(()=>BookDetailScreenNew(),
-                              transition: Transition.rightToLeft,
-                            duration: Duration(milliseconds: 600)
-                          );
-                        },
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
                           children: [
-                            Container(
-                              width: size.width*0.4,
-                              height: size.height*0.25,
-                              decoration: BoxDecoration(
-                                color: Colors.red,
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
-                                  ),
-                                  fit: BoxFit.fill,
-                                ),
-                                borderRadius: BorderRadius.circular(15),
+                            Text(
+                              "Book",
+                              style: GoogleFonts.urbanist(
+                                  textStyle: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black
+                                  )
                               ),
                             ),
-                            SizedBox(height: 5,),
-                            Container(
-                              width: size.width*0.4,
-                              child: Text('Harry Potter và hòn đá phù thuỷf',
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                            Expanded(
+                                child: Container()
                             ),
-                            SizedBox(height: 5,),
-                            Row(
+                            IconButton(
+                                onPressed: (){
+                                  Get.to(()=>SearchView());
+                                },
+                                icon: Icon(Icons.search)),
+                            IconButton(
+                                onPressed: (){
+
+                                },
+                                icon: Icon(Icons.notifications_none)),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        CarouselSliderWidget(),
+                        // Row(
+                        //   children: [
+                        //     Text(
+                        //       "Recommended For You",
+                        //       style: GoogleFonts.urbanist(
+                        //           textStyle: TextStyle(
+                        //               color: Colors.black,
+                        //               fontSize: 20,
+                        //               fontWeight: FontWeight.w600)),),
+                        //     Expanded(
+                        //       child: Container(),
+                        //     ),
+                        //     IconButton(
+                        //         onPressed: null,
+                        //         icon: Icon(Icons.arrow_forward))
+                        //   ],
+                        // ),
+                        // SizedBox(
+                        //   height: size.height*0.35,
+                        //   child: ListView.separated(
+                        //     itemCount: 8,
+                        //     padding: EdgeInsets.only(right: 15),
+                        //     separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
+                        //     scrollDirection: Axis.horizontal,
+                        //     itemBuilder:(context, index) => InkWell(
+                        //       onTap: (){
+                        //         Get.to(()=>BookDetailScreenNew(),
+                        //             transition: Transition.rightToLeft,
+                        //             duration: Duration(milliseconds: 600)
+                        //         );
+                        //       },
+                        //       child: Column(
+                        //         crossAxisAlignment: CrossAxisAlignment.start,
+                        //         children: [
+                        //
+                        //           Container(
+                        //             width: size.width*0.4,
+                        //             height: size.height*0.25,
+                        //             decoration: BoxDecoration(
+                        //               color: Colors.red,
+                        //               image: DecorationImage(
+                        //                 image: NetworkImage(
+                        //                   'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
+                        //                 ),
+                        //                 fit: BoxFit.fill,
+                        //               ),
+                        //               borderRadius: BorderRadius.circular(15),
+                        //             ),
+                        //           ),
+                        //           SizedBox(height: 5,),
+                        //           Container(
+                        //             width: size.width*0.4,
+                        //             child: Text('Harry Potter và hòn đá phù thuỷf',
+                        //               maxLines: 2,
+                        //               overflow: TextOverflow.ellipsis,
+                        //               style: TextStyle(
+                        //                 fontWeight: FontWeight.bold,
+                        //               ),
+                        //             ),
+                        //           ),
+                        //           SizedBox(height: 5,),
+                        //           Row(
+                        //             children: [
+                        //               Icon(
+                        //                 size:20,
+                        //                 Icons.star_half,
+                        //                 color: Colors.orangeAccent,
+                        //               ),
+                        //               Text('4.9',
+                        //                 style: TextStyle(
+                        //                   fontWeight: FontWeight.bold,
+                        //                   color: Colors.grey,
+                        //                   fontSize: 15,
+                        //                 ),
+                        //               ),
+                        //             ],
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                        Row(
+                          children: [
+                            Text(
+                              "Explore by Author",
+                              style: GoogleFonts.urbanist(
+                                  textStyle: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black)),),
+
+                          Expanded(
+                              child: Container()
+                          ),
+                          IconButton(
+                              onPressed: (){
+                                Get.to(()=>ExploreByGenreView());
+                              },
+                              icon: Icon(Icons.arrow_forward))
+                        ],
+                      ),
+                      SizedBox(
+                        height: size.height*0.1,
+                        child: ListOfGenre(),
+                        // ListView.builder(
+                        //   itemCount: 8,
+                        //   scrollDirection: Axis.horizontal,
+                        //   itemBuilder: (context, index) => InkWell(
+                        //     onTap: (){
+                        //       Get.to(GenreDetailView());
+                        //     },
+                        //     child: Container(
+                        //       margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
+                        //       width: 150,
+                        //       color: Colors.red,
+                        //       child: Text("Genre"),),
+                        //   ),),
+                      ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "Books For You",
+                            style: GoogleFonts.urbanist(
+                                textStyle: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600)),),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                      SizedBox(
+                        height: size.height*0.7,
+                        child:
+                        GridView.builder(
+                          physics: AlwaysScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount:2,
+                              childAspectRatio:MediaQuery.of(context).size.width>600?(MediaQuery.of(context).size.width/3)/(180*1.6):(MediaQuery.of(context).size.width/2.27)/(180*1.7),
+                              mainAxisSpacing: 20,
+                              crossAxisSpacing: 20),
+                          itemCount: 8,
+                          // scrollDirection: Axis.vertical,
+                          itemBuilder:(context, index) => InkWell(
+                            onTap: (){
+                              Get.to(()=>BookDetailScreenNew(),
+                                  transition: Transition.rightToLeft,
+                                duration: Duration(milliseconds: 600)
+                              );
+                            },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Icon(
-                                  size:20,
-                                  Icons.star_half,
-                                  color: Colors.grey,
-                                ),
-                                Text('4.9',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey,
-                                    fontSize: 15,
+                                Container(
+                                  width: size.width*0.4,
+                                  height: size.height*0.25,
+                                  decoration: BoxDecoration(
+                                    color: Colors.red,
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                        'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
+                                      ),
+                                      fit: BoxFit.fill,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
                                   ),
+                                ),
+                                SizedBox(height: 5,),
+                                Container(
+                                  width: size.width*0.4,
+                                  child: Text('Harry Potter và hòn đá phù thuỷf',
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontFeatures: [
+                                          FontFeature.proportionalFigures(),
+                                        ],
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 5,),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      size:20,
+                                      Icons.star_half,
+                                      color: Colors.orangeAccent,
+                                    ),
+                                    Text('4.9',
+                                      style: TextStyle(
+                                        fontFeatures: [
+                                          FontFeature.proportionalFigures(),
+                                        ],
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
+                      ],
                     ),
                   ),
-                  ],
-                ),
+                ],
               )
           ),
         )
     );
   }
+
+
 }
+class CarouselSliderWidget extends StatefulWidget {
+  const CarouselSliderWidget({Key? key}) : super(key: key);
+
+  @override
+  State<CarouselSliderWidget> createState() => _CarouselSliderWidgetState();
+}
+
+class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
+  final List<String> items = [
+    "https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg",
+    "https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg",
+    "https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg",
+  ];
+  int activateIndex = 0;
+  final carouselController = CarouselController();
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CarouselSlider.builder(
+          carouselController: carouselController,
+            itemCount: items.length,
+            itemBuilder: (context, index, realIndex){
+              return Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(items[index]),
+                    fit: BoxFit.fill
+                  )
+                ),
+              );
+            },
+            options: CarouselOptions(
+              autoPlay: true,
+              // reverse: true,
+              // enlargeCenterPage: true,
+              // enlargeStrategy: CenterPageEnlargeStrategy.height,
+              viewportFraction: 1,
+              autoPlayInterval: Duration(seconds: 10),
+              onPageChanged: (index, reason) {
+                setState(() {
+                  activateIndex = index;
+                });
+              },
+            ),
+        ),
+        const SizedBox(height: 8),
+        buildIndicator(),
+      ],
+    );
+  }
+  Widget buildIndicator() => AnimatedSmoothIndicator(
+    activeIndex: activateIndex,
+    count: items.length,
+    onDotClicked: animateToSlide,
+    effect: ScaleEffect(
+      activeDotColor: Colors.blueAccent,
+      dotColor: Colors.black12,
+      dotWidth: 10,
+      dotHeight: 10,
+    ),
+  );
+  void animateToSlide(int index) => carouselController.animateToPage(index);
+}
+
+
 
 class BookGenre{
   final int id;
