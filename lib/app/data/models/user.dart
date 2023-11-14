@@ -1,36 +1,49 @@
+// To parse this JSON data, do
+//
+//     final user = userFromJson(jsonString);
+
+import 'dart:convert';
+
+List<User> userFromJson(String str) => List<User>.from(json.decode(str).map((x) => User.fromJson(x)));
+
+String userToJson(List<User> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
 class User {
-  String? email;
-  String? password;
-  String? username;
-  String? roleName;
-  String? createdDate;
-  Null? lastModifiedDate;
+  late dynamic id;
+  late dynamic email;
+  late dynamic password;
+  late dynamic username;
+  late dynamic roleName;
+  late dynamic createdDate;
+  late dynamic lastModifiedDate;
 
-  User(
-      {this.email,
-        this.password,
-        this.username,
-        this.roleName,
-        this.createdDate,
-        this.lastModifiedDate});
+  User({
+    required this.id,
+    required this.email,
+    required this.password,
+    required this.username,
+    required this.roleName,
+    required this.createdDate,
+    required this.lastModifiedDate,
+  });
 
-  User.fromJson(Map<String, dynamic> json) {
-    email = json['email'];
-    password = json['password'];
-    username = json['username'];
-    roleName = json['roleName'];
-    createdDate = json['createdDate'];
-    lastModifiedDate = json['lastModifiedDate'];
-  }
+  factory User.fromJson(Map<String, dynamic> json) => User(
+    id: json["id"],
+    email: json["email"],
+    password: json["password"],
+    username: json["username"],
+    roleName: json["roleName"],
+    createdDate: json["createdDate"],
+    lastModifiedDate: json["lastModifiedDate"],
+  );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['email'] = this.email;
-    data['password'] = this.password;
-    data['username'] = this.username;
-    data['roleName'] = this.roleName;
-    data['createdDate'] = this.createdDate;
-    data['lastModifiedDate'] = this.lastModifiedDate;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "email": email,
+    "password": password,
+    "username": username,
+    "roleName": roleName,
+    "createdDate": createdDate,
+    "lastModifiedDate": lastModifiedDate,
+  };
 }
