@@ -24,13 +24,17 @@ class BookDetailScreenNew extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Book bookDetail = Book(
+    Books bookDetail = Books(
+      id:1,
+      image: "https://product.hstatic.net/200000343865/product/1---lmt_c6192d87264a4ed8b015befdb10e4379_master.jpg",
       content: "",
       description: "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
       title: "Ta muốn trở thành chúa tể bóng tối",
       status: true,
       imagePath: "https://product.hstatic.net/200000343865/product/1---lmt_c6192d87264a4ed8b015befdb10e4379_master.jpg",
-
+        bookFollows:[],
+        categoriesBook: [],
+        comments:[],
     );
     // var bookDetail;
     Size size = MediaQuery.of(context).size;

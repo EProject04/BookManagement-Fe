@@ -203,7 +203,7 @@ class HomePage extends StatelessWidget {
                           height: 15,
                         ),
                       SizedBox(
-                        height: size.height*0.7,
+                        height: size.height*0.35,
                         child:
                         GridView.builder(
                           physics: AlwaysScrollableScrollPhysics(),
