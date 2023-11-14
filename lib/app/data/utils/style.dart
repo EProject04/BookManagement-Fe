@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 class Styles {
 
   ///---------------------------style_1A2F51-------------------------------
-  static const TextStyle style_1A2F51_14 =
+  static  TextStyle style_1A2F51_14 =
   TextStyle(color: ColorStyle.color_1A2F51, fontSize: 14);
-  static const TextStyle style_1A2F51_16 =
+  static  TextStyle style_1A2F51_16 =
   TextStyle(color: ColorStyle.color_1A2F51, fontSize: 16);
-  static const TextStyle style_1A2F51_18 =
+  static  TextStyle style_1A2F51_18 =
   TextStyle(color: ColorStyle.color_1A2F51, fontSize: 18);
 
   ///---------------------------style_B8C0D4-------------------------------
-  static const TextStyle style_B8C0D4_11 =
+  static  TextStyle style_B8C0D4_11 =
   TextStyle(color: ColorStyle.color_B8C0D4, fontSize: 11);
-  static const TextStyle style_B8C0D4_13 =
+  static  TextStyle style_B8C0D4_13 =
   TextStyle(color: ColorStyle.color_B8C0D4, fontSize: 13);
-  static const TextStyle style_B8C0D4_14 =
+  static  TextStyle style_B8C0D4_14 =
   TextStyle(color: ColorStyle.color_B8C0D4, fontSize: 14);
 
   ///---------------------------style_9F9EA6-------------------------------
