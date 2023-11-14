@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 class LoginPage extends GetView<LoginController> {
+
   static final _pageInstance = LoginPage._internal();
   factory LoginPage() => _pageInstance;
   LoginPage._internal();

@@ -109,7 +109,7 @@ class WellComeScreen extends StatelessWidget {
                       width: MediaQuery.of(context).size.width*0.8,
                       child: ElevatedButton(
                         onPressed: (){
-                          Get.to(CreateAccount());
+                          Get.to(()=>CreateAccount());
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.orangeAccent,
