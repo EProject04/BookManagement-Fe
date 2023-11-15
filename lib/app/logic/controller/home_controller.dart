@@ -22,14 +22,14 @@ class HomeController extends GetxController {
     update(); // Notify GetX that the state has changed
     // Make an API call to fetch all books
     var response = await NetWorkHandler.get(RequestApi.API_BOOK_GET);
-    Map<String, dynamic> jsonData = json.decode(response);
+    List<dynamic> jsonData = json.decode(response);
     List<Books> booksData =
-        jsonData['books'].map((dynamic book) => Books.fromJson(book)).toList();
-
+    jsonData.map((dynamic book) => Books.fromJson(book)).toList();
     books.clear(); // Clear the existing list of books
     for (final bookData in booksData) {
       books.add(bookData);
     }
+    print(booksData);
     isLoading(false);
     update(); // Notify GetX that the state has changed
   }
