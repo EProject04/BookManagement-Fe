@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
   factory HomePage() => _pageInstance;
   HomePage._internal();
   final carouselController = CarouselController();
-
+  var bookListController  = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -205,7 +205,7 @@ class HomePage extends StatelessWidget {
                       SizedBox(
                         height: size.height*0.35,
                         child:
-                        GridView.builder(
+                        bookListController.isLoading.value?CircularProgressIndicator():GridView.builder(
                           physics: AlwaysScrollableScrollPhysics(),
                           shrinkWrap: true,
                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -213,7 +213,7 @@ class HomePage extends StatelessWidget {
                               childAspectRatio:MediaQuery.of(context).size.width>600?(MediaQuery.of(context).size.width/3)/(180*1.6):(MediaQuery.of(context).size.width/2.27)/(180*1.7),
                               mainAxisSpacing: 20,
                               crossAxisSpacing: 20),
-                          itemCount: 8,
+                          itemCount: bookListController.books.length,
                           // scrollDirection: Axis.vertical,
                           itemBuilder:(context, index) => InkWell(
                             onTap: (){
