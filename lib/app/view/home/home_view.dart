@@ -60,88 +60,6 @@ class HomePage extends GetView<HomeController> {
                       height: 10,
                     ),
                     CarouselSliderWidget(),
-                    // Row(
-                    //   children: [
-                    //     Text(
-                    //       "Recommended For You",
-                    //       style: GoogleFonts.urbanist(
-                    //           textStyle: TextStyle(
-                    //               color: Colors.black,
-                    //               fontSize: 20,
-                    //               fontWeight: FontWeight.w600)),),
-                    //     Expanded(
-                    //       child: Container(),
-                    //     ),
-                    //     IconButton(
-                    //         onPressed: null,
-                    //         icon: Icon(Icons.arrow_forward))
-                    //   ],
-                    // ),
-                    // SizedBox(
-                    //   height: size.height*0.35,
-                    //   child: ListView.separated(
-                    //     itemCount: 8,
-                    //     padding: EdgeInsets.only(right: 15),
-                    //     separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
-                    //     scrollDirection: Axis.horizontal,
-                    //     itemBuilder:(context, index) => InkWell(
-                    //       onTap: (){
-                    //         Get.to(()=>BookDetailScreenNew(),
-                    //             transition: Transition.rightToLeft,
-                    //             duration: Duration(milliseconds: 600)
-                    //         );
-                    //       },
-                    //       child: Column(
-                    //         crossAxisAlignment: CrossAxisAlignment.start,
-                    //         children: [
-                    //
-                    //           Container(
-                    //             width: size.width*0.4,
-                    //             height: size.height*0.25,
-                    //             decoration: BoxDecoration(
-                    //               color: Colors.red,
-                    //               image: DecorationImage(
-                    //                 image: NetworkImage(
-                    //                   'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
-                    //                 ),
-                    //                 fit: BoxFit.fill,
-                    //               ),
-                    //               borderRadius: BorderRadius.circular(15),
-                    //             ),
-                    //           ),
-                    //           SizedBox(height: 5,),
-                    //           Container(
-                    //             width: size.width*0.4,
-                    //             child: Text('Harry Potter và hòn đá phù thuỷf',
-                    //               maxLines: 2,
-                    //               overflow: TextOverflow.ellipsis,
-                    //               style: TextStyle(
-                    //                 fontWeight: FontWeight.bold,
-                    //               ),
-                    //             ),
-                    //           ),
-                    //           SizedBox(height: 5,),
-                    //           Row(
-                    //             children: [
-                    //               Icon(
-                    //                 size:20,
-                    //                 Icons.star_half,
-                    //                 color: Colors.orangeAccent,
-                    //               ),
-                    //               Text('4.9',
-                    //                 style: TextStyle(
-                    //                   fontWeight: FontWeight.bold,
-                    //                   color: Colors.grey,
-                    //                   fontSize: 15,
-                    //                 ),
-                    //               ),
-                    //             ],
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                     Row(
                       children: [
                         Text(
@@ -163,19 +81,6 @@ class HomePage extends GetView<HomeController> {
                     SizedBox(
                       height: size.height * 0.1,
                       child: ListOfGenre(),
-                      // ListView.builder(
-                      //   itemCount: 8,
-                      //   scrollDirection: Axis.horizontal,
-                      //   itemBuilder: (context, index) => InkWell(
-                      //     onTap: (){
-                      //       Get.to(GenreDetailView());
-                      //     },
-                      //     child: Container(
-                      //       margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                      //       width: 150,
-                      //       color: Colors.red,
-                      //       child: Text("Genre"),),
-                      //   ),),
                     ),
                     SizedBox(
                       height: 15,
@@ -232,9 +137,7 @@ class HomePage extends GetView<HomeController> {
                                           decoration: BoxDecoration(
                                             color: Colors.red,
                                             image: DecorationImage(
-                                              image: NetworkImage(
-                                                'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
-                                              ),
+                                              image: NetworkImage('${book.imagePath}',),
                                               fit: BoxFit.fill,
                                             ),
                                             borderRadius:
@@ -303,6 +206,7 @@ class HomePage extends GetView<HomeController> {
 class CarouselSliderWidget extends StatefulWidget {
   const CarouselSliderWidget({Key? key}) : super(key: key);
 
+
   @override
   State<CarouselSliderWidget> createState() => _CarouselSliderWidgetState();
 }
@@ -313,13 +217,19 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
     "https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg",
     "https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg",
   ];
+  var bookListController = Get.put(HomeController());
   int activateIndex = 0;
   final carouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CarouselSlider.builder(
+        bookListController.isLoading.value? Center(
+            child: CircularProgressIndicator(
+              color: Colors.blueAccent,
+            )
+        )
+        :CarouselSlider.builder(
           carouselController: carouselController,
           itemCount: items.length,
           itemBuilder: (context, index, realIndex) {

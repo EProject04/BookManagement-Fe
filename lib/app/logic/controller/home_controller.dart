@@ -34,6 +34,7 @@ class HomeController extends GetxController {
     update(); // Notify GetX that the state has changed
   }
 
+
   @override
   void dispose() {
     super.dispose();
