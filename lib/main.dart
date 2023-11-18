@@ -19,16 +19,16 @@ import 'package:get_storage/get_storage.dart';
 
 void main() async {
   await GetStorage.init();
-  // runApp(DevicePreview(builder: (context) => MyApp(),));
-   runApp( MyApp());
+  runApp(DevicePreview(builder: (context) => MyApp(),));
+  //  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      // debugShowCheckedModeBanner: false,
-      // locale: DevicePreview.locale(context),
+      debugShowCheckedModeBanner: false,
+      locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       theme: Themes.lightTheme,
       darkTheme: Themes.darkTheme,
