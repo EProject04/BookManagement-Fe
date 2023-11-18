@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:frame/app/data/models/user.dart';
+import 'package:frame/app/data/models/user_profile.dart';
 import 'package:frame/app/data/services/request_api.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -49,8 +51,6 @@ class RegisterController extends GetxController{
       return "Your confirm password is not match";
     }
   }
-
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   Future<void> register() async{
 

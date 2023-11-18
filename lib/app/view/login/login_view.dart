@@ -67,7 +67,7 @@ class LoginPage extends GetView<LoginController> {
                         Positioned(
                             left: 0,
                             top: 0,
-                            child: Text('Phone Number', style: GoogleFonts.urbanist(
+                            child: Text('User Name', style: GoogleFonts.urbanist(
                                 textStyle: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 10,

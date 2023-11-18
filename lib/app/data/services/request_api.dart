@@ -24,10 +24,10 @@ class RequestApi {
   static const String API_REGISTER ="/api/users/register";
   static const String API_LOGOUT ="/api/users/logout";
 
-  static const String API_USERPROFILE_GET ="/api/UserProfiles";
-  static const String API_USERPROFILE_PUT ="/api/UserProfiles?id=";
-  static const String API_USERPROFILE_DELETE ="/api/UserProfiles?id=";
-  static const String API_USERPROFILE_SEARCH ="/api/UserProfiles?id=";
-  static const String API_USERPROFILE_GET_ID ="/api/UserProfiles?id=";
+  static const String API_USERPROFILE_GET ="/api/user-profiles/get-all-userprofile";
+  static const String API_USERPROFILE_PUT ="/api/user-profiles/update-userprofile/";
+  static const String API_USERPROFILE_DELETE ="/api/user-profiles/delete-userprofile/";
+  static const String API_USERPROFILE_SEARCH ="/api/user-profiles/search";
+  static const String API_USERPROFILE_GET_ID ="/api/user-profiles/get-userprofile-by-id/";
 
 }

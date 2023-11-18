@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:frame/app/view/create_new_account/create_new_account.dart';
 import 'package:frame/app/view/login/login_view.dart';
+import 'package:frame/app/view/your_profile/your_profile_view.dart';
 import 'package:get/get.dart';
 class WellComeScreen extends StatelessWidget {
   const WellComeScreen({Key? key}) : super(key: key);
@@ -109,7 +110,7 @@ class WellComeScreen extends StatelessWidget {
                       width: MediaQuery.of(context).size.width*0.8,
                       child: ElevatedButton(
                         onPressed: (){
-                          Get.to(()=>CreateAccount());
+                          Get.to(()=>YourProfile());
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.orangeAccent,
