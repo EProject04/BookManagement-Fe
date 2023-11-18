@@ -55,7 +55,11 @@ class _GenreGridViewState extends State<GenreGridView> {
   @override
   Widget build(BuildContext context) {
     return Obx(() =>  authorListController.isLoading.value?
-    CircularProgressIndicator()
+    Center(
+        child: CircularProgressIndicator(
+          color: Colors.orangeAccent,
+        )
+    )
         :GridView.builder(
       itemCount: authorListController.authors.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
