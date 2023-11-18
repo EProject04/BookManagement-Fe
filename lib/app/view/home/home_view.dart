@@ -60,88 +60,9 @@ class HomePage extends GetView<HomeController> {
                       height: 10,
                     ),
                     CarouselSliderWidget(),
-                    // Row(
-                    //   children: [
-                    //     Text(
-                    //       "Recommended For You",
-                    //       style: GoogleFonts.urbanist(
-                    //           textStyle: TextStyle(
-                    //               color: Colors.black,
-                    //               fontSize: 20,
-                    //               fontWeight: FontWeight.w600)),),
-                    //     Expanded(
-                    //       child: Container(),
-                    //     ),
-                    //     IconButton(
-                    //         onPressed: null,
-                    //         icon: Icon(Icons.arrow_forward))
-                    //   ],
-                    // ),
-                    // SizedBox(
-                    //   height: size.height*0.35,
-                    //   child: ListView.separated(
-                    //     itemCount: 8,
-                    //     padding: EdgeInsets.only(right: 15),
-                    //     separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
-                    //     scrollDirection: Axis.horizontal,
-                    //     itemBuilder:(context, index) => InkWell(
-                    //       onTap: (){
-                    //         Get.to(()=>BookDetailScreenNew(),
-                    //             transition: Transition.rightToLeft,
-                    //             duration: Duration(milliseconds: 600)
-                    //         );
-                    //       },
-                    //       child: Column(
-                    //         crossAxisAlignment: CrossAxisAlignment.start,
-                    //         children: [
-                    //
-                    //           Container(
-                    //             width: size.width*0.4,
-                    //             height: size.height*0.25,
-                    //             decoration: BoxDecoration(
-                    //               color: Colors.red,
-                    //               image: DecorationImage(
-                    //                 image: NetworkImage(
-                    //                   'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
-                    //                 ),
-                    //                 fit: BoxFit.fill,
-                    //               ),
-                    //               borderRadius: BorderRadius.circular(15),
-                    //             ),
-                    //           ),
-                    //           SizedBox(height: 5,),
-                    //           Container(
-                    //             width: size.width*0.4,
-                    //             child: Text('Harry Potter và hòn đá phù thuỷf',
-                    //               maxLines: 2,
-                    //               overflow: TextOverflow.ellipsis,
-                    //               style: TextStyle(
-                    //                 fontWeight: FontWeight.bold,
-                    //               ),
-                    //             ),
-                    //           ),
-                    //           SizedBox(height: 5,),
-                    //           Row(
-                    //             children: [
-                    //               Icon(
-                    //                 size:20,
-                    //                 Icons.star_half,
-                    //                 color: Colors.orangeAccent,
-                    //               ),
-                    //               Text('4.9',
-                    //                 style: TextStyle(
-                    //                   fontWeight: FontWeight.bold,
-                    //                   color: Colors.grey,
-                    //                   fontSize: 15,
-                    //                 ),
-                    //               ),
-                    //             ],
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       children: [
                         Text(
@@ -161,21 +82,11 @@ class HomePage extends GetView<HomeController> {
                       ],
                     ),
                     SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
                       height: size.height * 0.1,
-                      child: ListOfGenre(),
-                      // ListView.builder(
-                      //   itemCount: 8,
-                      //   scrollDirection: Axis.horizontal,
-                      //   itemBuilder: (context, index) => InkWell(
-                      //     onTap: (){
-                      //       Get.to(GenreDetailView());
-                      //     },
-                      //     child: Container(
-                      //       margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                      //       width: 150,
-                      //       color: Colors.red,
-                      //       child: Text("Genre"),),
-                      //   ),),
+                      child: ListOfAuthor(),
                     ),
                     SizedBox(
                       height: 15,
@@ -199,17 +110,29 @@ class HomePage extends GetView<HomeController> {
                       child: Obx(
                         () => bookListController.isLoading.value
                             ? Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.blueAccent,
-                            )
-                        )
+                                child: CircularProgressIndicator(
+                                color: Colors.blueAccent,
+                              ))
                             : GridView.builder(
                                 physics: AlwaysScrollableScrollPhysics(),
                                 shrinkWrap: true,
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
-                                        childAspectRatio: MediaQuery.of(context).size.width > 600 ? (MediaQuery.of(context).size.width / 3) / (180 * 1.6): (MediaQuery.of(context).size.width / 2.27) / (180 * 1.7),
+                                        childAspectRatio: MediaQuery.of(context)
+                                                    .size
+                                                    .width >
+                                                600
+                                            ? (MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    3) /
+                                                (180 * 1.6)
+                                            : (MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2.27) /
+                                                (180 * 1.7),
                                         mainAxisSpacing: 20,
                                         crossAxisSpacing: 20),
                                 itemCount: bookListController.books.length,
@@ -220,11 +143,12 @@ class HomePage extends GetView<HomeController> {
                                     onTap: () {
                                       Get.to(() => BookDetailScreenNew(),
                                           transition: Transition.rightToLeft,
-                                          duration: Duration(milliseconds: 600));
+                                          duration:
+                                              Duration(milliseconds: 600));
                                     },
                                     child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Container(
                                           width: size.width * 0.4,
@@ -238,7 +162,7 @@ class HomePage extends GetView<HomeController> {
                                               fit: BoxFit.fill,
                                             ),
                                             borderRadius:
-                                            BorderRadius.circular(15),
+                                                BorderRadius.circular(15),
                                           ),
                                         ),
                                         SizedBox(
@@ -286,9 +210,7 @@ class HomePage extends GetView<HomeController> {
                                       ],
                                     ),
                                   );
-                                }
-
-                              ),
+                                }),
                       ),
                     ),
                   ],
@@ -308,40 +230,47 @@ class CarouselSliderWidget extends StatefulWidget {
 }
 
 class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
-  final List<String> items = [
-    "https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg",
-    "https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg",
-    "https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg",
-  ];
+  var cateListController = Get.put(HomeController());
   int activateIndex = 0;
   final carouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        CarouselSlider.builder(
-          carouselController: carouselController,
-          itemCount: items.length,
-          itemBuilder: (context, index, realIndex) {
-            return Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage(items[index]), fit: BoxFit.fill)),
-            );
-          },
-          options: CarouselOptions(
-            autoPlay: true,
-            // reverse: true,
-            // enlargeCenterPage: true,
-            // enlargeStrategy: CenterPageEnlargeStrategy.height,
-            viewportFraction: 1,
-            autoPlayInterval: Duration(seconds: 10),
-            onPageChanged: (index, reason) {
-              setState(() {
-                activateIndex = index;
-              });
-            },
-          ),
+        Obx(
+          () => cateListController.isLoading.value
+              ? Center(
+                  child: CircularProgressIndicator(
+                  color: Colors.blueAccent,
+                ))
+              : CarouselSlider.builder(
+                  carouselController: carouselController,
+                  itemCount: cateListController.categories.length,
+                  itemBuilder: (context, index, realIndex) {
+                    final cate = cateListController.categories[index];
+                    return Container(
+                      width: size.width,
+                      decoration: BoxDecoration(
+                        color: Colors.blueAccent,
+                      ),
+                      child: Text('${cate.categoryName}'),
+                    );
+                  },
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    // reverse: true,
+                    // enlargeCenterPage: true,
+                    // enlargeStrategy: CenterPageEnlargeStrategy.height,
+                    viewportFraction: 1,
+                    autoPlayInterval: Duration(seconds: 10),
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        activateIndex = index;
+                      });
+                    },
+                  ),
+                ),
         ),
         const SizedBox(height: 8),
         buildIndicator(),
@@ -351,7 +280,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
 
   Widget buildIndicator() => AnimatedSmoothIndicator(
         activeIndex: activateIndex,
-        count: items.length,
+        count: cateListController.categories.length,
         onDotClicked: animateToSlide,
         effect: ScaleEffect(
           activeDotColor: Colors.blueAccent,
@@ -363,95 +292,73 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
   void animateToSlide(int index) => carouselController.animateToPage(index);
 }
 
-class BookGenre {
-  final int id;
-  final String genre;
-  bool isSelected;
-  BookGenre(this.id, this.genre, this.isSelected);
-}
-
-class ListOfGenre extends StatefulWidget {
-  const ListOfGenre({super.key});
+class ListOfAuthor extends StatefulWidget {
+  const ListOfAuthor({super.key});
 
   @override
-  State<ListOfGenre> createState() => _ListOfGenreState();
+  State<ListOfAuthor> createState() => _ListOfAuthoreState();
 }
 
-class _ListOfGenreState extends State<ListOfGenre> {
-  List<BookGenre> bookGenre = <BookGenre>[];
-
-  @override
-  void initState() {
-    super.initState();
-    bookGenre.add(new BookGenre(1, 'Romance', false));
-    bookGenre.add(new BookGenre(2, 'Fantasy', false));
-    bookGenre.add(new BookGenre(3, 'Sci-Fi', false));
-    bookGenre.add(new BookGenre(4, 'Horror', false));
-    bookGenre.add(new BookGenre(5, 'Mystery', false));
-    bookGenre.add(new BookGenre(6, 'Thriller', false));
-    bookGenre.add(new BookGenre(7, 'Psychology', false));
-    bookGenre.add(new BookGenre(8, 'Inspiration', false));
-    bookGenre.add(new BookGenre(9, 'Comedy', false));
-    bookGenre.add(new BookGenre(10, 'Action', false));
-    bookGenre.add(new BookGenre(11, 'Adventure', false));
-    bookGenre.add(new BookGenre(12, 'Comics', false));
-    bookGenre.add(new BookGenre(13, 'Children\'s', false));
-    bookGenre.add(new BookGenre(14, 'Art & Photography', false));
-    bookGenre.add(new BookGenre(15, 'Food & Drink', false));
-    bookGenre.add(new BookGenre(16, 'Biography', false));
-    bookGenre.add(new BookGenre(17, 'Science & Technology', false));
-    bookGenre.add(new BookGenre(18, 'Guide / How-to', false));
-    bookGenre.add(new BookGenre(19, 'Travel', false));
-  }
-
+class _ListOfAuthoreState extends State<ListOfAuthor> {
+  var authorListController = Get.put(HomeController());
+  final carouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: bookGenre
-            .map(
-              (item) => InkWell(
-                onTap: () {
-                  setState(() {
-                    Get.to(() => GenreDetailView());
-                    // bookGenre.forEach((element) {
-                    //
-                    // });
-                  });
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(right: 15),
-                  child: Container(
-                    width: size.width * 0.35,
-                    height: size.height * 0.2,
-                    padding: EdgeInsets.all(5),
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        item.genre,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
+    return Obx(() =>  authorListController.isLoading.value
+        ? Center(child: CircularProgressIndicator())
+        : Container(
+      height: size.height * 0.2,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: authorListController.authors.length,
+        itemBuilder: (context, index) {
+          final author = authorListController.authors[index];
+          return InkWell(
+            onTap: (){
+              Get.to(GenreDetailView());
+            },
+            child: Container(
+              width: size.width*0.35,
+              margin: EdgeInsets.symmetric(horizontal: 8),
+              padding: EdgeInsets.only(top: 10),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  author.authorName.toUpperCase(),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.tealAccent,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    shadows: <Shadow>[
+                      Shadow(
+                        blurRadius: 3.0,
+                        color: Color.fromARGB(255, 0, 0, 0),
                       ),
-                    ),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            'https://images.unsplash.com/photo-1618588507085-c79565432917?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww&w=1000&q=80'),
-                        fit: BoxFit.cover,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                    ],
                   ),
                 ),
               ),
-            )
-            .toList(),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.blue,
+                  width: 0.5,
+                ),
+                image: DecorationImage(
+                  image: NetworkImage(
+                      'https://st3.depositphotos.com/11953928/32310/v/450/depositphotos_323108450-stock-illustration-isolated-books-flat-design.jpg'),
+                  fit: BoxFit.fill,
+                ),
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          );
+        },
       ),
+    )
     );
+
   }
 }
