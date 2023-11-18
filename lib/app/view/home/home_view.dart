@@ -254,7 +254,9 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                       decoration: BoxDecoration(
                         color: Colors.blueAccent,
                       ),
-                      child: Text('${cate.categoryName}'),
+                      child: Text('${cate.categoryName}',
+                      textAlign: TextAlign.center,
+                      ),
                     );
                   },
                   options: CarouselOptions(
