@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 
 
 class GenreDetailView extends StatefulWidget{
+  const GenreDetailView({super.key});
+
   @override
   State<GenreDetailView> createState() => _GenreDetailView();
 }
@@ -228,15 +230,19 @@ class GenreDetailGridView extends StatelessWidget{
     final double itemHeight = (size.height - kToolbarHeight - 24)/2.2;
     final double itemWidth = size.width /2;
     return  Expanded(
-      child: GridView(
+      child: GridView.builder(
+        itemCount: 6,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             childAspectRatio: (itemWidth/itemHeight)
         ),
-        children: <Widget>[
-          Container(
+        itemBuilder: (BuildContext context, index)=> InkWell(
+          onTap: (){
+            Get.to(()=>BookDetailScreenNew());
+          },
+          child: Container(
             // color: Colors.orange,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -283,199 +289,8 @@ class GenreDetailGridView extends StatelessWidget{
               ],
             ),
           ),
+        ),
 
-          Container(
-            // color: Colors.orange,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children:<Widget>[
-                Container(
-                  // width: size.width * 0.8,
-                    height: size.height * 0.3,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage('https://m.media-amazon.com/images/I/61fqa1gbE5L._AC_UF1000,1000_QL80_.jpg'),
-                          fit: BoxFit.fill,
-                        ),
-                        borderRadius: BorderRadius.circular(10)
-                    )
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text('Reign of Blood',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      size:20,
-                      Icons.star_half,
-                      color: Colors.grey,
-                    ),
-
-                    Text('4.9',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-
-          Container(
-            // color: Colors.orange,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children:<Widget>[
-                Container(
-                  // width: size.width * 0.8,
-                    height: size.height * 0.3,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage('https://m.media-amazon.com/images/I/61fqa1gbE5L._AC_UF1000,1000_QL80_.jpg'),
-                          fit: BoxFit.fill,
-                        ),
-                        borderRadius: BorderRadius.circular(10)
-                    )
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text('Reign of Blood',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      size:20,
-                      Icons.star_half,
-                      color: Colors.grey,
-                    ),
-
-                    Text('4.9',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-
-          Container(
-            // color: Colors.orange,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children:<Widget>[
-                Container(
-                  // width: size.width * 0.8,
-                    height: size.height * 0.3,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage('https://m.media-amazon.com/images/I/61fqa1gbE5L._AC_UF1000,1000_QL80_.jpg'),
-                          fit: BoxFit.fill,
-                        ),
-                        borderRadius: BorderRadius.circular(10)
-                    )
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text('Reign of Blood',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      size:20,
-                      Icons.star_half,
-                      color: Colors.grey,
-                    ),
-
-                    Text('4.9',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Container(
-            // color: Colors.orange,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children:<Widget>[
-                Container(
-                  // width: size.width * 0.8,
-                    height: size.height * 0.3,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage('https://m.media-amazon.com/images/I/61fqa1gbE5L._AC_UF1000,1000_QL80_.jpg'),
-                          fit: BoxFit.fill,
-                        ),
-                        borderRadius: BorderRadius.circular(10)
-                    )
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text('Reign of Blood',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      size:20,
-                      Icons.star_half,
-                      color: Colors.grey,
-                    ),
-
-                    Text('4.9',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-
-        ],
       ),
     );
   }

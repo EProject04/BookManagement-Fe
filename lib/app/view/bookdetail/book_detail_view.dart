@@ -40,27 +40,24 @@ class BookDetailScreenNew extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-            backgroundColor: Colors.white,
+            appBar: AppBar(
+              title: Text('Book Detail',
+                style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+              backgroundColor: Colors.white,
+            actions: <Widget>[
+              IconButton(
+                  onPressed: null,
+                  icon: Icon(Icons.add_circle_outline_rounded)),
+            ],
+            ),
+
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      IconButton(
-                          onPressed: (){
-                            Get.back();
-                          },
-                          icon: Icon(Icons.arrow_back)),
-                      Expanded(
-                          child: Container(
-                            alignment: Alignment.centerRight,
-                            child: IconButton(
-                                onPressed: null,
-                                icon: Icon(Icons.add_circle_outline_rounded)),
-                          )
-                      ),
-                    ],
-                  ),
                   Container(
                     margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
                     child: Row(
@@ -517,63 +514,66 @@ class BookDetailScreenNew extends StatelessWidget {
                           ],
                         ),
                         SizedBox(
-                          height: 282,
-                          child: ListView.builder(
+                          height: size.height *0.35,
+                          child: ListView.separated(
                             itemCount: 8,
+                            padding: EdgeInsets.only(right: 15),
+                            separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
                             scrollDirection: Axis.horizontal,
                             itemBuilder:(context, index) => InkWell(
                               onTap: (){
-                                Get.to(BookDetailScreenNew());
+                                Get.to(()=>BookDetailScreenNew(),
+                                    transition: Transition.rightToLeft,
+                                    duration: Duration(milliseconds: 600)
+                                );
                               },
-                              child: Padding(
-                                padding: EdgeInsets.only(right: 15),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: size.width*0.4,
-                                      height: size.height*0.25,
-                                      decoration: BoxDecoration(
-                                        color: Colors.red,
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                            'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
-                                          ),
-                                          fit: BoxFit.fill,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+
+                                  Container(
+                                    width: size.width*0.4,
+                                    height: size.height*0.25,
+                                    decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      image: DecorationImage(
+                                        image: NetworkImage(
+                                          'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
                                         ),
-                                        borderRadius: BorderRadius.circular(15),
+                                        fit: BoxFit.fill,
+                                      ),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                  ),
+                                  SizedBox(height: 5,),
+                                  Container(
+                                    width: size.width*0.4,
+                                    child: Text('Harry Potter và hòn đá phù thuỷf',
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    SizedBox(height: 5,),
-                                    Container(
-                                      width: size.width*0.4,
-                                      child: Text('Harry Potter và hòn đá phù thuỷf',
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
+                                  ),
+                                  SizedBox(height: 5,),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        size:20,
+                                        Icons.star_half,
+                                        color: Colors.grey,
+                                      ),
+                                      Text('4.9',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
+                                          color: Colors.grey,
+                                          fontSize: 15,
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(height: 5,),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          size:20,
-                                          Icons.star_half,
-                                          color: Colors.grey,
-                                        ),
-                                        Text('4.9',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -601,63 +601,66 @@ class BookDetailScreenNew extends StatelessWidget {
                           ],
                         ),
                         SizedBox(
-                          height: 282,
-                          child: ListView.builder(
+                          height: size.height*0.35,
+                          child: ListView.separated(
                             itemCount: 8,
+                            padding: EdgeInsets.only(right: 15),
+                            separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
                             scrollDirection: Axis.horizontal,
                             itemBuilder:(context, index) => InkWell(
                               onTap: (){
-                                Get.to(BookDetailScreenNew());
+                                Get.to(()=>BookDetailScreenNew(),
+                                    transition: Transition.rightToLeft,
+                                    duration: Duration(milliseconds: 600)
+                                );
                               },
-                              child: Padding(
-                                padding: EdgeInsets.only(right: 15),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: size.width*0.4,
-                                      height: size.height*0.25,
-                                      decoration: BoxDecoration(
-                                        color: Colors.red,
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                            'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
-                                          ),
-                                          fit: BoxFit.fill,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+
+                                  Container(
+                                    width: size.width*0.4,
+                                    height: size.height*0.25,
+                                    decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      image: DecorationImage(
+                                        image: NetworkImage(
+                                          'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
                                         ),
-                                        borderRadius: BorderRadius.circular(15),
+                                        fit: BoxFit.fill,
+                                      ),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                  ),
+                                  SizedBox(height: 5,),
+                                  Container(
+                                    width: size.width*0.4,
+                                    child: Text('Harry Potter và hòn đá phù thuỷf',
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    SizedBox(height: 5,),
-                                    Container(
-                                      width: size.width*0.4,
-                                      child: Text('Harry Potter và hòn đá phù thuỷf',
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
+                                  ),
+                                  SizedBox(height: 5,),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        size:20,
+                                        Icons.star_half,
+                                        color: Colors.grey,
+                                      ),
+                                      Text('4.9',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
+                                          color: Colors.grey,
+                                          fontSize: 15,
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(height: 5,),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          size:20,
-                                          Icons.star_half,
-                                          color: Colors.grey,
-                                        ),
-                                        Text('4.9',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
                           ),
