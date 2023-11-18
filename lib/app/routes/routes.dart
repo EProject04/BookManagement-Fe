@@ -1,6 +1,7 @@
 import 'package:frame/app/logic/bindings/home_binding.dart';
 import 'package:frame/app/logic/bindings/login_binding.dart';
 import 'package:frame/app/logic/bindings/main_wrapper_binding.dart';
+import 'package:frame/app/logic/bindings/register_binding.dart';
 import 'package:frame/app/view/about_ibbook/about_ibbook_view.dart';
 import 'package:frame/app/view/about_this_ebook/about_this_ebook_view.dart';
 import 'package:frame/app/view/account/account_view.dart';
@@ -123,7 +124,9 @@ abstract class Routes {
       page: () =>  WishlistView(),),
     GetPage(
       name: registerPage,
-      page: () =>  CreateAccount(),),
+      page: () =>  CreateAccount(),
+      binding: RegisterBinding(),
+    ),
   ];
 
 }
