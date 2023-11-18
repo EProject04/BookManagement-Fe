@@ -1,22 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frame/app/logic/controller/genre_controller.dart';
+import 'package:frame/app/logic/controller/home_controller.dart';
 import 'package:frame/app/view/genre_detail/genre_detail_view.dart';
 import 'package:get/get.dart';
 
-class BookGenre{
-  final int id;
-  final String genre;
-  bool isSelected;
-  BookGenre(this.id, this.genre, this.isSelected);
-}
 
 class ExploreByGenreView extends StatelessWidget {
   const ExploreByGenreView({super.key});
-
   @override
   Widget build(BuildContext context) {
-
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -26,7 +19,7 @@ class ExploreByGenreView extends StatelessWidget {
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
-              fontSize: 30,
+              fontSize: 28,
             ),
           ),
           actions: <Widget>[
@@ -57,38 +50,23 @@ class GenreGridView extends StatefulWidget {
 }
 
 class _GenreGridViewState extends State<GenreGridView> {
-  List<BookGenre> bookGenre = <BookGenre>[];
 
+  var authorListController = Get.put(GenreController());
   @override
   Widget build(BuildContext context) {
-    bookGenre.add(new BookGenre(1, 'Romance', false));
-    bookGenre.add(new BookGenre(2, 'Fantasy', false));
-    bookGenre.add(new BookGenre(3, 'Sci-Fi', false));
-    bookGenre.add(new BookGenre(4, 'Horror', false));
-    bookGenre.add(new BookGenre(5, 'Mystery', false));
-    bookGenre.add(new BookGenre(6, 'Thriller', false));
-    bookGenre.add(new BookGenre(7, 'Psychology', false));
-    bookGenre.add(new BookGenre(8, 'Inspiration', false));
-    bookGenre.add(new BookGenre(9, 'Comedy', false));
-    bookGenre.add(new BookGenre(10, 'Action', false));
-    bookGenre.add(new BookGenre(11, 'Adventure', false));
-    bookGenre.add(new BookGenre(12, 'Comics', false));
-    bookGenre.add(new BookGenre(13, 'Children\'s', false));
-    bookGenre.add(new BookGenre(14, 'Art & Photography', false));
-    bookGenre.add(new BookGenre(15, 'Food & Drink', false));
-    bookGenre.add(new BookGenre(16, 'Biography', false));
-    bookGenre.add(new BookGenre(17, 'Science & Technology', false));
-    bookGenre.add(new BookGenre(18, 'Guide / How-to', false));
-    bookGenre.add(new BookGenre(19, 'Travel', false));
-    return GridView(
+    return Obx(() =>  authorListController.isLoading.value?
+    CircularProgressIndicator()
+        :GridView.builder(
+      itemCount: authorListController.authors.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         childAspectRatio: 2,
       ),
-      children: bookGenre.map(
-            (item)=>InkWell(
+      itemBuilder:(context, index){
+        final author = authorListController.authors[index];
+        return InkWell(
           onTap:(){
             setState(() {
               Get.to(()=>GenreDetailView());
@@ -98,28 +76,41 @@ class _GenreGridViewState extends State<GenreGridView> {
             });
           },
           child: Container(
-            padding: EdgeInsets.all(8),
+            padding: EdgeInsets.only(top: 5),
             child: Align(
-              alignment: Alignment.bottomLeft,
-              child: Text(item.genre,
+              alignment: Alignment.bottomCenter,
+              child: Text(author.authorName.toUpperCase(),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.tealAccent,
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize: 18,
+                  shadows: <Shadow>[
+                    Shadow(
+                      blurRadius: 3.0,
+                      color: Color.fromARGB(255, 0, 0, 0),
+                    ),
+                  ],
                 ),
               ),
             ),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage('https://images.unsplash.com/photo-1618588507085-c79565432917?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww&w=1000&q=80'),
-                fit: BoxFit.cover,
+                image: NetworkImage('https://st3.depositphotos.com/11953928/32310/v/450/depositphotos_323108450-stock-illustration-isolated-books-flat-design.jpg'),
+                fit: BoxFit.fill,
               ),
               borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: Colors.blue,
+                width: 0.5,
+              ),
             ),
           ),
-        ),
-      ).toList(),
-    );
+        );
+      } ,
+    ),);
+
   }
 }
 

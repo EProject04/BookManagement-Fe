@@ -73,12 +73,12 @@ class HomePage extends GetView<HomeController> {
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black)),
                         ),
-                        // Expanded(child: Container()),
-                        // IconButton(
-                        //     onPressed: () {
-                        //       Get.to(() => ExploreByGenreView());
-                        //     },
-                        //     icon: Icon(Icons.arrow_forward))
+                        Expanded(child: Container()),
+                        IconButton(
+                            onPressed: () {
+                              Get.to(() => ExploreByGenreView());
+                            },
+                            icon: Icon(Icons.arrow_forward))
                       ],
                     ),
                     SizedBox(
@@ -321,22 +321,34 @@ class _ListOfAuthoreState extends State<ListOfAuthor> {
             child: Container(
               width: size.width*0.35,
               margin: EdgeInsets.symmetric(horizontal: 8),
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.only(top: 10),
               child: Align(
-                alignment: Alignment.bottomLeft,
+                alignment: Alignment.bottomCenter,
                 child: Text(
-                  author.authorName,
+                  author.authorName.toUpperCase(),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.tealAccent,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 18,
+                    shadows: <Shadow>[
+                      Shadow(
+                        blurRadius: 3.0,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                    ],
                   ),
                 ),
               ),
               decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.blue,
+                  width: 0.5,
+                ),
                 image: DecorationImage(
                   image: NetworkImage(
-                      'https://images.unsplash.com/photo-1618588507085-c79565432917?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww&w=1000&q=80'),
+                      'https://st3.depositphotos.com/11953928/32310/v/450/depositphotos_323108450-stock-illustration-isolated-books-flat-design.jpg'),
                   fit: BoxFit.fill,
                 ),
                 borderRadius: BorderRadius.circular(10),
