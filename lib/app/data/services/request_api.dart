@@ -23,6 +23,8 @@ class RequestApi {
   static const String API_LOGIN ="/api/users/login";
   static const String API_REGISTER ="/api/users/register";
   static const String API_LOGOUT ="/api/users/logout";
+  static const String API_USERS_GET ="/api/users/get-all-user";
+  static const String API_USERS_GET_ID ="/api/users/get-user-by-id/";
 
   static const String API_USERPROFILE_GET ="/api/user-profiles/get-all-userprofile";
   static const String API_USERPROFILE_PUT ="/api/user-profiles/update-userprofile/";

@@ -11,6 +11,7 @@ import 'package:frame/app/view/explore_by_genre/explore_by_genre_view.dart';
 import 'package:frame/app/view/genre_detail/genre_detail_view.dart';
 import 'package:frame/app/view/help_center/help_center_view.dart';
 import 'package:frame/app/view/personal_info/personal_info_view.dart';
+import 'package:frame/app/view/search/search_view.dart';
 import 'package:frame/app/view/wellcome/wellcome_view.dart';
 import 'package:frame/app/view/wishlist/wishlist_view.dart';
 import 'package:frame/app/view/your_profile/your_profile_view.dart';
