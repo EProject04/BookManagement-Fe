@@ -5,14 +5,19 @@ import 'package:frame/app/data/models/book.dart';
 import 'package:frame/app/data/models/category.dart';
 import 'package:frame/app/data/services/network_handler.dart';
 import 'package:frame/app/data/services/request_api.dart';
+import 'package:frame/app/logic/controller/genre_controller.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+
+GenreController geneController = GenreController();
 
 class HomeController extends GetxController {
   RxBool isLoading = false.obs;
   RxList<Books> books = RxList<Books>();
   RxList<Categories> categories = RxList<Categories>();
   RxList<Author> authors = RxList<Author>();
+  List<Books> bookByCategory =  [];
+
 
   @override
   void onInit() {
@@ -86,6 +91,33 @@ class HomeController extends GetxController {
       throw(e);
     }
   }
+
+  Future<void>  showAuthor(String name) async{
+    await geneController.getBookByAuthorname(name);
+
+  }
+
+
+
+  Future<void> getBookByCategories(String cateName) async{
+    try{
+      isLoading(true);
+      update(); // Notify GetX that the state has changed
+      // Make an API call to fetch all books
+      var response = await NetWorkHandler.get(RequestApi.API_BOOK_SEARCH + cateName);
+      List<dynamic> jsonData = json.decode(response);
+      List<Books> bookData =
+      jsonData.map((dynamic book) => Books.fromJson(book)).toList();
+      bookByCategory.clear(); // Clear the existing list of books
+      bookByCategory = bookData;
+      print(bookData);
+      isLoading(false);
+      update(); // Notify GetX that the state has changed
+    }catch(e){
+      throw(e);
+    }
+  }
+
 
   @override
   void dispose() {

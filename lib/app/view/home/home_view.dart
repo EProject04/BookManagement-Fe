@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:frame/app/data/services/request_api.dart';
 import 'package:frame/app/logic/controller/home_controller.dart';
 import 'package:frame/app/logic/controller/main_wrapper_controller.dart';
 import 'package:frame/app/view/bookdetail/book_detail_view.dart';
@@ -157,7 +158,7 @@ class HomePage extends GetView<HomeController> {
                                             color: Colors.red,
                                             image: DecorationImage(
                                               image: NetworkImage(
-                                                'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
+                                               '${book.imagePath}',
                                               ),
                                               fit: BoxFit.fill,
                                             ),
@@ -233,6 +234,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
   var cateListController = Get.put(HomeController());
   int activateIndex = 0;
   final carouselController = CarouselController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -249,13 +251,42 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                   itemCount: cateListController.categories.length,
                   itemBuilder: (context, index, realIndex) {
                     final cate = cateListController.categories[index];
-                    return Container(
-                      width: size.width,
-                      decoration: BoxDecoration(
-                        color: Colors.blueAccent,
-                      ),
-                      child: Text('${cate.categoryName}',
-                      textAlign: TextAlign.center,
+                    return GestureDetector(
+                      onTap: (){
+                        Get.to(GenreDetailView());
+                      },
+                      child: Container(
+                        width: size.width,
+                        decoration: BoxDecoration(
+                          color: Colors.blueAccent,
+                          image: DecorationImage(
+                            image: NetworkImage('${cate.imagePath??RequestApi.IMG_LOGO_APP}'),
+                            fit: BoxFit.fill,
+                          )
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              child: Text('${cate.categoryName}',
+                              textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFeatures: [
+                                    FontFeature.proportionalFigures(),
+                                  ],
+                                  shadows: <Shadow>[
+                                    Shadow(
+                                      blurRadius: 3.0,
+                                      color: Color.fromARGB(255, 0, 0, 0),
+                                    ),
+                                  ],
+                                  color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -302,7 +333,8 @@ class ListOfAuthor extends StatefulWidget {
 }
 
 class _ListOfAuthoreState extends State<ListOfAuthor> {
-  var authorListController = Get.put(HomeController());
+  // var authorListController = Get.put(HomeController());
+  HomeController authorListController = Get.find();
   final carouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
@@ -317,7 +349,8 @@ class _ListOfAuthoreState extends State<ListOfAuthor> {
         itemBuilder: (context, index) {
           final author = authorListController.authors[index];
           return InkWell(
-            onTap: (){
+            onTap: () async{
+              authorListController.showAuthor(author.authorName);
               Get.to(GenreDetailView());
             },
             child: Container(
@@ -331,26 +364,22 @@ class _ListOfAuthoreState extends State<ListOfAuthor> {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Colors.tealAccent,
+                    fontFeatures: [
+                      FontFeature.proportionalFigures(),
+                    ],
+                    color: Colors.redAccent,
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    shadows: <Shadow>[
-                      Shadow(
-                        blurRadius: 3.0,
-                        color: Color.fromARGB(255, 0, 0, 0),
-                      ),
-                    ],
                   ),
                 ),
               ),
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.blue,
+                  color: Colors.pinkAccent,
                   width: 0.5,
                 ),
                 image: DecorationImage(
-                  image: NetworkImage(
-                      'https://st3.depositphotos.com/11953928/32310/v/450/depositphotos_323108450-stock-illustration-isolated-books-flat-design.jpg'),
+                  image: NetworkImage(RequestApi.IMG_LOGO_APP),
                   fit: BoxFit.fill,
                 ),
                 borderRadius: BorderRadius.circular(10),
@@ -363,4 +392,6 @@ class _ListOfAuthoreState extends State<ListOfAuthor> {
     );
 
   }
+
+
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frame/app/logic/controller/genre_controller.dart';
 import 'package:frame/app/view/bookdetail/book_detail_view.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +14,15 @@ class GenreDetailView extends StatefulWidget{
 
 class _GenreDetailView extends State<GenreDetailView>{
   bool isGridView = true;
+  var genreController = Get.put(GenreController());
 
+@override
+void initState(){
+
+  setState(() {
+
+  });
+}
   void _toggleView(){
     setState(() {
       isGridView = !isGridView;
@@ -31,7 +40,7 @@ class _GenreDetailView extends State<GenreDetailView>{
           ),
           elevation: 0.0,// remove app bar shadow
           backgroundColor: Colors.white,
-          title: Text('Romance',
+          title: Text('${genreController.authors}',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -53,6 +62,7 @@ class _GenreDetailView extends State<GenreDetailView>{
           padding: EdgeInsets.all(15),
           child: Column(
             children: [
+
               Row(
                 children: [
                   Text('Show in',

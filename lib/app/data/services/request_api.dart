@@ -30,4 +30,6 @@ class RequestApi {
   static const String API_USERPROFILE_SEARCH ="/api/user-profiles/search";
   static const String API_USERPROFILE_GET_ID ="/api/user-profiles/get-userprofile-by-id/";
 
+  static const String IMG_LOGO_APP  ="https://st3.depositphotos.com/11953928/32310/v/450/depositphotos_323108450-stock-illustration-isolated-books-flat-design.jpg";
+
 }
