@@ -1,6 +1,8 @@
+import 'package:frame/app/logic/bindings/account_binding.dart';
 import 'package:frame/app/logic/bindings/home_binding.dart';
 import 'package:frame/app/logic/bindings/login_binding.dart';
 import 'package:frame/app/logic/bindings/main_wrapper_binding.dart';
+import 'package:frame/app/logic/bindings/profile_binding.dart';
 import 'package:frame/app/logic/bindings/register_binding.dart';
 import 'package:frame/app/view/about_ibbook/about_ibbook_view.dart';
 import 'package:frame/app/view/about_this_ebook/about_this_ebook_view.dart';
@@ -47,7 +49,7 @@ abstract class Routes {
   static const String welcomePage = '/welcome';
   static const String confirmProfilePgae = '/confirmProfile';
   static const String registerPage = '/register';
-  static const String userInforPage = '/userinfor';
+  static const String accountPage = '/account';
 
 
 
@@ -71,7 +73,9 @@ abstract class Routes {
       page: () =>  RateView(),),
     GetPage(
       name: personalInfoPage,
-      page: () =>  PersonalInfoView(),),
+      page: () =>  PersonalInfoView(),
+      binding: ProfileBinding(),
+    ),
     GetPage(
       name: otpPage,
       page: () =>  OTPPage(),),
@@ -106,10 +110,18 @@ abstract class Routes {
     ),
     GetPage(
       name: confirmProfilePgae,
-      page: () =>  YourProfile(),),
+      page: () =>  YourProfile(),
+      binding: ProfileBinding(),
+    ),
     GetPage(
-      name: userInforPage,
-      page: () =>  AccountView(),),
+      name: accountPage,
+      page: () =>  AccountView(),
+      bindings: [
+        AccountBinding(),
+        ProfileBinding(),
+      ]
+    ),
+
     GetPage(
       name: explorGenrePage,
       page: () =>  ExploreByGenreView(),),
