@@ -12,7 +12,7 @@ class LoginPage extends GetView<LoginController> {
   factory LoginPage() => _pageInstance;
   LoginPage._internal();
 
-  final formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final pageController = LoginController();
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -189,6 +189,8 @@ class LoginPage extends GetView<LoginController> {
                             onPressed: (){
                               if(formKey.currentState!.validate()){
                                 pageController.login(username.text,password.text);
+                                username.clear();
+                                password.clear();
                               }
                             },
                             child: const Text(

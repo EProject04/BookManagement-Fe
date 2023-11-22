@@ -52,7 +52,8 @@ class UserProfile {
     image: json["image"],
     authorId: json["authorId"],
     roleName: json["roleName"],
-    dateOfBirth: DateTime.parse(json["dateOfBirth"]),
+    // dateOfBirth: DateTime.parse(json["dateOfBirth"]),
+    dateOfBirth: json["dateOfBirth"],
   );
 
   Map<String, dynamic> toJson() => {

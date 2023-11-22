@@ -1,18 +1,33 @@
 
 
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frame/app/data/models/user_profile.dart';
+import 'package:frame/app/logic/controller/account_controller.dart';
+import 'package:frame/app/logic/controller/profile_controller.dart';
 import 'package:frame/app/view/about_ibbook/about_ibbook_view.dart';
 
 import 'package:frame/app/view/help_center/help_center_view.dart';
 import 'package:frame/app/view/personal_info/personal_info_view.dart';
+import 'package:frame/app/view/wellcome/wellcome_view.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class AccountView extends StatelessWidget {
-  const AccountView({super.key});
 
+
+
+class AccountView extends GetView<AccountController> {
+  // const AccountView({super.key});
+  static final _pageInstance = AccountView._internal();
+  factory AccountView() => _pageInstance;
+  AccountView._internal();
+  final profileController = ProfileController();
+  final accountController =Get.put(AccountController());
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
@@ -41,23 +56,7 @@ class AccountView extends StatelessWidget {
           ),
           body: ListView(
             children: <Widget>[
-              Container(
-                // color: Colors.orange,
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o='
-                    ),
-                  ),
-                  title:Text('Tran Thanh Nhat',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold
-                    ),
-                  ),
-                  subtitle: Text('nhat.tt.dev@gmail.com',style: TextStyle(color: Colors.grey),),
-                  // trailing: Icon(Icons.edit_rounded),
-                ),
-              ),
+              UserInformation(),
               Padding(
                 padding: EdgeInsets.fromLTRB(15,0,15,10),
                 child: Divider(height: 0,),
@@ -65,7 +64,14 @@ class AccountView extends StatelessWidget {
 
               InkWell(
                 onTap: (){
-                  Get.to(()=>PersonalInfoView());
+                  profileController.getUserProfileById();
+                  Get.to(()=>PersonalInfoView(),
+                      arguments: [
+                        profileController.fullName,
+                        profileController.email,
+                        profileController.phoneNumber,
+                        profileController.dob
+                      ]);
                 },
                 child: Container(
                   // color: Colors.orange,
@@ -254,7 +260,60 @@ class AccountView extends StatelessWidget {
   }
 }
 
+class UserInformation extends StatefulWidget {
+  const UserInformation({super.key});
+
+  @override
+  State<UserInformation> createState() => _UserInformationState();
+}
+
+class _UserInformationState extends State<UserInformation> {
+  String _id = '';
+  String _email = '';
+  String _username = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUser();
+  }
+
+  _loadUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _id = (prefs.getString('id') ?? '');
+      _email = (prefs.getString('email') ?? '');
+      _username = (prefs.getString('username') ?? '');
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // color: Colors.orange,
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundImage: NetworkImage(
+              'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o='
+          ),
+        ),
+        title:Text('${_username}',
+          style: TextStyle(
+              fontWeight: FontWeight.bold
+          ),
+        ),
+        subtitle: Text('${_email}',style: TextStyle(color: Colors.grey),),
+        // trailing: Icon(Icons.edit_rounded),
+      ),
+    );
+
+  }
+}
+
+
+
 Future<void> _showBottomSheet(BuildContext context) async{
+  final accountController =Get.put(AccountController());
   Size size = MediaQuery.of(context).size;
   return showModalBottomSheet<void>(
       context: context,
@@ -319,7 +378,10 @@ Future<void> _showBottomSheet(BuildContext context) async{
                               color: Colors.white
                           ),
                         ),
-                        onPressed: () => Get.back(),
+                        onPressed: () {
+                          accountController.logout();
+
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.orange,
                           elevation: 0.0,
@@ -360,7 +422,6 @@ Future<void> _showMyDialog(BuildContext context) async {
         ),
 
         actions: <Widget>[
-
           TextButton(
             style: TextButton.styleFrom(
               foregroundColor: Colors.orange
