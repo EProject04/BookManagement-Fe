@@ -5,14 +5,21 @@ import 'package:frame/app/data/models/book.dart';
 import 'package:frame/app/data/models/category.dart';
 import 'package:frame/app/data/services/network_handler.dart';
 import 'package:frame/app/data/services/request_api.dart';
+import 'package:frame/app/logic/controller/genre_controller.dart';
+import 'package:frame/app/view/genre_detail/genre_detail_view.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+
+GenreController geneController = GenreController();
 
 class HomeController extends GetxController {
   RxBool isLoading = false.obs;
   RxList<Books> books = RxList<Books>();
   RxList<Categories> categories = RxList<Categories>();
   RxList<Author> authors = RxList<Author>();
+  late Author authorbyId;
+  late Categories catebyId;
+
 
   @override
   void onInit() {
@@ -86,6 +93,17 @@ class HomeController extends GetxController {
       throw(e);
     }
   }
+
+  Future<void>  showAuthor(dynamic id) async{
+     await geneController.getAuthorbyId(id);
+  Get.to(GenreDetailView());
+  }
+
+  Future<void>  showCate(dynamic id) async{
+    await geneController.getCategoryId(id);
+    // Get.to(GenreDetailView());
+  }
+
 
   @override
   void dispose() {

@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frame/app/data/services/request_api.dart';
 import 'package:frame/app/logic/controller/genre_controller.dart';
 import 'package:frame/app/logic/controller/home_controller.dart';
 import 'package:frame/app/view/genre_detail/genre_detail_view.dart';
@@ -15,7 +18,7 @@ class ExploreByGenreView extends StatelessWidget {
         appBar: AppBar(
           elevation: 0.0,// remove app bar shadow
           backgroundColor: Colors.white,
-          title: Text('Explore By Genre',
+          title: Text('Explore By Author',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -87,26 +90,29 @@ class _GenreGridViewState extends State<GenreGridView> {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  color: Colors.tealAccent,
+                  color: Colors.redAccent,
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  shadows: <Shadow>[
-                    Shadow(
-                      blurRadius: 3.0,
-                      color: Color.fromARGB(255, 0, 0, 0),
-                    ),
+                  fontFeatures: [
+                    FontFeature.proportionalFigures(),
                   ],
+                  fontSize: 18,
+                  // shadows: <Shadow>[
+                  //   Shadow(
+                  //     blurRadius: 3.0,
+                  //     color: Color.fromARGB(255, 0, 0, 0),
+                  //   ),
+                  // ],
                 ),
               ),
             ),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage('https://st3.depositphotos.com/11953928/32310/v/450/depositphotos_323108450-stock-illustration-isolated-books-flat-design.jpg'),
+                image: NetworkImage(RequestApi.IMG_LOGO_APP),
                 fit: BoxFit.fill,
               ),
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: Colors.blue,
+                color: Colors.pinkAccent,
                 width: 0.5,
               ),
             ),
