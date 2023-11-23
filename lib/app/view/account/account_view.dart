@@ -380,7 +380,7 @@ Future<void> _showBottomSheet(BuildContext context) async{
                         ),
                         onPressed: () {
                           accountController.logout();
-
+                          // Get.to(()=>WellComeScreen());
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.orange,

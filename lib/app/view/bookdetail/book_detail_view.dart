@@ -36,7 +36,7 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
     String description = Get.arguments[1];
     String content = Get.arguments[2];
     String imagePath = Get.arguments[3];
-
+    // int id = Get.arguments[4];
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
