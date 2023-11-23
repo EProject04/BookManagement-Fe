@@ -7,6 +7,7 @@ import 'package:frame/app/logic/controller/home_controller.dart';
 import 'package:frame/app/logic/controller/main_wrapper_controller.dart';
 import 'package:frame/app/view/bookdetail/book_detail_view.dart';
 import 'package:frame/app/view/explore_by_genre/explore_by_genre_view.dart';
+import 'package:frame/app/view/genre_detail/genre_detail_by_author_view.dart';
 import 'package:frame/app/view/genre_detail/genre_detail_view.dart';
 import 'package:frame/app/view/search/search_view.dart';
 import 'package:frame/main_wrapper.dart';
@@ -142,10 +143,20 @@ class HomePage extends GetView<HomeController> {
                                   final book = bookListController.books[index];
                                   return InkWell(
                                     onTap: () {
+                                      // final bookDetail = bookListController.getBookById(book.id);
                                       Get.to(() => BookDetailScreenNew(),
-                                          transition: Transition.rightToLeft,
-                                          duration:
-                                              Duration(milliseconds: 600));
+                                          // transition: Transition.rightToLeft,
+                                          // duration:
+                                          //     Duration(milliseconds: 600),
+                                          arguments: [
+                                            book.title,
+                                            book.description,
+                                            book.content,
+                                            book.imagePath,
+                                            // book.categoriesBook.map((e) => e.categoryName),
+                                            // book.id
+                                          ]
+                                      );
                                     },
                                     child: Column(
                                       crossAxisAlignment:
@@ -350,7 +361,13 @@ class _ListOfAuthoreState extends State<ListOfAuthor> {
           final author = authorListController.authors[index];
           return InkWell(
             onTap: () {
-               authorListController.showAuthor(author.id);
+               // authorListController.showAuthor(author.id);
+               Get.to(()=>GenreDetailAuthorView(),
+                  arguments: [
+                    author.id,
+                    author.authorName
+                  ]
+               );
             },
             child: Container(
               width: size.width*0.35,

@@ -5,18 +5,18 @@ import 'package:http/http.dart' as http;
 class NetWorkHandler {
   static final client = http.Client();
   static Future<String> post(var body, String endpoint) async {
-    var resposne = await client.post(buildUrl(endpoint),
+    var response = await client.post(buildUrl(endpoint),
         body: body, headers: {
       "content-type": "application/json"
     });
-    return resposne.body;
+    return response.body;
   }
   static Future<String> get(String endpoint) async {
-    var resposne = await client.get(buildUrl(endpoint),
+    var response = await client.get(buildUrl(endpoint),
        headers: {
          "content-type": "application/json"
     });
-    return resposne.body;
+    return response.body;
   }
 
   static Uri buildUrl(String endpoint) {

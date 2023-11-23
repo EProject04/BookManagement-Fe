@@ -21,6 +21,7 @@ class HomeController extends GetxController {
   late Categories catebyId;
 
 
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -49,6 +50,18 @@ class HomeController extends GetxController {
     catch(e) {
       throw(e);// Notify GetX that the state has changed
     }
+  }
+
+  Future<void> getBookById(int id) async{
+    isLoading(true);
+    update();
+    var response = await NetWorkHandler.get(RequestApi.API_BOOK_GET_ID+id.toString());
+    // var response = [...await NetWorkHandler.get(RequestApi.API_BOOK_GET_ID+id.toString())];
+
+    var jsonData = json.decode(response);
+    print(jsonData);
+    isLoading(false);
+    update();
   }
 
   Future<void> getCategory() async {
@@ -95,8 +108,7 @@ class HomeController extends GetxController {
   }
 
   Future<void>  showAuthor(dynamic id) async{
-     await geneController.getAuthorbyId(id);
-  Get.to(GenreDetailView());
+     await geneController.getAuthorbyId(id.toString());
   }
 
   Future<void>  showCate(dynamic id) async{

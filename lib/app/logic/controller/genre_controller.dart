@@ -12,7 +12,7 @@ HomeController homeController = HomeController();
 class GenreController extends GetxController{
   RxBool isLoading = false.obs;
   RxList<Author> authors = RxList<Author>();
-  RxList bookByAuthor =  [].obs;
+  RxList<Books> bookByAuthor =  RxList<Books>();
   RxList bookByCategory =  [].obs;
   late Author author;
   late Categories categories;
@@ -55,7 +55,10 @@ class GenreController extends GetxController{
       List<Books> bookData =
       jsonData.map((dynamic book) => Books.fromJson(book)).toList();
       bookByAuthor.clear(); // Clear the existing list of books
-      bookByAuthor = bookData as RxList;
+
+      for (final bookData in bookData) {
+        bookByAuthor.add(bookData);
+      }
       print(bookData);
       isLoading(false);
       update(); // Notify GetX that the state has changed
@@ -86,7 +89,7 @@ class GenreController extends GetxController{
  getAuthorbyId(dynamic id) async{
 try{
 
-  var response = await NetWorkHandler.get(RequestApi.API_AUTHORS_GET_ID + id);
+  var response = await NetWorkHandler.get(RequestApi.API_AUTHORS_GET_ID + id.toString());
   Map<String, dynamic> authorData = jsonDecode(response);
   Author parsedAuthor = Author.fromJson(authorData);
 
