@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:frame/app/view/rate_this_ebook/rate_view.dart';
 
 import 'package:get/get.dart';
@@ -25,14 +26,11 @@ class ListIcon{
 
 class ReadBookView extends StatefulWidget {
   const ReadBookView({super.key});
-
-
   @override
   State<ReadBookView> createState() => _ReadBookViewState();
-
-
 }
-
+String title = Get.arguments[0];
+String content = Get.arguments[2];
 class _ReadBookViewState extends State<ReadBookView> {
   String bookcontent = 'Mùa thu năm ngoái, tôi đến thăm Sherlock Holmes thì bắt gặp anh đang say sưa trò chuyện với một người đàn ông đứng tuổi có vóc người to béo, sắc mặt hồng hào, tóc màu hung đỏ rực như lửa.'
       'Tôi xin lỗi vì sự đường đột và đang định quay ra thì Holmes vội kéo tôi vào phòng.- Watson thân mến, anh đến thật đúng lúc.';
@@ -56,10 +54,9 @@ class _ReadBookViewState extends State<ReadBookView> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -72,7 +69,7 @@ class _ReadBookViewState extends State<ReadBookView> {
               Get.back();
             },
           ),
-          title: Text('The Dark Lord,dfgdfgdfgdfgdfgdfg',
+          title: Text(title,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 30,
@@ -163,7 +160,9 @@ class _ReadBookViewState extends State<ReadBookView> {
               width: size.width * 1,
               height: size.height * 1,
               padding: EdgeInsets.all(15),
-              child: Text(bookcontent,
+              child:
+
+              Text(content,
                 textAlign: TextAlign.justify,
                 style: GoogleFonts.getFont('Urbanist', fontSize: 15),
               ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:frame/app/data/models/book.dart';
+import 'package:frame/app/logic/controller/book_detail_controller.dart';
+import 'package:frame/app/logic/controller/home_controller.dart';
 import 'package:frame/app/view/about_this_ebook/about_this_ebook_view.dart';
 import 'package:frame/app/view/rate_this_ebook/rate_view.dart';
 import 'package:frame/app/view/ratings_and_reviews/ratings_and_reviews.dart';
@@ -19,24 +21,22 @@ class BookDetail{
       this.content, this.description, this.title, this.status, this.imagePath);
 }
 
-class BookDetailScreenNew extends StatelessWidget {
-  const BookDetailScreenNew({super.key});
+class BookDetailScreenNew extends GetView<BookDetailController> {
+  // const BookDetailScreenNew({super.key});
+  static final _pageInstance = BookDetailScreenNew._internal();
+  factory BookDetailScreenNew() => _pageInstance;
+  BookDetailScreenNew._internal();
 
+  final bookDetailController = HomeController();
   @override
   Widget build(BuildContext context) {
-    Books bookDetail = Books(
-      id:1,
-      image: "https://product.hstatic.net/200000343865/product/1---lmt_c6192d87264a4ed8b015befdb10e4379_master.jpg",
-      content: "",
-      description: "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-      title: "Ta muốn trở thành chúa tể bóng tối",
-      status: true,
-      imagePath: "https://product.hstatic.net/200000343865/product/1---lmt_c6192d87264a4ed8b015befdb10e4379_master.jpg",
-        bookFollows:[],
-        categoriesBook: [],
-        comments:[],
-    );
+
     // var bookDetail;
+    String title = Get.arguments[0];
+    String description = Get.arguments[1];
+    String content = Get.arguments[2];
+    String imagePath = Get.arguments[3];
+
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
@@ -67,7 +67,7 @@ class BookDetailScreenNew extends StatelessWidget {
                           height: 212,
                           width: 150,
                           child: Container(
-                            child: Image.network(bookDetail.imagePath),
+                            child: Image.network(imagePath),
                           ),
                         ),
                         Expanded(
@@ -77,7 +77,7 @@ class BookDetailScreenNew extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    bookDetail.title,
+                                    title,
                                     style: GoogleFonts.urbanist(
                                         textStyle: TextStyle(
                                             fontSize: 20,
@@ -262,7 +262,15 @@ class BookDetailScreenNew extends StatelessWidget {
                                   )
                               ),
                               onPressed: (){
-                                Get.to(()=>ReadBookView());
+                                Get.to(()=>ReadBookView(),
+                                  arguments: [
+                                    title,
+                                    description,
+                                    content,
+                                    imagePath,
+
+                                  ]
+                                );
                               },
                               child: Text(
                                 "Read",
@@ -282,6 +290,7 @@ class BookDetailScreenNew extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.all(10),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
@@ -300,7 +309,7 @@ class BookDetailScreenNew extends StatelessWidget {
                                   alignment: Alignment.centerRight,
                                   child: IconButton(
                                       onPressed: (){
-                                        Get.to(AboutThisEbookView());
+                                        Get.to(()=>AboutThisEbookView());
                                       },
                                       icon: Icon(Icons.arrow_forward)),
                                 )
@@ -309,7 +318,7 @@ class BookDetailScreenNew extends StatelessWidget {
                         ),
 
                         Text(
-                          bookDetail.description,
+                          description,
                           style: GoogleFonts.urbanist(
                               textStyle: TextStyle(
                                   fontSize: 15,
@@ -457,37 +466,41 @@ class BookDetailScreenNew extends StatelessWidget {
                             ),
                           ],
                         ),
-                        RatingBar.builder(
+                        Center(
+                          child: RatingBar.builder(
 
-                          initialRating: 3,
-                          minRating: 1,
-                          allowHalfRating: true,
-                          direction: Axis.horizontal,
-                          itemCount: 5,
-                          itemSize: 20,
-                          itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                          itemBuilder: (context, index) => Icon(
-                            Icons.star_rounded,
-                            color: Colors.orange,
+                            initialRating: 3,
+                            minRating: 1,
+                            allowHalfRating: true,
+                            direction: Axis.horizontal,
+                            itemCount: 5,
+                            itemSize: 20,
+                            itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                            itemBuilder: (context, index) => Icon(
+                              Icons.star_rounded,
+                              color: Colors.orange,
+                            ),
+                            onRatingUpdate: (rating) {
+                              print(rating);
+                            },
                           ),
-                          onRatingUpdate: (rating) {
-                            print(rating);
-                          },
                         ),
                         SizedBox(height: 5,),
-                        ElevatedButton(onPressed: (){
-                          Get.to(()=>RateView());
-                        },
-                            child: Text('Read a Review',
-                              style: TextStyle(color: Colors.orange),
-                            ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            elevation: 0.0,
-                            shadowColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              side: BorderSide(color: Colors.orange)
+                        Center(
+                          child: ElevatedButton(onPressed: (){
+                            Get.to(()=>RateView());
+                          },
+                              child: Text('Read a Review',
+                                style: TextStyle(color: Colors.orange),
+                              ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              elevation: 0.0,
+                              shadowColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                side: BorderSide(color: Colors.orange)
+                              ),
                             ),
                           ),
                         ),

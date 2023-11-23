@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 
 class RateView extends StatelessWidget {
   const RateView({super.key});
@@ -209,7 +210,9 @@ class RateView extends StatelessWidget {
                         width: size.width*0.45,
                         height: size.height*0.05,
                         child: ElevatedButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            Get.back();
+                          },
                           child: Center(
                             child: Text('Cancel',
                               style: TextStyle(

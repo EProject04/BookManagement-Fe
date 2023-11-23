@@ -63,10 +63,10 @@ class ProfileController extends GetxController{
         url,
         headers: headers
     );
+
     if(response.statusCode == 200){
       var result = jsonDecode(response.body);
       UserProfile user = UserProfile.fromJson(result);
-      // fullName.text = result['fullName'];
       email.text = result['email'].toString();
       phoneNumber.text = result['phoneNumber'].toString();
       dob.text = result['dateOfBirth'].toString();

@@ -21,6 +21,7 @@ class HomeController extends GetxController {
   late Categories catebyId;
 
 
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -49,6 +50,17 @@ class HomeController extends GetxController {
     catch(e) {
       throw(e);// Notify GetX that the state has changed
     }
+  }
+
+  Future<void> getBookById(int id) async{
+    isLoading(true);
+    update();
+    var response = await NetWorkHandler.get(RequestApi.API_BOOK_GET_ID+id.toString());
+
+    var jsonData = json.decode(response);
+    print(jsonData);
+    isLoading(false);
+    update();
   }
 
   Future<void> getCategory() async {

@@ -142,10 +142,20 @@ class HomePage extends GetView<HomeController> {
                                   final book = bookListController.books[index];
                                   return InkWell(
                                     onTap: () {
+                                      // final bookDetail = bookListController.getBookById(book.id);
                                       Get.to(() => BookDetailScreenNew(),
-                                          transition: Transition.rightToLeft,
-                                          duration:
-                                              Duration(milliseconds: 600));
+                                          // transition: Transition.rightToLeft,
+                                          // duration:
+                                          //     Duration(milliseconds: 600),
+                                          arguments: [
+                                            book.title,
+                                            book.description,
+                                            book.content,
+                                            book.imagePath,
+                                            // book.categoriesBook.map((e) => e.categoryName),
+
+                                          ]
+                                      );
                                     },
                                     child: Column(
                                       crossAxisAlignment:
