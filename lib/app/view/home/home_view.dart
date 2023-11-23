@@ -349,9 +349,8 @@ class _ListOfAuthoreState extends State<ListOfAuthor> {
         itemBuilder: (context, index) {
           final author = authorListController.authors[index];
           return InkWell(
-            onTap: () async{
-              authorListController.showAuthor(author.authorName);
-              Get.to(GenreDetailView());
+            onTap: () {
+               authorListController.showAuthor(author.id);
             },
             child: Container(
               width: size.width*0.35,

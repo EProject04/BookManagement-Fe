@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frame/app/data/models/authors.dart';
 import 'package:frame/app/logic/controller/genre_controller.dart';
 import 'package:frame/app/view/bookdetail/book_detail_view.dart';
 import 'package:get/get.dart';
@@ -14,11 +15,10 @@ class GenreDetailView extends StatefulWidget{
 
 class _GenreDetailView extends State<GenreDetailView>{
   bool isGridView = true;
-  var genreController = Get.put(GenreController());
-
+  GenreController genreController = Get.put(GenreController());
+  late Author author;
 @override
 void initState(){
-
   setState(() {
 
   });
@@ -40,7 +40,7 @@ void initState(){
           ),
           elevation: 0.0,// remove app bar shadow
           backgroundColor: Colors.white,
-          title: Text('${genreController.authors}',
+          title: Text('${author.authorName}',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
