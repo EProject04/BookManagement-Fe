@@ -192,10 +192,11 @@ class _ReadBookViewState extends State<ReadBookView> {
 
             BottomNavigationBarItem(
                 icon: IconButton(
-
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(),// remove padding
                   icon:Icon(Icons.comment_outlined),
                   onPressed: (){
-                      Get.to(()=>RateView());
+                      Get.to(()=>RateView(),arguments: bookDetail);
                   },
                 ),
 

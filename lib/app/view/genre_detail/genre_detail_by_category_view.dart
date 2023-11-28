@@ -19,7 +19,7 @@ class _GenreDetailAuthorView extends State<GenreDetailAuthorView>{
 
   bool isGridView = true;
   GenreController genreController = Get.put(GenreController());
-
+  late Author author;
 @override
 void initState(){
   setState(() {
@@ -31,10 +31,11 @@ void initState(){
       isGridView = !isGridView;
     });
   }
-  Author author = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
-
+    // int id = Get.arguments[0];
+    // String authorName = Get.arguments[1];
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -43,7 +44,7 @@ void initState(){
           ),
           elevation: 0.0,// remove app bar shadow
           backgroundColor: Colors.white,
-          title: Text(author.authorName.toUpperCase(),
+          title: Text('',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,

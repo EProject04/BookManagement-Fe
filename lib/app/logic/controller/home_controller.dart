@@ -55,8 +55,8 @@ class HomeController extends GetxController {
     }
   }
   Future<void> getBookById(int id) async{
-    isLoading(true);
-    update();
+    // isLoading(true);
+    // update();
     var headers = {
       'Content-Type': 'application/json'
     };
@@ -65,8 +65,8 @@ class HomeController extends GetxController {
         url,
         headers: headers
     );
-    isLoading(false);
-    update();
+    // isLoading(false);
+    // update();
     if(response.statusCode == 200){
       var result = jsonDecode(response.body);
       Books book = Books.fromJson(result);
@@ -116,6 +116,7 @@ class HomeController extends GetxController {
         authors.add(authorData);
       }
       print(authorData);
+
       isLoading(false);
       update(); // Notify GetX that the state has changed
     }catch(e){

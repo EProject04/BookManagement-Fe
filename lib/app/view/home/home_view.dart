@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:frame/app/data/models/authors.dart';
 import 'package:frame/app/data/services/request_api.dart';
+import 'package:frame/app/logic/controller/genre_controller.dart';
 import 'package:frame/app/logic/controller/home_controller.dart';
 import 'package:frame/app/logic/controller/main_wrapper_controller.dart';
 import 'package:frame/app/view/bookdetail/book_detail_view.dart';
@@ -185,7 +187,7 @@ class HomePage extends GetView<HomeController> {
                                           width: size.width * 0.4,
                                           child: Text(
                                             '${book.title}',
-                                            maxLines: 2,
+                                            maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
                                                 fontFeatures: [
@@ -347,6 +349,7 @@ class ListOfAuthor extends StatefulWidget {
 class _ListOfAuthoreState extends State<ListOfAuthor> {
   // var authorListController = Get.put(HomeController());
   HomeController authorListController = Get.find();
+  GenreController genreController = Get.put(GenreController());
   final carouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
@@ -359,16 +362,11 @@ class _ListOfAuthoreState extends State<ListOfAuthor> {
         scrollDirection: Axis.horizontal,
         itemCount: authorListController.authors.length,
         itemBuilder: (context, index) {
-          final author = authorListController.authors[index];
+          Author author = authorListController.authors[index];
           return InkWell(
             onTap: () {
-               // authorListController.showAuthor(author.id);
-               Get.to(()=>GenreDetailAuthorView(),
-                  arguments: [
-                    author.id,
-                    author.authorName
-                  ]
-               );
+              genreController.getBookByAuthorName(author.authorName);
+              Get.to(()=>GenreDetailAuthorView(),arguments: author);
             },
             child: Container(
               width: size.width*0.35,
