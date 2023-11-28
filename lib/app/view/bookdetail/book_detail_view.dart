@@ -9,8 +9,9 @@ import 'package:frame/app/view/ratings_and_reviews/ratings_and_reviews.dart';
 import 'package:frame/app/view/read_book/read_book_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class BookDetail{
+class BookDetail {
   String content;
   String description;
   String title;
@@ -30,31 +31,28 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
   final bookDetailController = HomeController();
   @override
   Widget build(BuildContext context) {
-
     // var bookDetail;
-    String title = Get.arguments[0];
-    String description = Get.arguments[1];
-    String content = Get.arguments[2];
-    String imagePath = Get.arguments[3];
+    // String title = Get.arguments[0];
+    // String description = Get.arguments[1];
+    // String content = Get.arguments[2];
+    // String imagePath = Get.arguments[3];
     // int id = Get.arguments[4];
+    Books bookDetail = Get.arguments;
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              title: Text('Book Detail',
-                style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold
-                ),
+              title: Text(
+                'Book Detail',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
               backgroundColor: Colors.white,
-            actions: <Widget>[
-              IconButton(
-                  onPressed: null,
-                  icon: Icon(Icons.add_circle_outline_rounded)),
-            ],
+              actions: <Widget>[
+                IconButton(
+                    onPressed: null,
+                    icon: Icon(Icons.add_circle_outline_rounded)),
+              ],
             ),
-
             body: SingleChildScrollView(
               child: Column(
                 children: [
@@ -67,104 +65,74 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                           height: 212,
                           width: 150,
                           child: Container(
-                            child: Image.network(imagePath),
+                            child: Image.network(bookDetail.imagePath),
                           ),
                         ),
                         Expanded(
                             child: Container(
-                              margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    title,
-                                    style: GoogleFonts.urbanist(
-                                        textStyle: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.black
-                                        )
-                                    ),
-                                  ),
-                                  // Container(
-                                  //   margin: EdgeInsets.fromLTRB(0, 15, 0, 5),
-                                  //   child: Text(
-                                  //     bookDetail.author,
-                                  //     style: GoogleFonts.urbanist(
-                                  //         textStyle: TextStyle(
-                                  //             fontSize: 15,
-                                  //             fontWeight: FontWeight.w600,
-                                  //             color: Color.fromRGBO(248, 147, 0, 1)
-                                  //         )
-                                  //     ),
-                                  //   ),
-                                  // ),
-                                  Text(
-                                    "Release date",
-                                    style: GoogleFonts.urbanist(
-                                        textStyle: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color.fromRGBO(50, 50, 50, 1)
-                                        )
-                                    ),
-                                  ),
-                                  SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          margin: EdgeInsets.fromLTRB(0, 10, 5, 5),
-                                          padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
-                                          color: Color.fromRGBO(230, 230, 230, 1),
-                                          child: Text(
-                                            "Fantasy",
-                                            style: GoogleFonts.urbanist(
-                                                textStyle: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Color.fromRGBO(50, 50, 50, 1)
-                                                )
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.fromLTRB(0, 10, 5, 5),
-                                          padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
-                                          color: Color.fromRGBO(230, 230, 230, 1),
-                                          child: Text(
-                                            "Fantasy",
-                                            style: GoogleFonts.urbanist(
-                                                textStyle: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Color.fromRGBO(50, 50, 50, 1)
-                                                )
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.fromLTRB(0, 10, 5, 5),
-                                          padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
-                                          color: Color.fromRGBO(230, 230, 230, 1),
-                                          child: Text(
-                                            "Fantasy",
-                                            style: GoogleFonts.urbanist(
-                                                textStyle: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Color.fromRGBO(50, 50, 50, 1)
-                                                )
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-
-                                ],
+                          margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                bookDetail.title,
+                                style: GoogleFonts.urbanist(
+                                    textStyle: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black)),
                               ),
-                            ))
+                              // Container(
+                              //   margin: EdgeInsets.fromLTRB(0, 15, 0, 5),
+                              //   child: Text(
+                              //     bookDetail.author,
+                              //     style: GoogleFonts.urbanist(
+                              //         textStyle: TextStyle(
+                              //             fontSize: 15,
+                              //             fontWeight: FontWeight.w600,
+                              //             color: Color.fromRGBO(248, 147, 0, 1)
+                              //         )
+                              //     ),
+                              //   ),
+                              // ),
+                              Text(
+                                "Release date",
+                                style: GoogleFonts.urbanist(
+                                    textStyle: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color.fromRGBO(50, 50, 50, 1))),
+                              ),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                    children: bookDetail.categoriesBook
+                                        .map(
+                                          (e) => Container(
+                                            margin: EdgeInsets.fromLTRB(
+                                                0, 10, 5, 5),
+                                            padding: EdgeInsets.fromLTRB(
+                                                10, 2, 10, 2),
+                                            color: Color.fromRGBO(
+                                                230, 230, 230, 1),
+                                            child: Text(
+                                              e.categoryName,
+                                              style: GoogleFonts.urbanist(
+                                                textStyle: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Color.fromRGBO(
+                                                        50, 50, 50, 1)),
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                        .toList()
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ))
                       ],
                     ),
                   ),
@@ -179,10 +147,8 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                   border: Border(
                                       right: BorderSide(
                                           width: 1,
-                                          color: Color.fromRGBO(100, 100, 100, 1)
-                                      )
-                                  )
-                              ),
+                                          color: Color.fromRGBO(
+                                              100, 100, 100, 1)))),
                               alignment: Alignment.center,
                               child: Column(
                                 children: [
@@ -192,21 +158,20 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                         textStyle: TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.w600,
-                                            color: Colors.black)),),
+                                            color: Colors.black)),
+                                  ),
                                   Text(
                                     "View",
                                     style: GoogleFonts.urbanist(
                                         textStyle: TextStyle(
-                                            color: Color.fromRGBO(100, 100, 100, 1),
+                                            color: Color.fromRGBO(
+                                                100, 100, 100, 1),
                                             fontSize: 15,
-                                            fontWeight: FontWeight.w600
-                                        )
-                                    ),
+                                            fontWeight: FontWeight.w600)),
                                   )
                                 ],
                               ),
-                            )
-                        ),
+                            )),
                         Expanded(
                             flex: 1,
                             child: Column(
@@ -223,15 +188,19 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                                 textStyle: TextStyle(
                                                     fontSize: 20,
                                                     fontWeight: FontWeight.w600,
-                                                    color: Colors.black)
-                                            ),
+                                                    color: Colors.black)),
                                           ),
                                         )),
                                     Expanded(
                                         flex: 1,
                                         child: Container(
                                           alignment: Alignment.centerLeft,
-                                          child: Icon(Icons.star, color: Colors.orangeAccent,size: 20,),))
+                                          child: Icon(
+                                            Icons.star,
+                                            color: Colors.orangeAccent,
+                                            size: 20,
+                                          ),
+                                        ))
                                   ],
                                 ),
                                 Text(
@@ -240,9 +209,8 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                       textStyle: TextStyle(
                                           fontSize: 10,
                                           fontWeight: FontWeight.w600,
-                                          color: Color.fromRGBO(100, 100, 100, 1)
-                                      )
-                                  ),
+                                          color: Color.fromRGBO(
+                                              100, 100, 100, 1))),
                                 )
                               ],
                             ))
@@ -253,38 +221,25 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                     children: [
                       Expanded(
                           child: Container(
-                            margin: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color.fromRGBO(248, 147, 0, 1),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25)
-                                  )
-                              ),
-                              onPressed: (){
-                                Get.to(()=>ReadBookView(),
-                                  arguments: [
-                                    title,
-                                    description,
-                                    content,
-                                    imagePath,
-
-                                  ]
-                                );
-                              },
-                              child: Text(
-                                "Read",
-                                style: GoogleFonts.urbanist(
-                                    textStyle: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white
-                                    )
-                                ),
-                              ),
-                            ),
-                          )
-                      )
+                        margin: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromRGBO(248, 147, 0, 1),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25))),
+                          onPressed: () {
+                            Get.to(() => ReadBookView(), arguments: bookDetail);
+                          },
+                          child: Text(
+                            "Read",
+                            style: GoogleFonts.urbanist(
+                                textStyle: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white)),
+                          ),
+                        ),
+                      ))
                     ],
                   ),
                   Container(
@@ -300,32 +255,27 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                   textStyle: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600,
-                                      color: Colors.black
-                                  )
-                              ),
+                                      color: Colors.black)),
                             ),
                             Expanded(
-                                child:Container(
-                                  alignment: Alignment.centerRight,
-                                  child: IconButton(
-                                      onPressed: (){
-                                        Get.to(()=>AboutThisEbookView());
-                                      },
-                                      icon: Icon(Icons.arrow_forward)),
-                                )
-                            )
+                                child: Container(
+                              alignment: Alignment.centerRight,
+                              child: IconButton(
+                                  onPressed: () {
+                                    Get.to(() => AboutThisEbookView(),
+                                        arguments: bookDetail);
+                                  },
+                                  icon: Icon(Icons.arrow_forward)),
+                            ))
                           ],
                         ),
-
                         Text(
-                          description,
+                          bookDetail.description,
                           style: GoogleFonts.urbanist(
                               textStyle: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
-                                  color: Colors.black
-                              )
-                          ),
+                                  color: Colors.black)),
                         ),
                         Row(
                           children: [
@@ -336,42 +286,44 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                     textStyle: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.black
-                                    )
-                                ),
+                                        color: Colors.black)),
                               ),
                             ),
                             Expanded(
-                                child:Container(
-                                  alignment: Alignment.centerRight,
-                                  child: IconButton(
-                                      onPressed: (){
-                                        Get.to(()=> RatingsAndReviewsView());
-                                      },
-                                      icon: Icon(Icons.arrow_forward)),
-                                )
-                            )
+                                child: Container(
+                              alignment: Alignment.centerRight,
+                              child: IconButton(
+                                  onPressed: () {
+                                    Get.to(() => RatingsAndReviewsView(),
+                                        arguments: bookDetail);
+                                  },
+                                  icon: Icon(Icons.arrow_forward)),
+                            ))
                           ],
                         ),
-                        IntrinsicHeight( // wrap it to show vertical divider
+                        IntrinsicHeight(
+                          // wrap it to show vertical divider
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Container(
-                                width: size.width*0.4,
-                                height: size.height*0.18,
+                                width: size.width * 0.4,
+                                height: size.height * 0.18,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Text('4.9',
+                                    Text(
+                                      '4.9',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 20,
                                       ),
                                     ),
-                                    SizedBox(height: 5,),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
                                     RatingBar.builder(
                                       ignoreGestures: true,
                                       initialRating: 5,
@@ -380,7 +332,8 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                       direction: Axis.horizontal,
                                       itemCount: 5,
                                       itemSize: 15,
-                                      itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
+                                      itemPadding:
+                                          EdgeInsets.symmetric(horizontal: 2.0),
                                       itemBuilder: (context, index) => Icon(
                                         Icons.star_rounded,
                                         color: Colors.orange,
@@ -389,12 +342,14 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                         print(rating);
                                       },
                                     ),
-                                    SizedBox(height: 5,),
-                                    Text('(6.8k reviews)',
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      '(6.8k reviews)',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 15
-                                      ),
+                                          fontSize: 15),
                                     ),
                                   ],
                                 ),
@@ -405,33 +360,32 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                               ),
                               SizedBox(
                                 // color: Colors.cyanAccent,
-                                width: size.width*0.4,
-                                height: size.height*0.18,
+                                width: size.width * 0.4,
+                                height: size.height * 0.18,
                                 child: ListView.builder(
                                   itemCount: 5,
-                                  itemBuilder: (context,index) => Container
-                                    (
+                                  itemBuilder: (context, index) => Container(
                                     padding: EdgeInsets.only(bottom: 10),
                                     child: Row(
                                       children: [
                                         Expanded(
-                                          flex: 1,
-                                            child: Text("${index+1}")
-                                        ),
+                                            flex: 1,
+                                            child: Text("${index + 1}")),
                                         Expanded(
                                           flex: 7,
                                           child: SliderTheme(
-                                            data: SliderTheme.of(context).copyWith(
-                                              overlayShape: SliderComponentShape.noThumb,
+                                            data: SliderTheme.of(context)
+                                                .copyWith(
+                                              overlayShape:
+                                                  SliderComponentShape.noThumb,
                                               thumbShape: RoundSliderThumbShape(
-                                                  enabledThumbRadius: 0.0
-                                              ), // set the thumb shape to 0.0 radius
+                                                  enabledThumbRadius:
+                                                      0.0), // set the thumb shape to 0.0 radius
                                             ),
                                             child: Slider(
                                               activeColor: Colors.orange,
                                               value: 50,
-                                              onChanged: (double newValue) {
-                                              },
+                                              onChanged: (double newValue) {},
                                               min: 0,
                                               max: 100,
                                             ),
@@ -442,12 +396,10 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                   ),
                                 ),
                               ),
-
                             ],
                           ),
                         ),
-                        Divider(thickness: 1,color: Colors.grey[300]),
-
+                        Divider(thickness: 1, color: Colors.grey[300]),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -459,19 +411,17 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                     textStyle: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.black
-                                    )
-                                ),
+                                        color: Colors.black)),
                               ),
                             ),
                           ],
                         ),
                         Center(
                           child: RatingBar.builder(
-
-                            initialRating: 3,
+                            ignoreGestures: true,
+                            initialRating: 5,
                             minRating: 1,
-                            allowHalfRating: true,
+                            allowHalfRating: false,
                             direction: Axis.horizontal,
                             itemCount: 5,
                             itemSize: 20,
@@ -485,22 +435,26 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                             },
                           ),
                         ),
-                        SizedBox(height: 5,),
+                        SizedBox(
+                          height: 5,
+                        ),
                         Center(
-                          child: ElevatedButton(onPressed: (){
-                            Get.to(()=>RateView());
-                          },
-                              child: Text('Read a Review',
-                                style: TextStyle(color: Colors.orange),
-                              ),
+                          child: ElevatedButton(
+                            onPressed: ()  {
+
+                              Get.to(() => RateView(), arguments: bookDetail);
+                            },
+                            child: Text(
+                              'Read a Review',
+                              style: TextStyle(color: Colors.orange),
+                            ),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
                               elevation: 0.0,
                               shadowColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(25),
-                                side: BorderSide(color: Colors.orange)
-                              ),
+                                  side: BorderSide(color: Colors.orange)),
                             ),
                           ),
                         ),
@@ -514,39 +468,41 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                     textStyle: TextStyle(
                                         color: Colors.black,
                                         fontSize: 20,
-                                        fontWeight: FontWeight.w600)),),
+                                        fontWeight: FontWeight.w600)),
+                              ),
                             ),
                             Expanded(
                                 child: Container(
-                                  alignment: Alignment.centerRight,
-                                  margin: EdgeInsets.fromLTRB(0, 0, 1, 0),
-                                  child: IconButton(
-                                      onPressed: null,
-                                      icon: Icon(Icons.arrow_forward)),)
-                            )
+                              alignment: Alignment.centerRight,
+                              margin: EdgeInsets.fromLTRB(0, 0, 1, 0),
+                              child: IconButton(
+                                  onPressed: null,
+                                  icon: Icon(Icons.arrow_forward)),
+                            ))
                           ],
                         ),
                         SizedBox(
-                          height: size.height *0.35,
+                          height: size.height * 0.35,
                           child: ListView.separated(
                             itemCount: 8,
                             padding: EdgeInsets.only(right: 15),
-                            separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
+                            separatorBuilder:
+                                (BuildContext context, int index) => SizedBox(
+                              width: 15,
+                            ),
                             scrollDirection: Axis.horizontal,
-                            itemBuilder:(context, index) => InkWell(
-                              onTap: (){
-                                Get.to(()=>BookDetailScreenNew(),
+                            itemBuilder: (context, index) => InkWell(
+                              onTap: () {
+                                Get.to(() => BookDetailScreenNew(),
                                     transition: Transition.rightToLeft,
-                                    duration: Duration(milliseconds: 600)
-                                );
+                                    duration: Duration(milliseconds: 600));
                               },
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-
                                   Container(
-                                    width: size.width*0.4,
-                                    height: size.height*0.25,
+                                    width: size.width * 0.4,
+                                    height: size.height * 0.25,
                                     decoration: BoxDecoration(
                                       color: Colors.red,
                                       image: DecorationImage(
@@ -558,10 +514,13 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
                                   Container(
-                                    width: size.width*0.4,
-                                    child: Text('Harry Potter và hòn đá phù thuỷf',
+                                    width: size.width * 0.4,
+                                    child: Text(
+                                      'Harry Potter và hòn đá phù thuỷf',
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
@@ -569,15 +528,18 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
                                   Row(
                                     children: [
                                       Icon(
-                                        size:20,
+                                        size: 20,
                                         Icons.star_half,
                                         color: Colors.grey,
                                       ),
-                                      Text('4.9',
+                                      Text(
+                                        '4.9',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.grey,
@@ -601,39 +563,41 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                     textStyle: TextStyle(
                                         color: Colors.black,
                                         fontSize: 20,
-                                        fontWeight: FontWeight.w600)),),
+                                        fontWeight: FontWeight.w600)),
+                              ),
                             ),
                             Expanded(
                                 child: Container(
-                                  alignment: Alignment.centerRight,
-                                  margin: EdgeInsets.fromLTRB(0, 0, 1, 0),
-                                  child: IconButton(
-                                      onPressed: null,
-                                      icon: Icon(Icons.arrow_forward)),)
-                            )
+                              alignment: Alignment.centerRight,
+                              margin: EdgeInsets.fromLTRB(0, 0, 1, 0),
+                              child: IconButton(
+                                  onPressed: null,
+                                  icon: Icon(Icons.arrow_forward)),
+                            ))
                           ],
                         ),
                         SizedBox(
-                          height: size.height*0.35,
+                          height: size.height * 0.35,
                           child: ListView.separated(
                             itemCount: 8,
                             padding: EdgeInsets.only(right: 15),
-                            separatorBuilder: (BuildContext context, int index) => SizedBox(width: 15,),
+                            separatorBuilder:
+                                (BuildContext context, int index) => SizedBox(
+                              width: 15,
+                            ),
                             scrollDirection: Axis.horizontal,
-                            itemBuilder:(context, index) => InkWell(
-                              onTap: (){
-                                Get.to(()=>BookDetailScreenNew(),
+                            itemBuilder: (context, index) => InkWell(
+                              onTap: () {
+                                Get.to(() => BookDetailScreenNew(),
                                     transition: Transition.rightToLeft,
-                                    duration: Duration(milliseconds: 600)
-                                );
+                                    duration: Duration(milliseconds: 600));
                               },
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-
                                   Container(
-                                    width: size.width*0.4,
-                                    height: size.height*0.25,
+                                    width: size.width * 0.4,
+                                    height: size.height * 0.25,
                                     decoration: BoxDecoration(
                                       color: Colors.red,
                                       image: DecorationImage(
@@ -645,10 +609,13 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
                                   Container(
-                                    width: size.width*0.4,
-                                    child: Text('Harry Potter và hòn đá phù thuỷf',
+                                    width: size.width * 0.4,
+                                    child: Text(
+                                      'Harry Potter và hòn đá phù thuỷf',
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
@@ -656,15 +623,18 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
                                   Row(
                                     children: [
                                       Icon(
-                                        size:20,
+                                        size: 20,
                                         Icons.star_half,
                                         color: Colors.grey,
                                       ),
-                                      Text('4.9',
+                                      Text(
+                                        '4.9',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.grey,
@@ -683,8 +653,6 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                   )
                 ],
               ),
-            )
-        )
-    );
+            )));
   }
 }

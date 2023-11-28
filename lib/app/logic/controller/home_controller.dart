@@ -6,7 +6,9 @@ import 'package:frame/app/data/models/category.dart';
 import 'package:frame/app/data/services/network_handler.dart';
 import 'package:frame/app/data/services/request_api.dart';
 import 'package:frame/app/logic/controller/genre_controller.dart';
+import 'package:frame/app/view/bookdetail/book_detail_view.dart';
 import 'package:frame/app/view/genre_detail/genre_detail_view.dart';
+import 'package:frame/app/view/read_book/read_book_view.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -29,6 +31,7 @@ class HomeController extends GetxController {
     getBooks();
     getCategory();
     getAuthors();
+
   }
 
   Future<void> getBooks() async {
@@ -51,18 +54,31 @@ class HomeController extends GetxController {
       throw(e);// Notify GetX that the state has changed
     }
   }
-
   Future<void> getBookById(int id) async{
     isLoading(true);
     update();
-    var response = await NetWorkHandler.get(RequestApi.API_BOOK_GET_ID+id.toString());
-    // var response = [...await NetWorkHandler.get(RequestApi.API_BOOK_GET_ID+id.toString())];
-
-    var jsonData = json.decode(response);
-    print(jsonData);
+    var headers = {
+      'Content-Type': 'application/json'
+    };
+    var url = Uri.parse(RequestApi.BaseUrl+RequestApi.API_BOOK_GET_ID+id.toString());
+    var response = await http.get(
+        url,
+        headers: headers
+    );
     isLoading(false);
     update();
+    if(response.statusCode == 200){
+      var result = jsonDecode(response.body);
+      Books book = Books.fromJson(result);
+      Get.to(()=>BookDetailScreenNew(),arguments: book );
+    }else{
+      throw Exception('book not found');
+    }
   }
+
+
+
+
 
   Future<void> getCategory() async {
     try{

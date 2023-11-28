@@ -54,13 +54,16 @@ class LoginController extends GetxController{
       if(response.statusCode == 200){
         // print('login successful');
         // print(response.body);
-
+        final sessionCookie = response.headers['set-cookie'];
         User user = User.fromJson(jsonDecode(response.body));
+        preferences.setString("sessionCookie", sessionCookie!);
         preferences.setString("id", '${user.id}');
         preferences.setString("username", '${user.username}');
         preferences.setString("email", '${user.email}');
         print('${user.email}');
+        print(sessionCookie);
         Get.to(()=>MainWrapper());
+
       }else{
         throw Exception('Login Failed');
       }

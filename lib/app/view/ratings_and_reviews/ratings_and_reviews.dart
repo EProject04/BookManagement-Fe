@@ -2,13 +2,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:frame/app/data/models/book.dart';
+import 'package:frame/app/logic/controller/ratings_and_reviews_controller.dart';
+import 'package:get/get.dart';
 
 final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
 
-class RatingsAndReviewsView extends StatelessWidget {
-  const RatingsAndReviewsView({super.key});
-
+class RatingsAndReviewsView extends GetView<RatingsAndReviewsController> {
+  // const RatingsAndReviewsView({super.key});
+  Books bookDetail = Get.arguments;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -97,7 +100,7 @@ class RatingsAndReviewsView extends StatelessWidget {
                           itemCount: 5,
                           itemBuilder: (context,index) => Container
                             (
-                              padding: EdgeInsets.only(bottom: 10),
+                              padding: EdgeInsets.only(bottom: 8),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -106,7 +109,7 @@ class RatingsAndReviewsView extends StatelessWidget {
                                       flex: 1,
                                         child: Text("${index+1}")
                                     ),
-                                   
+
                                     Expanded(
                                       flex: 7,
                                       child: SliderTheme(
@@ -163,21 +166,23 @@ class RatingsAndReviewsView extends StatelessWidget {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 8,
-                    itemBuilder: (context,index)=>
-                        Column(
+                    itemCount: 1,
+                    itemBuilder: (context,index){
+                      return   Column(
+                        children:
+                        bookDetail.comments.map((e) => Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ListTile(
                               contentPadding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),//set default padding to 0
-                              leading: CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                    'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o='
-                                ),
-                              ),
+                              // leading: CircleAvatar(
+                              //   backgroundImage: NetworkImage(
+                              //       'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o='
+                              //   ),
+                              // ),
                               title: SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
-                                child: Text('Tran Thanh Nhatfffffffffffffffffffffffff',
+                                child: Text(e.fullName??'',
                                   maxLines: 1,
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
@@ -192,42 +197,42 @@ class RatingsAndReviewsView extends StatelessWidget {
                                       width: size.width*0.15,
                                       height: size.height*0.03,
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children:[
-                                          Icon(
-                                            Icons.star_rounded,
-                                            size: 16,
-                                            color: Colors.orange,
-                                          ),
-                                          Text(' 5',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.orange
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children:[
+                                            Icon(
+                                              Icons.star_rounded,
+                                              size: 16,
+                                              color: Colors.orange,
                                             ),
-                                          ),
-                                        ]
-                                       
+                                            Text(' ${e.rate}',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.orange
+                                              ),
+                                            ),
+                                          ]
+
                                       ),
                                       decoration: BoxDecoration(
-                                        border: Border.all(
-                                            width: 1,
-                                            color: Colors.orange
-                                        ),
-                                        borderRadius: BorderRadius.circular(25)
+                                          border: Border.all(
+                                              width: 1,
+                                              color: Colors.orange
+                                          ),
+                                          borderRadius: BorderRadius.circular(25)
                                       ),
                                     ),
                                     Spacer(),
                                     IconButton(
                                       padding: EdgeInsets.zero,
                                       constraints: BoxConstraints(),
-                                        onPressed: (){},
-                                        icon: Icon(Icons.pending_outlined),
+                                      onPressed: (){},
+                                      icon: Icon(Icons.pending_outlined),
                                     ),
                                   ],
                                 ),
                               ),
                             ),
-                            Text('kjnf siudfnw sdufh cjbvd diushfe df edufhd dfsne sdff'),
+                            Text(e.commentText),
                             SizedBox(height: 10,),
                             Text('6 months ago',
                               style: TextStyle(
@@ -236,7 +241,11 @@ class RatingsAndReviewsView extends StatelessWidget {
                             ),
                             SizedBox(height: 20,),
                           ],
-                      ),
+                        )).toList(),
+
+                      );
+                    }
+
                   ),
                 ),
 

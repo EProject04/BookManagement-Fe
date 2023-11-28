@@ -45,12 +45,12 @@ class GenreController extends GetxController{
       throw(e);
     }
   }
-   Future<void> getBookByAuthorname(String authorName) async{
+   Future<void> getBookByAuthorName(String authorName) async{
     try{
       isLoading(true);
       update(); // Notify GetX that the state has changed
       // Make an API call to fetch all books
-      var response = await NetWorkHandler.get(RequestApi.API_BOOK_SEARCH + '?authorName=' + '${authorName}');
+      var response = await NetWorkHandler.get(RequestApi.API_BOOK_SEARCH + '?AuthorName=' + '${authorName}');
       List<dynamic> jsonData = json.decode(response);
       List<Books> bookData =
       jsonData.map((dynamic book) => Books.fromJson(book)).toList();

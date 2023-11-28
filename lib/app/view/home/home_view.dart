@@ -17,9 +17,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends GetView<HomeController> {
-  static final _pageInstance = HomePage._internal();
-  factory HomePage() => _pageInstance;
-  HomePage._internal();
+  // static final _pageInstance = HomePage._internal();
+  // factory HomePage() => _pageInstance;
+  // HomePage._internal();
   final carouselController = CarouselController();
   var bookListController = Get.put(HomeController());
   @override
@@ -142,21 +142,22 @@ class HomePage extends GetView<HomeController> {
                                 itemBuilder: (context, index) {
                                   final book = bookListController.books[index];
                                   return InkWell(
-                                    onTap: () {
-                                      // final bookDetail = bookListController.getBookById(book.id);
-                                      Get.to(() => BookDetailScreenNew(),
-                                          // transition: Transition.rightToLeft,
-                                          // duration:
-                                          //     Duration(milliseconds: 600),
-                                          arguments: [
-                                            book.title,
-                                            book.description,
-                                            book.content,
-                                            book.imagePath,
-                                            // book.categoriesBook.map((e) => e.categoryName),
-                                            // book.id
-                                          ]
-                                      );
+                                    onTap: ()  {
+                                       bookListController.getBookById(book.id);
+
+                                      // Get.to(() => BookDetailScreenNew(),
+                                      //     // transition: Transition.rightToLeft,
+                                      //     // duration:
+                                      //     //     Duration(milliseconds: 600),
+                                      //     arguments: [
+                                      //       book.title,
+                                      //       book.description,
+                                      //       book.content,
+                                      //       book.imagePath,
+                                      //       // book.categoriesBook.map((e) => e.categoryName),
+                                      //       // book.id
+                                      //     ]
+                                      // );
                                     },
                                     child: Column(
                                       crossAxisAlignment:
