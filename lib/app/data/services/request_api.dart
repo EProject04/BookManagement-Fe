@@ -4,7 +4,7 @@ class RequestApi {
   static const String API_AUTHORS_GET ="/api/authors/get-all-author";
   static const String API_AUTHORS_GET_ID ="/api/authors/get-author-by-id/";
   static const String API_AUTHORS_PUT_ID ="/api/authors/update-author/";
-  static const String API_AUTHORS_DELTETE ="/api/authors/delete-author/{id}";
+  static const String API_AUTHORS_DELTETE ="/api/authors/delete-author/";
   static const String API_AUTHORS_SEARCH ="/api/authors/search";
 
   static const String API_BOOK_GET ="/api/books/get-all-book";

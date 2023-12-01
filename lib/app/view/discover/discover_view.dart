@@ -97,7 +97,7 @@ class DiscoverView extends GetView<DiscoverController> {
                                         final books = genreController.listBookByCate[index];
                                         return InkWell(
                                           onTap: () {
-                                            Get.to(BookDetailScreenNew(),
+                                            Get.to(BookDetailScreenNew(),arguments: books,
                                                 transition:
                                                 Transition.rightToLeft,
                                                 duration: Duration(

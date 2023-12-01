@@ -12,6 +12,7 @@ import 'package:frame/app/view/create_new_account/create_new_account.dart';
 import 'package:frame/app/view/discover/discover_view.dart';
 import 'package:frame/app/view/explore_by_genre/explore_by_genre_view.dart';
 import 'package:frame/app/view/forget_password/forget_password_view.dart';
+import 'package:frame/app/view/genre_detail/genre_detail_by_author_view.dart';
 import 'package:frame/app/view/genre_detail/genre_detail_view.dart';
 import 'package:frame/app/view/help_center/help_center_view.dart';
 import 'package:frame/app/view/home/home_view.dart';
@@ -36,6 +37,7 @@ abstract class Routes {
   static const String explorGenrePage = '/genre';
   static const String forgetPasswordPage = '/forgetpassword';
   static const String genreDetailPage = '/genredetail';
+  static const String genreDetailAuthorPage = '/genredetailauthor';
   static const String helpCenterPage = '/helpcenter';
   static const String homePage = '/home';
   static const String loginPage = '/login';
@@ -84,6 +86,9 @@ abstract class Routes {
     GetPage(
       name: genreDetailPage,
       page: () =>  GenreDetailView(),),
+    GetPage(
+      name: genreDetailAuthorPage,
+      page: () =>  GenreDetailAuthorView(),),
     GetPage(
       name: forgetPasswordPage,
       page: () =>  ForgetPasswordPage(),),

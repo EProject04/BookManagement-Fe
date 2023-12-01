@@ -48,8 +48,8 @@ class _GenreDetailAuthorView extends State<GenreDetailAuthorView>{
             IconButton(
               iconSize: 30,
               icon: Icon(
-              Icons.search,
-              color: Colors.black,
+                Icons.search,
+                color: Colors.black,
               ),
               onPressed: (){},
             ),
@@ -64,8 +64,8 @@ class _GenreDetailAuthorView extends State<GenreDetailAuthorView>{
                 children: [
                   Text('Show in',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
                     ),
                   ),
                   Spacer(),
@@ -111,133 +111,133 @@ class _ListViewBookByAuthorState extends State<ListViewBookByAuthor> {
               color: Colors.blueAccent,
             ))
             : ListView.builder(
-          itemCount: genreController.listBookByAuthor.length,
-          itemBuilder: (context,index) {
-            final bookByAuthor = genreController.listBookByAuthor[index];
-            return InkWell(
-              onTap: (){
-                Get.to(()=>BookDetailScreenNew(),arguments: bookByAuthor);
-              },
-              child: Container(
-                padding: EdgeInsets.only(bottom: 20),
-                height: size.height * 0.3,
-                // color: Colors.amber[600],
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      width: size.width * 0.3,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage('${bookByAuthor.imagePath}'),
-                            fit: BoxFit.fill,
-                          ),
-                          borderRadius: BorderRadius.circular(10)
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text('${bookByAuthor.title}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
+            itemCount: genreController.listBookByAuthor.length,
+            itemBuilder: (context,index) {
+              final bookByAuthor = genreController.listBookByAuthor[index];
+              return InkWell(
+                onTap: (){
+                  Get.to(()=>BookDetailScreenNew(),arguments: bookByAuthor);
+                },
+                child: Container(
+                  padding: EdgeInsets.only(bottom: 20),
+                  height: size.height * 0.3,
+                  // color: Colors.amber[600],
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width: size.width * 0.3,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage('${bookByAuthor.imagePath}'),
+                              fit: BoxFit.fill,
                             ),
-                          ),
-                          SizedBox(height: 10,),
-                          Row(
-                            children: <Widget>[
-                              Icon(
-                                size:20,
-                                Icons.star_half,
-                                color: Colors.grey,
+                            borderRadius: BorderRadius.circular(10)
+                        ),
+                      ),
+                      SizedBox(width: 10,),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text('${bookByAuthor.title}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
                               ),
-
-                              Text('4.9',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 10,),
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
+                            ),
+                            SizedBox(height: 10,),
+                            Row(
                               children: <Widget>[
-                                Container(
-                                  height: size.height*0.03,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFEEECEC),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text('Romance',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                Icon(
+                                  size:20,
+                                  Icons.star_half,
+                                  color: Colors.grey,
                                 ),
-                                SizedBox(width: 10,),
-                                Container(
-                                  height: size.height*0.03,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFEEECEC),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text('Young Adult',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 10,),
-                                Container(
-                                  height: size.height*0.03,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFEEECEC),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text('Comedy',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
+
+                                Text('4.9',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey,
+                                    fontSize: 15,
                                   ),
                                 ),
                               ],
                             ),
-                          ),
-                        ],
+                            SizedBox(height: 10,),
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: <Widget>[
+                                  Container(
+                                    height: size.height*0.03,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFEEECEC),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text('Romance',
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 10,),
+                                  Container(
+                                    height: size.height*0.03,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFEEECEC),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text('Young Adult',
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 10,),
+                                  Container(
+                                    height: size.height*0.03,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFEEECEC),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text('Comedy',
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            );
-          }
+              );
+            }
 
           // SizedBox(height: 20,),
         ),
@@ -265,80 +265,79 @@ class _GridViewBookByAuthorState extends State<GridViewBookByAuthor> {
     return Expanded(
 
       child: Obx(
-        () => genreController.isLoading.value?
+            () => genreController.isLoading.value?
         Center(
             child: CircularProgressIndicator(
               color: Colors.blueAccent,
             ))
-         :GridView.builder(
-          itemCount: genreController.listBookByAuthor.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              childAspectRatio: (itemWidth/itemHeight)
-          ),
-          itemBuilder: (BuildContext context, index) {
-            final bookByAuthor = genreController.listBookByAuthor[index];
-            return InkWell(
+            :GridView.builder(
+            itemCount: genreController.listBookByAuthor.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                childAspectRatio:(size.width / size.height)*1.2
+            ),
+            itemBuilder: (BuildContext context, index) {
+              final bookByAuthor = genreController.listBookByAuthor[index];
+              return InkWell(
 
-            onTap: (){
-              Get.to(()=>BookDetailScreenNew(),arguments: bookByAuthor);
-            },
-            child: Container(
-              // color: Colors.orange,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children:<Widget>[
-                  Container(
-                    // width: size.width * 0.8,
-                      height: size.height * 0.3,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage('${bookByAuthor.imagePath}'),
-                            fit: BoxFit.fill,
-                          ),
-                          borderRadius: BorderRadius.circular(10)
-                      )
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text('${bookByAuthor.title}',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        size:20,
-                        Icons.star_half,
-                        color: Colors.grey,
+                onTap: (){
+                  Get.to(()=>BookDetailScreenNew(),arguments: bookByAuthor);
+                },
+                child: Container(
+                  // color: Colors.orange,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children:<Widget>[
+                      Container(
+                        // width: size.width * 0.8,
+                          height: size.height * 0.3,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage('${bookByAuthor.imagePath}'),
+                                fit: BoxFit.fill,
+                              ),
+                              borderRadius: BorderRadius.circular(10)
+                          )
                       ),
-
-                      Text('4.9',
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text('${bookByAuthor.title}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15,
                         ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            size:20,
+                            Icons.star_half,
+                            color: Colors.grey,
+                          ),
+
+                          Text('4.9',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-          );
-  }
+                ),
+              );
+            }
         ),
       ),
     );
   }
 }
-
