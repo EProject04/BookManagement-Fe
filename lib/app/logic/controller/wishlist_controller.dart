@@ -8,23 +8,24 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 class WishlistController extends GetxController{
-
+  RxBool isLoading = false.obs;
   RxList<BooksFollow> listBookByFollowing = <BooksFollow>[].obs;
-  late Books book;
+  late Books books;
   RxInt followId = 0.obs;
   @override
   void onInit() {
     // TODO: implement onInit
     getAllFollowing();
-
     super.onInit();
-
 
   }
   Future<void> getAllFollowing()async{
+    isLoading(true);
+    update();
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String sessionCookie = preferences.getString('sessionCookie')!;
     var headers = {'Content-Type': 'application/json', 'Cookie': sessionCookie};
+
     var url = Uri.parse(RequestApi.BaseUrl+RequestApi.API_GET_ALL_FOLLOWING);
     var response = await http.get(
         url,
@@ -37,17 +38,19 @@ class WishlistController extends GetxController{
       listBookByFollowing.assignAll(bookList);
       print(listBookByFollowing);
       print('success');
-
+      isLoading(false);
+      update();
     }else{
       throw Exception('false');
     }
     // await preferences.clear();
-
   }
 
 
 
   Future<void> getBookById(int id)async{
+    isLoading(true);
+    update();
     var headers = {'Content-Type': 'application/json',};
     var url = Uri.parse(RequestApi.BaseUrl+RequestApi.API_BOOK_GET_ID+id.toString());
     var response = await http.get(
@@ -62,6 +65,8 @@ class WishlistController extends GetxController{
       Get.to(()=>BookDetailScreenNew(),
           arguments: book
       );
+      isLoading(false);
+      update();
     }else{
       throw Exception('false');
     }

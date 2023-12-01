@@ -40,5 +40,5 @@ class RequestApi {
   static const String API_COMMENT_UPDATE ="/comments/update-comment/";
 
   static const String API_GET_ALL_FOLLOWING ="/followings/get-all-following";
-  static const String API_UPDATE_FOLLOWING ="/followings/update-following/";
+  static const String API_FOLLOWING_UPDATE ="/followings/update-following";
 }

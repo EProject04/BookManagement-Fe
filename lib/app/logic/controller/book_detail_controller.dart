@@ -16,6 +16,14 @@ class BookDetailController extends GetxController{
   RxList<Books> listBookByAuthorId = <Books>[].obs;
 
 
+  @override
+  void onInit() {
+
+    super.onInit();
+
+  }
+
+
   Future<void> booksByAuthorId(int id) async{
     isLoading(true);
     update(); // Notify GetX that the state has changed
@@ -43,16 +51,18 @@ class BookDetailController extends GetxController{
     }
   }
   Future<void> updateBookFollowing(int bookId) async{
+    isLoading(true);
+    update();
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String sessionCookie = preferences.getString('sessionCookie')!;
     var headers = {'Content-Type': 'application/json', 'Cookie': sessionCookie};
-    var url = Uri.parse(RequestApi.BaseUrl+RequestApi.API_UPDATE_FOLLOWING+wishlistController.followId.value.toString());
+    var url = Uri.parse(RequestApi.BaseUrl+RequestApi.API_FOLLOWING_UPDATE);
     var response = await http.put(
         url,
-        body: jsonEncode([{
-          'Id': wishlistController.followId.value,
-          'BookIds':bookId,
-        }]),
+        body: jsonEncode({
+          'id': wishlistController.followId.value,
+          'bookId':bookId,
+        }),
         headers: headers
     );
     if(response.statusCode == 200){
@@ -63,6 +73,8 @@ class BookDetailController extends GetxController{
     }else{
       throw Exception('false');
     }
+    isLoading(false);
+    update();
   }
 
 

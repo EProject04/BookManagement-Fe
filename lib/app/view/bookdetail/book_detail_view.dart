@@ -45,7 +45,9 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
               backgroundColor: Colors.white,
               actions: <Widget>[
                 IconButton(
-                    onPressed: null,
+                    onPressed: (){
+                      bookDetailController.updateBookFollowing(bookDetail.id);
+                    },
                     icon: Icon(Icons.add_circle_outline_rounded)),
               ],
             ),

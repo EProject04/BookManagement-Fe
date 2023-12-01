@@ -40,7 +40,7 @@ class RateThisEbookController extends GetxController {
     String sessionCookie = preferences.getString('sessionCookie')!;
     String userId = preferences.getString('id')!;
     var headers = {'Content-Type': 'application/json', 'Cookie': sessionCookie};
-    var url = Uri.parse('${RequestApi.BaseUrl}${RequestApi.API_UPDATE_FOLLOWING}$commentId');
+    var url = Uri.parse('${RequestApi.BaseUrl}${RequestApi.API_FOLLOWING_UPDATE}$commentId');
     var response = await http.put(
         url,
         body: jsonEncode({
