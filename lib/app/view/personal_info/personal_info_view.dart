@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 
 class PersonalInfoView extends GetView<PersonalInfoView> {
   // const PersonalInfoView({super.key});
-  static final _pageInstance = PersonalInfoView._internal();
-  factory PersonalInfoView() => _pageInstance;
-  PersonalInfoView._internal();
+  // static final _pageInstance = PersonalInfoView._internal();
+  // factory PersonalInfoView() => _pageInstance;
+  // PersonalInfoView._internal();
   final ProfileController profileController = Get.put(ProfileController());
 
   @override

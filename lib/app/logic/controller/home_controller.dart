@@ -12,7 +12,7 @@ import 'package:frame/app/view/read_book/read_book_view.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-GenreController geneController = GenreController();
+// GenreController geneController = GenreController();
 
 class HomeController extends GetxController {
   RxBool isLoading = false.obs;
@@ -27,10 +27,11 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
-    super.onInit();
     getBooks();
     getCategory();
     getAuthors();
+    super.onInit();
+
 
   }
 
@@ -124,18 +125,14 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void>  showAuthor(dynamic id) async{
-     await geneController.getAuthorbyId(id.toString());
-  }
+  // Future<void>  showAuthor(dynamic id) async{
+  //    await geneController.getAuthorbyId(id.toString());
+  // }
+  //
+  // Future<void>  showCate(dynamic id) async{
+  //   await geneController.getCategoryId(id);
+  //   // Get.to(GenreDetailView());
+  // }
 
-  Future<void>  showCate(dynamic id) async{
-    await geneController.getCategoryId(id);
-    // Get.to(GenreDetailView());
-  }
 
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 }

@@ -16,7 +16,7 @@ class GenreDetailView extends StatefulWidget{
 class _GenreDetailView extends State<GenreDetailView>{
   bool isGridView = true;
   GenreController genreController = Get.put(GenreController());
-  late Author author;
+   Author author = Get.arguments;
 @override
 void initState(){
   setState(() {

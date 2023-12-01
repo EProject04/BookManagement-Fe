@@ -18,20 +18,14 @@ class _GenreDetailAuthorView extends State<GenreDetailAuthorView>{
 
 
   bool isGridView = true;
-  GenreController genreController = Get.put(GenreController());
+  Author author = Get.arguments;
 
-@override
-void initState(){
-  setState(() {
-
-  });
-}
   void _toggleView(){
     setState(() {
       isGridView = !isGridView;
     });
   }
-  Author author = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
 

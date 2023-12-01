@@ -1,57 +1,53 @@
-
+import 'dart:async';
 import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:frame/app/data/models/user.dart';
 import 'package:frame/app/data/services/request_api.dart';
-import 'package:frame/app/data/utils/shared_preference_util.dart';
-import 'package:frame/app/view/home/home_view.dart';
 import 'package:frame/main_wrapper.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginController extends GetxController{
+class LoginController extends GetxController {
   RxBool isHidden = true.obs;
-  // SharedPreferences sharedpref = SharedPrefs.instance;
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
+  RxString errorMessage = ''.obs;
 
-  String? usernameValidate(String? username){
-    if(username!.isEmpty){
+
+  String? usernameValidate(String? username) {
+    if (username!.isEmpty) {
       return "Please enter your username";
     }
     // if(!RegExp(r'^(?:[+0][1-9])?[0-9]{10,12}$').hasMatch(username)){
     //   return "Incorrect phone number";
     // }
   }
-  String? passwordValidate(String? password){
-    if(password!.isEmpty){
+
+  String? passwordValidate(String? password) {
+    if (password!.isEmpty) {
       return "Please enter your password";
     }
     //password.length < 0 ||
-    if( RegExp(r'[!#$%&*"+/=?^_`{|}~-]').hasMatch(password)){
+    if (RegExp(r'[!#$%&*"+/=?^_`{|}~-]').hasMatch(password)) {
       return "Length greater than 8 and no special key";
     }
   }
 
-  Future<void> login(String username, String password) async{
-    try{
+  Future<void> login() async {
+    // try {
       SharedPreferences preferences = await SharedPreferences.getInstance();
-      var url = Uri.parse(RequestApi.BaseUrl+RequestApi.API_LOGIN);
-
+      var url = Uri.parse(RequestApi.BaseUrl + RequestApi.API_LOGIN);
       var response = await http.post(
         url,
-        body: jsonEncode({
-          'username': username,
-          'password': password
-        }),
+        body: jsonEncode({'username': username.text, 'password': password.text}),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
-
-      if(response.statusCode == 200){
+      if (response.statusCode == 200) {
         // print('login successful');
         // print(response.body);
         final sessionCookie = response.headers['set-cookie'];
@@ -60,20 +56,15 @@ class LoginController extends GetxController{
         preferences.setString("id", '${user.id}');
         preferences.setString("username", '${user.username}');
         preferences.setString("email", '${user.email}');
-        print('${user.email}');
-        print(sessionCookie);
-        Get.to(()=>MainWrapper());
+        preferences.setBool('isLoggedIn', true);
+        Get.offAll(() => MainWrapper());
 
-      }else{
-        throw Exception('Login Failed');
+      } else {
+        errorMessage.value = 'Login failed. Please check your username or password!';
+        throw Exception(errorMessage);
       }
-
-    }catch(e){
-      print(e);
-
-    }
-
+    // } catch (e) {
+    //   print(e);
+    // }
   }
-
-
 }

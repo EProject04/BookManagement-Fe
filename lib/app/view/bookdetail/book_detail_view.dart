@@ -3,9 +3,10 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:frame/app/data/models/book.dart';
 import 'package:frame/app/logic/controller/book_detail_controller.dart';
 import 'package:frame/app/logic/controller/home_controller.dart';
+import 'package:frame/app/logic/controller/ratings_and_reviews_controller.dart';
 import 'package:frame/app/view/about_this_ebook/about_this_ebook_view.dart';
 import 'package:frame/app/view/rate_this_ebook/rate_view.dart';
-import 'package:frame/app/view/ratings_and_reviews/ratings_and_reviews.dart';
+import 'package:frame/app/view/ratings_and_reviews/ratings_and_reviews_view.dart';
 import 'package:frame/app/view/read_book/read_book_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,15 +29,10 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
   factory BookDetailScreenNew() => _pageInstance;
   BookDetailScreenNew._internal();
 
-  final bookDetailController = HomeController();
+  final bookDetailController =Get.put(BookDetailController());
+  final ratingsAndReviewsController = Get.put(RatingsAndReviewsController());
   @override
   Widget build(BuildContext context) {
-    // var bookDetail;
-    // String title = Get.arguments[0];
-    // String description = Get.arguments[1];
-    // String content = Get.arguments[2];
-    // String imagePath = Get.arguments[3];
-    // int id = Get.arguments[4];
     Books bookDetail = Get.arguments;
     Size size = MediaQuery.of(context).size;
     return SafeArea(
@@ -127,8 +123,7 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                             ),
                                           ),
                                         )
-                                        .toList()
-                                    ),
+                                        .toList()),
                               ),
                             ],
                           ),
@@ -228,6 +223,7 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(25))),
                           onPressed: () {
+                            bookDetailController.updateBookFollowing(bookDetail.id);
                             Get.to(() => ReadBookView(), arguments: bookDetail);
                           },
                           child: Text(
@@ -265,7 +261,7 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                     Get.to(() => AboutThisEbookView(),
                                         arguments: bookDetail);
                                   },
-                                  icon: Icon(Icons.arrow_forward)),
+                                  icon: Icon(Icons.arrow_forward,color: Colors.orange,)),
                             ))
                           ],
                         ),
@@ -294,10 +290,11 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                               alignment: Alignment.centerRight,
                               child: IconButton(
                                   onPressed: () {
+                                    ratingsAndReviewsController.getCommentsByUserId(bookDetail.id);
                                     Get.to(() => RatingsAndReviewsView(),
                                         arguments: bookDetail);
                                   },
-                                  icon: Icon(Icons.arrow_forward)),
+                                  icon: Icon(Icons.arrow_forward,color: Colors.orange,)),
                             ))
                           ],
                         ),
@@ -440,12 +437,11 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                         ),
                         Center(
                           child: ElevatedButton(
-                            onPressed: ()  {
-
+                            onPressed: () {
                               Get.to(() => RateView(), arguments: bookDetail);
                             },
                             child: Text(
-                              'Read a Review',
+                              'Write a Review',
                               style: TextStyle(color: Colors.orange),
                             ),
                             style: ElevatedButton.styleFrom(
@@ -472,20 +468,21 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                               ),
                             ),
                             Expanded(
-                                child: Container(
-                              alignment: Alignment.centerRight,
-                              margin: EdgeInsets.fromLTRB(0, 0, 1, 0),
-                              child: IconButton(
-                                  onPressed: null,
-                                  icon: Icon(Icons.arrow_forward)),
-                            ))
+                              child: Container(
+                                alignment: Alignment.centerRight,
+                                margin: EdgeInsets.fromLTRB(0, 0, 1, 0),
+                                child: IconButton(
+                                    onPressed: null,
+                                    icon: Icon(Icons.arrow_forward)),
+                              ),
+                            ),
                           ],
                         ),
                         SizedBox(
                           height: size.height * 0.35,
                           child: ListView.separated(
                             itemCount: 8,
-                            padding: EdgeInsets.only(right: 15),
+                            padding: const EdgeInsets.only(right: 15),
                             separatorBuilder:
                                 (BuildContext context, int index) => SizedBox(
                               width: 15,
