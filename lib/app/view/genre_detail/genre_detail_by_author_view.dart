@@ -19,6 +19,7 @@ class _GenreDetailAuthorView extends State<GenreDetailAuthorView>{
   bool isGridView = true;
   GenreController genreController = Get.put(GenreController());
   late Author author;
+
 @override
 void initState(){
   setState(() {

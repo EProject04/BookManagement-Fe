@@ -40,7 +40,7 @@ void initState(){
           ),
           elevation: 0.0,// remove app bar shadow
           backgroundColor: Colors.white,
-          title: Text('${author.authorName}',
+          title: Text('esferwrwer',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
