@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:frame/app/data/models/book.dart';
+import 'package:frame/app/logic/controller/home_controller.dart';
 
 import 'package:frame/app/view/rate_this_ebook/rate_view.dart';
 
@@ -29,12 +31,10 @@ class ReadBookView extends StatefulWidget {
   @override
   State<ReadBookView> createState() => _ReadBookViewState();
 }
-String title = Get.arguments[0];
-String content = Get.arguments[2];
-class _ReadBookViewState extends State<ReadBookView> {
-  String bookcontent = 'Mùa thu năm ngoái, tôi đến thăm Sherlock Holmes thì bắt gặp anh đang say sưa trò chuyện với một người đàn ông đứng tuổi có vóc người to béo, sắc mặt hồng hào, tóc màu hung đỏ rực như lửa.'
-      'Tôi xin lỗi vì sự đường đột và đang định quay ra thì Holmes vội kéo tôi vào phòng.- Watson thân mến, anh đến thật đúng lúc.';
 
+
+
+class _ReadBookViewState extends State<ReadBookView> {
 
   bool toggle = false;
 
@@ -42,7 +42,7 @@ class _ReadBookViewState extends State<ReadBookView> {
   bool _isNavigationBarVisible = true;
   int _selectedIndex = 0;
 
-
+  Books bookDetail = Get.arguments;
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<
       ScaffoldState>(); //tao 1 key
@@ -56,6 +56,8 @@ class _ReadBookViewState extends State<ReadBookView> {
 
   @override
   Widget build(BuildContext context) {
+    // final String title = Get.arguments[0];
+    // final String content = Get.arguments[1];
 
     Size size = MediaQuery.of(context).size;
     return SafeArea(
@@ -69,7 +71,7 @@ class _ReadBookViewState extends State<ReadBookView> {
               Get.back();
             },
           ),
-          title: Text(title,
+          title: Text(bookDetail.title,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 30,
@@ -162,7 +164,7 @@ class _ReadBookViewState extends State<ReadBookView> {
               padding: EdgeInsets.all(15),
               child:
 
-              Text(content,
+              Text(bookDetail.content,
                 textAlign: TextAlign.justify,
                 style: GoogleFonts.getFont('Urbanist', fontSize: 15),
               ),
@@ -190,10 +192,11 @@ class _ReadBookViewState extends State<ReadBookView> {
 
             BottomNavigationBarItem(
                 icon: IconButton(
-
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(),// remove padding
                   icon:Icon(Icons.comment_outlined),
                   onPressed: (){
-                      Get.to(()=>RateView());
+                      Get.to(()=>RateView(),arguments: bookDetail);
                   },
                 ),
 

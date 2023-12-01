@@ -2,26 +2,29 @@ import 'dart:ui';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:frame/app/data/models/authors.dart';
 import 'package:frame/app/data/services/request_api.dart';
+import 'package:frame/app/logic/controller/book_detail_controller.dart';
+import 'package:frame/app/logic/controller/genre_controller.dart';
 import 'package:frame/app/logic/controller/home_controller.dart';
-import 'package:frame/app/logic/controller/main_wrapper_controller.dart';
-import 'package:frame/app/view/bookdetail/book_detail_view.dart';
+
 import 'package:frame/app/view/explore_by_genre/explore_by_genre_view.dart';
 import 'package:frame/app/view/genre_detail/genre_detail_by_author_view.dart';
-import 'package:frame/app/view/genre_detail/genre_detail_view.dart';
+import 'package:frame/app/view/genre_detail/genre_detail_by_cate_view.dart';
+
 import 'package:frame/app/view/search/search_view.dart';
-import 'package:frame/main_wrapper.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends GetView<HomeController> {
-  static final _pageInstance = HomePage._internal();
-  factory HomePage() => _pageInstance;
-  HomePage._internal();
+  // static final _pageInstance = HomePage._internal();
+  // factory HomePage() => _pageInstance;
+  // HomePage._internal();
   final carouselController = CarouselController();
   var bookListController = Get.put(HomeController());
+  final bookDetailController = Get.put(BookDetailController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -142,21 +145,24 @@ class HomePage extends GetView<HomeController> {
                                 itemBuilder: (context, index) {
                                   final book = bookListController.books[index];
                                   return InkWell(
-                                    onTap: () {
-                                      // final bookDetail = bookListController.getBookById(book.id);
-                                      Get.to(() => BookDetailScreenNew(),
-                                          // transition: Transition.rightToLeft,
-                                          // duration:
-                                          //     Duration(milliseconds: 600),
-                                          arguments: [
-                                            book.title,
-                                            book.description,
-                                            book.content,
-                                            book.imagePath,
-                                            // book.categoriesBook.map((e) => e.categoryName),
-                                            // book.id
-                                          ]
-                                      );
+                                    onTap: ()  {
+
+                                      // bookDetailController.booksByAuthorId(id);
+                                      bookListController.getBookById(book.id);
+
+                                      // Get.to(() => BookDetailScreenNew(),
+                                      //     // transition: Transition.rightToLeft,
+                                      //     // duration:
+                                      //     //     Duration(milliseconds: 600),
+                                      //     arguments: [
+                                      //       book.title,
+                                      //       book.description,
+                                      //       book.content,
+                                      //       book.imagePath,
+                                      //       // book.categoriesBook.map((e) => e.categoryName),
+                                      //       // book.id
+                                      //     ]
+                                      // );
                                     },
                                     child: Column(
                                       crossAxisAlignment:
@@ -184,7 +190,7 @@ class HomePage extends GetView<HomeController> {
                                           width: size.width * 0.4,
                                           child: Text(
                                             '${book.title}',
-                                            maxLines: 2,
+                                            maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
                                                 fontFeatures: [
@@ -245,7 +251,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
   var cateListController = Get.put(HomeController());
   int activateIndex = 0;
   final carouselController = CarouselController();
-
+  GenreController genreController = Get.put(GenreController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -264,7 +270,8 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                     final cate = cateListController.categories[index];
                     return GestureDetector(
                       onTap: (){
-                        Get.to(GenreDetailView());
+                        genreController.getBookByCateName(cate.categoryName);
+                        Get.to(()=>GenreDetailCateView(),arguments: cate);
                       },
                       child: Container(
                         width: size.width,
@@ -345,7 +352,8 @@ class ListOfAuthor extends StatefulWidget {
 
 class _ListOfAuthoreState extends State<ListOfAuthor> {
   // var authorListController = Get.put(HomeController());
-  HomeController authorListController = Get.find();
+  HomeController authorListController = Get.put(HomeController());
+  GenreController genreController = Get.put(GenreController());
   final carouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
@@ -358,16 +366,11 @@ class _ListOfAuthoreState extends State<ListOfAuthor> {
         scrollDirection: Axis.horizontal,
         itemCount: authorListController.authors.length,
         itemBuilder: (context, index) {
-          final author = authorListController.authors[index];
+          Author author = authorListController.authors[index];
           return InkWell(
             onTap: () {
-               // authorListController.showAuthor(author.id);
-               Get.to(()=>GenreDetailAuthorView(),
-                  arguments: [
-                    author.id,
-                    author.authorName
-                  ]
-               );
+              genreController.getBookByAuthorName(author.authorName);
+              Get.to(()=>GenreDetailAuthorView(),arguments: author);
             },
             child: Container(
               width: size.width*0.35,

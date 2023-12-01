@@ -51,5 +51,7 @@ class MainWrapperController extends GetxController {
   void dispose() {
     pageController.dispose();
     super.dispose();
+
   }
+
 }

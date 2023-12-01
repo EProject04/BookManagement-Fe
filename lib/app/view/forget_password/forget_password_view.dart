@@ -25,10 +25,11 @@ class ForgetPasswordPage extends StatelessWidget {
   ForgetPasswordPage._internal();
 
   final pageController = ForgetPasswordController();
-  final formKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -39,7 +40,7 @@ class ForgetPasswordPage extends StatelessWidget {
                 margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                 alignment: Alignment.bottomLeft,
                 child: IconButton(
-                    onPressed: () => Get.to(LoginPage()), icon: Icon(Icons.arrow_back)),
+                    onPressed: () => Get.to(()=>LoginPage()), icon: Icon(Icons.arrow_back)),
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -69,7 +70,7 @@ class ForgetPasswordPage extends StatelessWidget {
               Container(
                 // color: Colors.blue,
                   height: 180,
-                  margin: const EdgeInsets.fromLTRB(15, 10, 15, 0),
+                  margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
                   alignment: Alignment.bottomLeft,
                   child: Form(
                     key: formKey,
@@ -81,7 +82,7 @@ class ForgetPasswordPage extends StatelessWidget {
                             top: 0,
                             child: Text(
                                 'Email', style: GoogleFonts.urbanist(
-                                textStyle: const TextStyle(
+                                textStyle: TextStyle(
                                   color: Colors.black,
                                   fontSize: 10,
                                   fontWeight: FontWeight.w800,
@@ -106,7 +107,7 @@ class ForgetPasswordPage extends StatelessWidget {
                                 ),
                               ),
                               style: GoogleFonts.urbanist(
-                                  textStyle: const TextStyle(
+                                  textStyle: TextStyle(
                                     color: Colors.black,
                                     fontSize: 15,
                                     fontWeight: FontWeight.w800,
@@ -122,11 +123,11 @@ class ForgetPasswordPage extends StatelessWidget {
               Expanded(child: Container()),
               Container(
                 width: 10000,
-                margin: const EdgeInsets.fromLTRB(15, 10, 15, 15),
+                margin: EdgeInsets.fromLTRB(15, 10, 15, 15),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.all(15),
-                        backgroundColor: const Color.fromRGBO(248, 147, 0, 1),
+                        padding: EdgeInsets.all(15),
+                        backgroundColor: Color.fromRGBO(248, 147, 0, 1),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25)
                         )
@@ -136,7 +137,7 @@ class ForgetPasswordPage extends StatelessWidget {
                         pageController.sendOTP();
                       }
                     },
-                    child: const Text(
+                    child: Text(
                       'Continue',
                       style: TextStyle(
                           color: Colors.white,

@@ -1,3 +1,4 @@
+import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:frame/app/data/utils/colors.dart';
 import 'package:frame/app/logic/controller/main_wrapper_controller.dart';
@@ -70,11 +71,16 @@ class MainWrapper extends StatelessWidget {
           ),
         ),
       ),
-      body: PageView(
-        controller: _mainWrapperController.pageController,
-        physics: const BouncingScrollPhysics(),
-        onPageChanged: _mainWrapperController.animateToTab,
-        children: [..._mainWrapperController.pages],
+      body: DoubleBackToCloseApp(
+        snackBar: const SnackBar(
+          content: Text('Press again to close the app'),
+        ),
+        child: PageView(
+          controller: _mainWrapperController.pageController,
+          physics: const BouncingScrollPhysics(),
+          onPageChanged: _mainWrapperController.animateToTab,
+          children: [..._mainWrapperController.pages],
+        ),
       ),
     );
   }
@@ -91,7 +97,7 @@ class MainWrapper extends StatelessWidget {
             Icon(
               icon,
               color: _mainWrapperController.currentPage == page
-                  ? ColorConstants.appColors
+                  ? Colors.orange
                   : Colors.grey,
               size: 20,
             ),
@@ -99,7 +105,7 @@ class MainWrapper extends StatelessWidget {
               label,
               style: TextStyle(
                   color: _mainWrapperController.currentPage == page
-                      ? ColorConstants.appColors
+                      ?  Colors.orange
                       : Colors.grey,
                   fontSize: 13,
                   fontWeight: _mainWrapperController.currentPage == page
