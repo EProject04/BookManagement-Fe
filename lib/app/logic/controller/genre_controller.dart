@@ -119,9 +119,9 @@ class GenreController extends GetxController{
     if(response.statusCode == 200){
       var jsonData = json.decode(response.body);
       var listBook = (jsonData['items'] as List).map((e) => Books.fromJson(e));
-      var listCates = (jsonData['items']['categoriesBook'] as List).map((e) => Categories.fromJson(e));
+      // var listCates = (jsonData['items']['categoriesBook'] as List).map((e) => Categories.fromJson(e));
       listBookByCate.assignAll(listBook);
-      listCate.assignAll(listCates);
+      // listCate.assignAll(listCates);
       print(listBookByCate);
       isLoading(false);
       update();

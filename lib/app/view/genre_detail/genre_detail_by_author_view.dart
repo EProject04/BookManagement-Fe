@@ -276,7 +276,7 @@ class _GridViewBookByAuthorState extends State<GridViewBookByAuthor> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
-                childAspectRatio: (itemWidth/itemHeight)
+                childAspectRatio:(size.width / size.height)*1.2
             ),
             itemBuilder: (BuildContext context, index) {
               final bookByAuthor = genreController.listBookByAuthor[index];

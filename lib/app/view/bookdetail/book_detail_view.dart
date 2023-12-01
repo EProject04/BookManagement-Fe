@@ -8,20 +8,12 @@ import 'package:frame/app/view/about_this_ebook/about_this_ebook_view.dart';
 import 'package:frame/app/view/rate_this_ebook/rate_view.dart';
 import 'package:frame/app/view/ratings_and_reviews/ratings_and_reviews_view.dart';
 import 'package:frame/app/view/read_book/read_book_view.dart';
+import 'package:frame/app/view/wishlist/wishlist_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class BookDetail {
-  String content;
-  String description;
-  String title;
-  bool status;
-  String imagePath;
 
-  BookDetail(
-      this.content, this.description, this.title, this.status, this.imagePath);
-}
 
 class BookDetailScreenNew extends GetView<BookDetailController> {
   // const BookDetailScreenNew({super.key});

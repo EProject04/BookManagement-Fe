@@ -288,7 +288,8 @@ class _GridViewGenreDetailByCateState extends State<GridViewGenreDetailByCate> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
-                childAspectRatio: (itemWidth / itemHeight)),
+                childAspectRatio: (size.width / size.height)*1.2
+            ),
             itemBuilder: (BuildContext context, index) {
               final bookByCate = genreController.listBookByCate[index];
               return InkWell(

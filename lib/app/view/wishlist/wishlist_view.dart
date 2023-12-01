@@ -59,9 +59,7 @@ class WishlistView extends StatelessWidget {
                 : ListView.builder(
                     itemCount: wishlistController.listBookByFollowing.length,
                     itemBuilder: (context, index) {
-                      final book =
-                          wishlistController.listBookByFollowing[index];
-
+                      final book = wishlistController.listBookByFollowing[index];
                       return Container(
                         padding: EdgeInsets.only(bottom: 20),
                         height: size.height * 0.15,
@@ -170,6 +168,7 @@ class WishlistView extends StatelessWidget {
                                       case 1:
                                         bookDetailController
                                             .updateBookFollowing(book.id);
+                                        Get.reload();
                                         break;
                                       case 2:
                                         Get.to(() => AboutThisEbookView());
