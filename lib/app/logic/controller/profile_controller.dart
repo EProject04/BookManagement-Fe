@@ -67,11 +67,11 @@ class ProfileController extends GetxController{
     if(response.statusCode == 200){
       var result = jsonDecode(response.body);
       UserProfile user = UserProfile.fromJson(result);
-      email.text = result['email'].toString();
-      phoneNumber.text = result['phoneNumber'].toString();
-      dob.text = result['dateOfBirth'].toString();
-      fullName.text = result['fullName'].toString();
-      print(result['phoneNumber']);
+      email.text = user.email??'';
+      phoneNumber.text = user.phoneNumber??'';
+      dob.text = user.dateOfBirth??'';
+      fullName.text = user.fullName??'';
+      print(user.email);
     }else{
       throw Exception('User not found');
     }

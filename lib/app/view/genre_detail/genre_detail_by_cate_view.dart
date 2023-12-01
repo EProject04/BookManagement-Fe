@@ -1,26 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frame/app/data/models/authors.dart';
-import 'package:frame/app/data/models/book.dart';
+import 'package:frame/app/data/models/category.dart';
 import 'package:frame/app/logic/controller/genre_controller.dart';
 import 'package:frame/app/view/bookdetail/book_detail_view.dart';
 import 'package:get/get.dart';
 
-
-class GenreDetailAuthorView extends StatefulWidget{
-  const GenreDetailAuthorView({super.key});
+class GenreDetailCateView extends StatefulWidget {
+  const GenreDetailCateView({super.key});
 
   @override
-  State<GenreDetailAuthorView> createState() => _GenreDetailAuthorView();
+  State<GenreDetailCateView> createState() => _GenreDetailCateViewState();
 }
 
-class _GenreDetailAuthorView extends State<GenreDetailAuthorView>{
-
-
+class _GenreDetailCateViewState extends State<GenreDetailCateView> {
   bool isGridView = true;
-  Author author = Get.arguments;
+  GenreController genreController = Get.put(GenreController());
+  Categories categories = Get.arguments;
 
-  void _toggleView(){
+  void _toggleView() {
     setState(() {
       isGridView = !isGridView;
     });
@@ -28,21 +26,21 @@ class _GenreDetailAuthorView extends State<GenreDetailAuthorView>{
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           leading: BackButton(
             color: Colors.black,
           ),
-          elevation: 0.0,// remove app bar shadow
+          elevation: 0.0, // remove app bar shadow
           backgroundColor: Colors.white,
-          title: Text(author.authorName.toUpperCase(),
+          title: Text(
+            '${categories.categoryName}',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 30,
-            ) ,
+            ),
           ),
           actions: <Widget>[
             IconButton(
@@ -51,7 +49,7 @@ class _GenreDetailAuthorView extends State<GenreDetailAuthorView>{
                 Icons.search,
                 color: Colors.black,
               ),
-              onPressed: (){},
+              onPressed: () {},
             ),
           ],
         ),
@@ -59,10 +57,10 @@ class _GenreDetailAuthorView extends State<GenreDetailAuthorView>{
           padding: EdgeInsets.all(15),
           child: Column(
             children: [
-
               Row(
                 children: [
-                  Text('Show in',
+                  Text(
+                    'Show in',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -71,8 +69,10 @@ class _GenreDetailAuthorView extends State<GenreDetailAuthorView>{
                   Spacer(),
                   IconButton(
                     padding: EdgeInsets.zero,
-                    icon: isGridView? Icon(Icons.view_list_rounded):Icon(Icons.grid_view_rounded),
-                    onPressed: (){
+                    icon: isGridView
+                        ? Icon(Icons.view_list_rounded)
+                        : Icon(Icons.grid_view_rounded),
+                    onPressed: () {
                       _toggleView();
                     },
                   ),
@@ -81,7 +81,7 @@ class _GenreDetailAuthorView extends State<GenreDetailAuthorView>{
               SizedBox(
                 height: 20,
               ),
-              isGridView ? GridViewBookByAuthor() : ListViewBookByAuthor(),
+              isGridView ? GridViewGenreDetailByCate() : ListViewGenreDetailByCate(),
               // GenreDetailListView(),
             ],
           ),
@@ -91,32 +91,32 @@ class _GenreDetailAuthorView extends State<GenreDetailAuthorView>{
   }
 }
 
-class ListViewBookByAuthor extends StatefulWidget {
-  const ListViewBookByAuthor({super.key});
+class ListViewGenreDetailByCate extends StatefulWidget {
+  const ListViewGenreDetailByCate({super.key});
 
   @override
-  State<ListViewBookByAuthor> createState() => _ListViewBookByAuthorState();
+  State<ListViewGenreDetailByCate> createState() => _ListViewGenreDetailByCateState();
 }
 
-class _ListViewBookByAuthorState extends State<ListViewBookByAuthor> {
-  GenreController genreController = Get.put(GenreController());
+class _ListViewGenreDetailByCateState extends State<ListViewGenreDetailByCate> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final genreController = Get.put(GenreController());
     return Expanded(
       child: Obx(
-            () => genreController.isLoading.value?
-        Center(
+            () => genreController.isLoading.value
+            ? Center(
             child: CircularProgressIndicator(
               color: Colors.blueAccent,
             ))
             : ListView.builder(
-            itemCount: genreController.listBookByAuthor.length,
-            itemBuilder: (context,index) {
-              final bookByAuthor = genreController.listBookByAuthor[index];
-              return InkWell(
-                onTap: (){
-                  Get.to(()=>BookDetailScreenNew(),arguments: bookByAuthor);
+            itemCount: genreController.listBookByCate.length,
+            itemBuilder: (context, index) {
+              final bookByCate = genreController.listBookByCate[index];
+              return  InkWell(
+                onTap: () {
+                  Get.to(() => BookDetailScreenNew(),arguments: bookByCate);
                 },
                 child: Container(
                   padding: EdgeInsets.only(bottom: 20),
@@ -128,33 +128,38 @@ class _ListViewBookByAuthorState extends State<ListViewBookByAuthor> {
                         width: size.width * 0.3,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: NetworkImage('${bookByAuthor.imagePath}'),
+                              image: NetworkImage(
+                                  '${bookByCate.imagePath}'),
                               fit: BoxFit.fill,
                             ),
-                            borderRadius: BorderRadius.circular(10)
-                        ),
+                            borderRadius: BorderRadius.circular(10)),
                       ),
-                      SizedBox(width: 10,),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text('${bookByAuthor.title}',
+                            Text(
+                              '${bookByCate.title}',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15,
                               ),
                             ),
-                            SizedBox(height: 10,),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Row(
                               children: <Widget>[
                                 Icon(
-                                  size:20,
+                                  size: 20,
                                   Icons.star_half,
                                   color: Colors.grey,
                                 ),
-
-                                Text('4.9',
+                                Text(
+                                  '4.9',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.grey,
@@ -163,13 +168,15 @@ class _ListViewBookByAuthorState extends State<ListViewBookByAuthor> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 10,),
+                            SizedBox(
+                              height: 10,
+                            ),
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: Row(
                                 children: <Widget>[
                                   Container(
-                                    height: size.height*0.03,
+                                    height: size.height * 0.03,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEECEC),
                                       borderRadius: BorderRadius.circular(8),
@@ -178,7 +185,8 @@ class _ListViewBookByAuthorState extends State<ListViewBookByAuthor> {
                                       padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                                       child: Align(
                                         alignment: Alignment.center,
-                                        child: Text('Romance',
+                                        child: Text(
+                                          'Romance',
                                           style: TextStyle(
                                             color: Colors.grey,
                                             fontWeight: FontWeight.bold,
@@ -187,9 +195,11 @@ class _ListViewBookByAuthorState extends State<ListViewBookByAuthor> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(width: 10,),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
                                   Container(
-                                    height: size.height*0.03,
+                                    height: size.height * 0.03,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEECEC),
                                       borderRadius: BorderRadius.circular(8),
@@ -198,7 +208,8 @@ class _ListViewBookByAuthorState extends State<ListViewBookByAuthor> {
                                       padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                                       child: Align(
                                         alignment: Alignment.center,
-                                        child: Text('Young Adult',
+                                        child: Text(
+                                          'Young Adult',
                                           style: TextStyle(
                                             color: Colors.grey,
                                             fontWeight: FontWeight.bold,
@@ -207,9 +218,11 @@ class _ListViewBookByAuthorState extends State<ListViewBookByAuthor> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(width: 10,),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
                                   Container(
-                                    height: size.height*0.03,
+                                    height: size.height * 0.03,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEECEC),
                                       borderRadius: BorderRadius.circular(8),
@@ -218,7 +231,8 @@ class _ListViewBookByAuthorState extends State<ListViewBookByAuthor> {
                                       padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                                       child: Align(
                                         alignment: Alignment.center,
-                                        child: Text('Comedy',
+                                        child: Text(
+                                          'Comedy',
                                           style: TextStyle(
                                             color: Colors.grey,
                                             fontWeight: FontWeight.bold,
@@ -238,7 +252,6 @@ class _ListViewBookByAuthorState extends State<ListViewBookByAuthor> {
                 ),
               );
             }
-
           // SizedBox(height: 20,),
         ),
       ),
@@ -248,63 +261,60 @@ class _ListViewBookByAuthorState extends State<ListViewBookByAuthor> {
 
 
 
-class GridViewBookByAuthor extends StatefulWidget {
-  const GridViewBookByAuthor({super.key});
+class GridViewGenreDetailByCate extends StatefulWidget {
+  const GridViewGenreDetailByCate({super.key});
 
   @override
-  State<GridViewBookByAuthor> createState() => _GridViewBookByAuthorState();
+  State<GridViewGenreDetailByCate> createState() => _GridViewGenreDetailByCateState();
 }
 
-class _GridViewBookByAuthorState extends State<GridViewBookByAuthor> {
-  GenreController genreController = Get.put(GenreController());
+class _GridViewGenreDetailByCateState extends State<GridViewGenreDetailByCate> {
   @override
   Widget build(BuildContext context) {
+    GenreController genreController = Get.put(GenreController());
     final Size size = MediaQuery.of(context).size;
-    final double itemHeight = (size.height - kToolbarHeight - 24)/2.2;
-    final double itemWidth = size.width /2;
+    final double itemHeight = (size.height - kToolbarHeight - 24) / 2.2;
+    final double itemWidth = size.width / 2;
     return Expanded(
-
       child: Obx(
-            () => genreController.isLoading.value?
-        Center(
+            () => genreController.isLoading.value
+            ? Center(
             child: CircularProgressIndicator(
               color: Colors.blueAccent,
             ))
-            :GridView.builder(
-            itemCount: genreController.listBookByAuthor.length,
+            : GridView.builder(
+            itemCount: genreController.listBookByCate.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
-                childAspectRatio: (itemWidth/itemHeight)
-            ),
+                childAspectRatio: (itemWidth / itemHeight)),
             itemBuilder: (BuildContext context, index) {
-              final bookByAuthor = genreController.listBookByAuthor[index];
+              final bookByCate = genreController.listBookByCate[index];
               return InkWell(
-
-                onTap: (){
-                  Get.to(()=>BookDetailScreenNew(),arguments: bookByAuthor);
+                onTap: () {
+                  Get.to(() => BookDetailScreenNew(), arguments: bookByCate);
                 },
                 child: Container(
                   // color: Colors.orange,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:<Widget>[
+                    children: <Widget>[
                       Container(
                         // width: size.width * 0.8,
                           height: size.height * 0.3,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: NetworkImage('${bookByAuthor.imagePath}'),
+                                image: NetworkImage(
+                                    '${bookByCate.imagePath}'),
                                 fit: BoxFit.fill,
                               ),
-                              borderRadius: BorderRadius.circular(10)
-                          )
-                      ),
+                              borderRadius: BorderRadius.circular(10))),
                       SizedBox(
                         height: 5,
                       ),
-                      Text('${bookByAuthor.title}',
+                      Text(
+                        '${bookByCate.title}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -317,12 +327,12 @@ class _GridViewBookByAuthorState extends State<GridViewBookByAuthor> {
                       Row(
                         children: [
                           Icon(
-                            size:20,
+                            size: 20,
                             Icons.star_half,
                             color: Colors.grey,
                           ),
-
-                          Text('4.9',
+                          Text(
+                            '${bookByCate.averageRate}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.grey,
@@ -335,9 +345,10 @@ class _GridViewBookByAuthorState extends State<GridViewBookByAuthor> {
                   ),
                 ),
               );
-            }
-        ),
+            }),
       ),
     );
   }
 }
+
+

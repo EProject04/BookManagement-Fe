@@ -1,7 +1,6 @@
 import 'package:frame/app/logic/bindings/account_binding.dart';
-import 'package:frame/app/logic/bindings/home_binding.dart';
 import 'package:frame/app/logic/bindings/login_binding.dart';
-import 'package:frame/app/logic/bindings/main_wrapper_binding.dart';
+
 import 'package:frame/app/logic/bindings/profile_binding.dart';
 import 'package:frame/app/logic/bindings/register_binding.dart';
 import 'package:frame/app/view/about_ibbook/about_ibbook_view.dart';
@@ -21,7 +20,7 @@ import 'package:frame/app/view/login/login_view.dart';
 import 'package:frame/app/view/otp/otp_view.dart';
 import 'package:frame/app/view/personal_info/personal_info_view.dart';
 import 'package:frame/app/view/rate_this_ebook/rate_view.dart';
-import 'package:frame/app/view/ratings_and_reviews/ratings_and_reviews.dart';
+import 'package:frame/app/view/ratings_and_reviews/ratings_and_reviews_view.dart';
 import 'package:frame/app/view/read_book/read_book_view.dart';
 import 'package:frame/app/view/search/search_view.dart';
 import 'package:frame/app/view/wellcome/wellcome_view.dart';

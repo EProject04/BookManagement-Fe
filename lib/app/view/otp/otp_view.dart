@@ -10,7 +10,7 @@ class OTPController extends GetxController{
   RxBool wrongOTP = false.obs;
   void otpConfirm(){
     if(otp[0]+otp[1]+otp[2]+otp[3]+otp[4] == "12345"){
-      Get.to(CreateNewPasswordPage());
+      Get.to(()=>CreateNewPasswordPage());
     }else{
       wrongOTP.value = true;
     }

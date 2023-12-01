@@ -7,14 +7,18 @@ import 'package:get/get.dart';
 
 class PersonalInfoView extends GetView<PersonalInfoView> {
   // const PersonalInfoView({super.key});
-  static final _pageInstance = PersonalInfoView._internal();
-  factory PersonalInfoView() => _pageInstance;
-  PersonalInfoView._internal();
+  // static final _pageInstance = PersonalInfoView._internal();
+  // factory PersonalInfoView() => _pageInstance;
+  // PersonalInfoView._internal();
   final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
     var argument = Get.arguments;
+    TextEditingController fullName = Get.arguments[0];
+    TextEditingController email = Get.arguments[1];
+    TextEditingController phoneNumber = Get.arguments[2];
+    TextEditingController dob = Get.arguments[3];
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -70,7 +74,7 @@ class PersonalInfoView extends GetView<PersonalInfoView> {
                         ),
                       ),
                       TextFormField(
-                        controller: argument[0],
+                        controller: fullName,
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         decoration: InputDecoration(
                           // labelText: 'Full Name',
@@ -100,8 +104,8 @@ class PersonalInfoView extends GetView<PersonalInfoView> {
                         ),
                       ),
                       // Text('${profileController.email}'),
-                      TextField(
-                        controller: argument[1],
+                      TextFormField(
+                        controller: email,
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         decoration: InputDecoration(
                           // labelText: 'Full Name',
@@ -131,7 +135,7 @@ class PersonalInfoView extends GetView<PersonalInfoView> {
                         ),
                       ),
                       TextFormField(
-                        controller: argument[2],
+                        controller: phoneNumber,
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         decoration: InputDecoration(
                           // labelText: 'Full Name',
@@ -161,7 +165,7 @@ class PersonalInfoView extends GetView<PersonalInfoView> {
                         ),
                       ),
                       TextFormField(
-                        controller: argument[3],
+                        controller: dob,
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         decoration: InputDecoration(
                             suffixIcon: IconButton(

@@ -6,12 +6,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frame/app/data/models/user_profile.dart';
 import 'package:frame/app/logic/controller/account_controller.dart';
+import 'package:frame/app/logic/controller/main_wrapper_controller.dart';
 import 'package:frame/app/logic/controller/profile_controller.dart';
 import 'package:frame/app/view/about_ibbook/about_ibbook_view.dart';
 
 import 'package:frame/app/view/help_center/help_center_view.dart';
 import 'package:frame/app/view/personal_info/personal_info_view.dart';
 import 'package:frame/app/view/wellcome/wellcome_view.dart';
+import 'package:frame/main_wrapper.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -314,6 +316,8 @@ class _UserInformationState extends State<UserInformation> {
 
 Future<void> _showBottomSheet(BuildContext context) async{
   final accountController =Get.put(AccountController());
+  MainWrapperController mainWrapperController = Get.put(MainWrapperController());
+
   Size size = MediaQuery.of(context).size;
   return showModalBottomSheet<void>(
       context: context,
@@ -378,9 +382,13 @@ Future<void> _showBottomSheet(BuildContext context) async{
                               color: Colors.white
                           ),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           accountController.logout();
-                          // Get.to(()=>WellComeScreen());
+                          mainWrapperController.goToTab(0);
+                          // SharedPreferences preferences = await SharedPreferences.getInstance();
+                          // var status = preferences.getBool('isLoggedIn');
+                          // status == true?Get.offAll(()=>MainWrapper()):Get.offAll(()=>WellComeScreen());
+                          Get.offAll(()=>WellComeScreen());
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.orange,

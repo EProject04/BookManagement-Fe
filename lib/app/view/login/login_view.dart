@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:frame/app/logic/controller/login_controller.dart';
 import 'package:frame/app/view/forget_password/forget_password_view.dart';
+import 'package:frame/main_wrapper.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class LoginPage extends GetView<LoginController> {
 
-  static final _pageInstance = LoginPage._internal();
-  factory LoginPage() => _pageInstance;
-  LoginPage._internal();
+  // static final _pageInstance = LoginPage._internal();
+  // factory LoginPage() => _pageInstance;
+  // LoginPage._internal();
 
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final pageController = LoginController();
-  TextEditingController username = TextEditingController();
-  TextEditingController password = TextEditingController();
+
+
+
 
   @override
   Widget build(BuildContext context) {
+    GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return SafeArea(
       child: Scaffold(
+
         backgroundColor: Colors.white,
         body: Center(
           child: Column(
@@ -64,6 +68,7 @@ class LoginPage extends GetView<LoginController> {
                     child: Stack(
                       fit: StackFit.expand,
                       children: [
+
                         Positioned(
                             left: 0,
                             top: 0,
@@ -80,7 +85,7 @@ class LoginPage extends GetView<LoginController> {
                             right: 0,
                             left: 0,
                             child: TextFormField(
-                              controller: username,
+                              controller: pageController.username,
                               decoration: InputDecoration(
                                 focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
@@ -120,7 +125,7 @@ class LoginPage extends GetView<LoginController> {
                           left: 0,
                           child: Obx(
                                   () => TextFormField(
-                                controller: password,
+                                controller: pageController.password,
                                 decoration: InputDecoration(
                                   suffixIcon: GestureDetector(onTap: (){
                                     pageController.isHidden.value = !pageController.isHidden.value;
@@ -153,6 +158,7 @@ class LoginPage extends GetView<LoginController> {
                     ),
                   )
               ),
+              Obx(()=> Text(pageController.errorMessage.value,style: TextStyle(color: Colors.red),)),
               Container(
                 margin: const EdgeInsets.fromLTRB(15, 0, 15, 15),
                 decoration: const BoxDecoration(
@@ -163,8 +169,9 @@ class LoginPage extends GetView<LoginController> {
                     )
                 ),
               ),
+
               GestureDetector(
-                onTap: () => Get.to(ForgetPasswordPage()),
+                onTap: () => Get.to(()=>ForgetPasswordPage()),
                 child: const Text('Forgot Password', style: TextStyle(
                     color: Color.fromRGBO(248, 147, 0, 1),
                     fontSize: 16,
@@ -186,14 +193,13 @@ class LoginPage extends GetView<LoginController> {
                                     borderRadius: BorderRadius.circular(25)
                                 )
                             ),
-                            onPressed: (){
+                            onPressed: () {
                               if(formKey.currentState!.validate()){
-                                pageController.login(username.text,password.text);
-                                username.clear();
-                                password.clear();
+                                pageController.login();
                               }
                             },
                             child: const Text(
+
                               'Sign In',
                               style: TextStyle(
                                   color: Colors.white,

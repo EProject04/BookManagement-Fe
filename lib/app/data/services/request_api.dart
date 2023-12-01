@@ -34,4 +34,11 @@ class RequestApi {
 
   static const String IMG_LOGO_APP  ="https://st3.depositphotos.com/11953928/32310/v/450/depositphotos_323108450-stock-illustration-isolated-books-flat-design.jpg";
 
+  static const String API_COMMENT_CREATE ="/comments/create-comment";
+  static const String API_COMMENT_DELTETE_ID ="/comments/delete-comment/";
+  static const String API_COMMENT_GET_USERID ="/api/books/get-all-comment-by-userid";
+  static const String API_COMMENT_UPDATE ="/comments/update-comment/";
+
+  static const String API_GET_ALL_FOLLOWING ="/followings/get-all-following";
+  static const String API_FOLLOWING_UPDATE ="/followings/update-following";
 }
