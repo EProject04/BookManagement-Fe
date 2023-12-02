@@ -12,6 +12,7 @@ class WishlistController extends GetxController{
   RxList<BooksFollow> listBookByFollowing = <BooksFollow>[].obs;
   late Books books;
   RxInt followId = 0.obs;
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -74,4 +75,9 @@ class WishlistController extends GetxController{
 
   }
 
+  @override
+  void dispose() {
+    // getAllFollowing();
+    super.dispose();
+  }
 }

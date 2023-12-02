@@ -18,7 +18,6 @@ class BookDetailController extends GetxController{
 
   @override
   void onInit() {
-
     super.onInit();
 
   }
@@ -50,6 +49,7 @@ class BookDetailController extends GetxController{
       print('false');
     }
   }
+
   Future<void> updateBookFollowing(int bookId) async{
     isLoading(true);
     update();
@@ -67,16 +67,19 @@ class BookDetailController extends GetxController{
     );
     if(response.statusCode == 200){
       var result = jsonDecode(response.body);
-      print(result);
       print('success');
-
+      isLoading(false);
+      update();
+      Get.reload();
     }else{
       throw Exception('false');
     }
-    isLoading(false);
-    update();
-  }
 
+  }
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
 }
 

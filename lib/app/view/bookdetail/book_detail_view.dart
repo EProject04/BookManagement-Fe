@@ -14,7 +14,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-
 class BookDetailScreenNew extends GetView<BookDetailController> {
   // const BookDetailScreenNew({super.key});
   static final _pageInstance = BookDetailScreenNew._internal();
@@ -129,80 +128,80 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                     margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                     child: Row(
                       children: [
-                        Expanded(
-                            flex: 1,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border(
-                                      right: BorderSide(
-                                          width: 1,
-                                          color: Color.fromRGBO(
-                                              100, 100, 100, 1)))),
-                              alignment: Alignment.center,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "2371",
-                                    style: GoogleFonts.urbanist(
-                                        textStyle: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.black)),
-                                  ),
-                                  Text(
-                                    "View",
-                                    style: GoogleFonts.urbanist(
-                                        textStyle: TextStyle(
-                                            color: Color.fromRGBO(
-                                                100, 100, 100, 1),
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w600)),
-                                  )
-                                ],
-                              ),
-                            )),
-                        Expanded(
-                            flex: 1,
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          alignment: Alignment.centerRight,
-                                          child: Text(
-                                            "4.9",
-                                            style: GoogleFonts.urbanist(
-                                                textStyle: TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Colors.black)),
-                                          ),
-                                        )),
-                                    Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          alignment: Alignment.centerLeft,
-                                          child: Icon(
-                                            Icons.star,
-                                            color: Colors.orangeAccent,
-                                            size: 20,
-                                          ),
-                                        ))
-                                  ],
-                                ),
-                                Text(
-                                  "6.8k reviews",
-                                  style: GoogleFonts.urbanist(
-                                      textStyle: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color.fromRGBO(
-                                              100, 100, 100, 1))),
-                                )
-                              ],
-                            ))
+                        // Expanded(
+                        //     flex: 1,
+                        //     child: Container(
+                        //       decoration: BoxDecoration(
+                        //           border: Border(
+                        //               right: BorderSide(
+                        //                   width: 1,
+                        //                   color: Color.fromRGBO(
+                        //                       100, 100, 100, 1)))),
+                        //       alignment: Alignment.center,
+                        //       child: Column(
+                        //         children: [
+                        //           Text(
+                        //             "2371",
+                        //             style: GoogleFonts.urbanist(
+                        //                 textStyle: TextStyle(
+                        //                     fontSize: 20,
+                        //                     fontWeight: FontWeight.w600,
+                        //                     color: Colors.black)),
+                        //           ),
+                        //           Text(
+                        //             "View",
+                        //             style: GoogleFonts.urbanist(
+                        //                 textStyle: TextStyle(
+                        //                     color: Color.fromRGBO(
+                        //                         100, 100, 100, 1),
+                        //                     fontSize: 15,
+                        //                     fontWeight: FontWeight.w600)),
+                        //           )
+                        //         ],
+                        //       ),
+                        //     )),
+                        // Expanded(
+                        //     flex: 1,
+                        //     child: Column(
+                        //       children: [
+                        //         Row(
+                        //           children: [
+                        //             Expanded(
+                        //                 flex: 1,
+                        //                 child: Container(
+                        //                   alignment: Alignment.centerRight,
+                        //                   child: Text(
+                        //                     "4.9",
+                        //                     style: GoogleFonts.urbanist(
+                        //                         textStyle: TextStyle(
+                        //                             fontSize: 20,
+                        //                             fontWeight: FontWeight.w600,
+                        //                             color: Colors.black)),
+                        //                   ),
+                        //                 )),
+                        //             Expanded(
+                        //                 flex: 1,
+                        //                 child: Container(
+                        //                   alignment: Alignment.centerLeft,
+                        //                   child: Icon(
+                        //                     Icons.star,
+                        //                     color: Colors.orangeAccent,
+                        //                     size: 20,
+                        //                   ),
+                        //                 ))
+                        //           ],
+                        //         ),
+                        //         Text(
+                        //           "6.8k reviews",
+                        //           style: GoogleFonts.urbanist(
+                        //               textStyle: TextStyle(
+                        //                   fontSize: 10,
+                        //                   fontWeight: FontWeight.w600,
+                        //                   color: Color.fromRGBO(
+                        //                       100, 100, 100, 1))),
+                        //         )
+                        //       ],
+                        //     ))
                       ],
                     ),
                   ),
@@ -306,7 +305,7 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                      '4.9',
+                                      '${bookDetail.averageRate}',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 20,
@@ -448,197 +447,197 @@ class BookDetailScreenNew extends GetView<BookDetailController> {
                             ),
                           ),
                         ),
-                        Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                              child: Text(
-                                "Author other books",
-                                style: GoogleFonts.urbanist(
-                                    textStyle: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600)),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.centerRight,
-                                margin: EdgeInsets.fromLTRB(0, 0, 1, 0),
-                                child: IconButton(
-                                    onPressed: null,
-                                    icon: Icon(Icons.arrow_forward)),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: size.height * 0.35,
-                          child: ListView.separated(
-                            itemCount: 8,
-                            padding: const EdgeInsets.only(right: 15),
-                            separatorBuilder:
-                                (BuildContext context, int index) => SizedBox(
-                              width: 15,
-                            ),
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) => InkWell(
-                              onTap: () {
-                                Get.to(() => BookDetailScreenNew(),
-                                    transition: Transition.rightToLeft,
-                                    duration: Duration(milliseconds: 600));
-                              },
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: size.width * 0.4,
-                                    height: size.height * 0.25,
-                                    decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                          'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
-                                        ),
-                                        fit: BoxFit.fill,
-                                      ),
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Container(
-                                    width: size.width * 0.4,
-                                    child: Text(
-                                      'Harry Potter và hòn đá phù thuỷf',
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        size: 20,
-                                        Icons.star_half,
-                                        color: Colors.grey,
-                                      ),
-                                      Text(
-                                        '4.9',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                              child: Text(
-                                "Similar books",
-                                style: GoogleFonts.urbanist(
-                                    textStyle: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600)),
-                              ),
-                            ),
-                            Expanded(
-                                child: Container(
-                              alignment: Alignment.centerRight,
-                              margin: EdgeInsets.fromLTRB(0, 0, 1, 0),
-                              child: IconButton(
-                                  onPressed: null,
-                                  icon: Icon(Icons.arrow_forward)),
-                            ))
-                          ],
-                        ),
-                        SizedBox(
-                          height: size.height * 0.35,
-                          child: ListView.separated(
-                            itemCount: 8,
-                            padding: EdgeInsets.only(right: 15),
-                            separatorBuilder:
-                                (BuildContext context, int index) => SizedBox(
-                              width: 15,
-                            ),
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) => InkWell(
-                              onTap: () {
-                                Get.to(() => BookDetailScreenNew(),
-                                    transition: Transition.rightToLeft,
-                                    duration: Duration(milliseconds: 600));
-                              },
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: size.width * 0.4,
-                                    height: size.height * 0.25,
-                                    decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                          'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
-                                        ),
-                                        fit: BoxFit.fill,
-                                      ),
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Container(
-                                    width: size.width * 0.4,
-                                    child: Text(
-                                      'Harry Potter và hòn đá phù thuỷf',
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        size: 20,
-                                        Icons.star_half,
-                                        color: Colors.grey,
-                                      ),
-                                      Text(
-                                        '4.9',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                        // Row(
+                        //   children: [
+                        //     Container(
+                        //       margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                        //       child: Text(
+                        //         "Author other books",
+                        //         style: GoogleFonts.urbanist(
+                        //             textStyle: TextStyle(
+                        //                 color: Colors.black,
+                        //                 fontSize: 20,
+                        //                 fontWeight: FontWeight.w600)),
+                        //       ),
+                        //     ),
+                        //     Expanded(
+                        //       child: Container(
+                        //         alignment: Alignment.centerRight,
+                        //         margin: EdgeInsets.fromLTRB(0, 0, 1, 0),
+                        //         child: IconButton(
+                        //             onPressed: null,
+                        //             icon: Icon(Icons.arrow_forward)),
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
+                        // SizedBox(
+                        //   height: size.height * 0.35,
+                        //   child: ListView.separated(
+                        //     itemCount: 8,
+                        //     padding: const EdgeInsets.only(right: 15),
+                        //     separatorBuilder:
+                        //         (BuildContext context, int index) => SizedBox(
+                        //       width: 15,
+                        //     ),
+                        //     scrollDirection: Axis.horizontal,
+                        //     itemBuilder: (context, index) => InkWell(
+                        //       onTap: () {
+                        //         Get.to(() => BookDetailScreenNew(),
+                        //             transition: Transition.rightToLeft,
+                        //             duration: Duration(milliseconds: 600));
+                        //       },
+                        //       child: Column(
+                        //         crossAxisAlignment: CrossAxisAlignment.start,
+                        //         children: [
+                        //           Container(
+                        //             width: size.width * 0.4,
+                        //             height: size.height * 0.25,
+                        //             decoration: BoxDecoration(
+                        //               color: Colors.red,
+                        //               image: DecorationImage(
+                        //                 image: NetworkImage(
+                        //                   'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
+                        //                 ),
+                        //                 fit: BoxFit.fill,
+                        //               ),
+                        //               borderRadius: BorderRadius.circular(15),
+                        //             ),
+                        //           ),
+                        //           SizedBox(
+                        //             height: 5,
+                        //           ),
+                        //           Container(
+                        //             width: size.width * 0.4,
+                        //             child: Text(
+                        //               'Harry Potter và hòn đá phù thuỷf',
+                        //               maxLines: 2,
+                        //               overflow: TextOverflow.ellipsis,
+                        //               style: TextStyle(
+                        //                 fontWeight: FontWeight.bold,
+                        //               ),
+                        //             ),
+                        //           ),
+                        //           SizedBox(
+                        //             height: 5,
+                        //           ),
+                        //           Row(
+                        //             children: [
+                        //               Icon(
+                        //                 size: 20,
+                        //                 Icons.star_half,
+                        //                 color: Colors.grey,
+                        //               ),
+                        //               Text(
+                        //                 '4.9',
+                        //                 style: TextStyle(
+                        //                   fontWeight: FontWeight.bold,
+                        //                   color: Colors.grey,
+                        //                   fontSize: 15,
+                        //                 ),
+                        //               ),
+                        //             ],
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                        // Row(
+                        //   children: [
+                        //     Container(
+                        //       margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                        //       child: Text(
+                        //         "Similar books",
+                        //         style: GoogleFonts.urbanist(
+                        //             textStyle: TextStyle(
+                        //                 color: Colors.black,
+                        //                 fontSize: 20,
+                        //                 fontWeight: FontWeight.w600)),
+                        //       ),
+                        //     ),
+                        //     Expanded(
+                        //         child: Container(
+                        //       alignment: Alignment.centerRight,
+                        //       margin: EdgeInsets.fromLTRB(0, 0, 1, 0),
+                        //       child: IconButton(
+                        //           onPressed: null,
+                        //           icon: Icon(Icons.arrow_forward)),
+                        //     ))
+                        //   ],
+                        // ),
+                        // SizedBox(
+                        //   height: size.height * 0.35,
+                        //   child: ListView.separated(
+                        //     itemCount: 8,
+                        //     padding: EdgeInsets.only(right: 15),
+                        //     separatorBuilder:
+                        //         (BuildContext context, int index) => SizedBox(
+                        //       width: 15,
+                        //     ),
+                        //     scrollDirection: Axis.horizontal,
+                        //     itemBuilder: (context, index) => InkWell(
+                        //       onTap: () {
+                        //         Get.to(() => BookDetailScreenNew(),
+                        //             transition: Transition.rightToLeft,
+                        //             duration: Duration(milliseconds: 600));
+                        //       },
+                        //       child: Column(
+                        //         crossAxisAlignment: CrossAxisAlignment.start,
+                        //         children: [
+                        //           Container(
+                        //             width: size.width * 0.4,
+                        //             height: size.height * 0.25,
+                        //             decoration: BoxDecoration(
+                        //               color: Colors.red,
+                        //               image: DecorationImage(
+                        //                 image: NetworkImage(
+                        //                   'https://upload.wikimedia.org/wikibooks/vi/5/5e/B%C3%ACa_s%C3%A1ch_Harry_Potter_ph%E1%BA%A7n_1.jpg',
+                        //                 ),
+                        //                 fit: BoxFit.fill,
+                        //               ),
+                        //               borderRadius: BorderRadius.circular(15),
+                        //             ),
+                        //           ),
+                        //           SizedBox(
+                        //             height: 5,
+                        //           ),
+                        //           Container(
+                        //             width: size.width * 0.4,
+                        //             child: Text(
+                        //               'Harry Potter và hòn đá phù thuỷf',
+                        //               maxLines: 2,
+                        //               overflow: TextOverflow.ellipsis,
+                        //               style: TextStyle(
+                        //                 fontWeight: FontWeight.bold,
+                        //               ),
+                        //             ),
+                        //           ),
+                        //           SizedBox(
+                        //             height: 5,
+                        //           ),
+                        //           Row(
+                        //             children: [
+                        //               Icon(
+                        //                 size: 20,
+                        //                 Icons.star_half,
+                        //                 color: Colors.grey,
+                        //               ),
+                        //               Text(
+                        //                 '4.9',
+                        //                 style: TextStyle(
+                        //                   fontWeight: FontWeight.bold,
+                        //                   color: Colors.grey,
+                        //                   fontSize: 15,
+                        //                 ),
+                        //               ),
+                        //             ],
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   )

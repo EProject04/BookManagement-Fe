@@ -5,6 +5,6 @@ class MainWrapperBinding implements Bindings {
   @override
   void dependencies() {
     // Add your dependencies here
-    Get.put(MainWrapperController());
+    Get.lazyPut(()=>MainWrapperController(), fenix: true);
   }
 }

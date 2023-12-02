@@ -11,6 +11,11 @@ class RateThisEbookController extends GetxController {
 
   TextEditingController commentText = TextEditingController();
 
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
   Future<void> createReview(int bookId, int commentRate) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String userId = preferences.getString('id')!;
@@ -60,5 +65,9 @@ class RateThisEbookController extends GetxController {
 
       print('false');
     }
+  }
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

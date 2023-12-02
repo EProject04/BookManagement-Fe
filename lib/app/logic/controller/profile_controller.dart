@@ -29,16 +29,18 @@ class ProfileController extends GetxController{
 
 
 
-  Future<UserProfile> completeYourProfile(String userId, UserProfile updateProfile) async{
+  Future<UserProfile> completeYourProfile(String userId) async{
     isLoading(true);
     var headers = {
-      'Content-Type': 'application/json'
+      'Content-Type': 'multipart/form-data'
     };
     var url = Uri.parse(RequestApi.BaseUrl+RequestApi.API_USERPROFILE_PUT +userId);
 
     http.Response response = await http.put(
         url,
-        body: jsonEncode(updateProfile),
+        body: jsonEncode({
+
+        }),
         headers: headers
     );
     isLoading(false);
@@ -51,6 +53,8 @@ class ProfileController extends GetxController{
     }
 
   }
+
+
 
   Future<void> getUserProfileById() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -75,5 +79,10 @@ class ProfileController extends GetxController{
     }else{
       throw Exception('User not found');
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

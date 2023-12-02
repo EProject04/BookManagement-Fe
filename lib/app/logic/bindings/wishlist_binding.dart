@@ -5,6 +5,6 @@ class WishlistBinding extends Bindings{
   @override
   void dependencies() {
     // Add your dependencies here
-    Get.put(WishlistController());
+    Get.lazyPut(()=>WishlistController(), fenix: true);
   }
 }

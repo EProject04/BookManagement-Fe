@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:frame/app/logic/controller/register_controller.dart';
 import 'package:frame/app/view/your_profile/your_profile_view.dart';
+import 'package:frame/main_wrapper.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -117,13 +118,13 @@ class CreateAccount extends GetView<RegisterController> {
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
 
                         decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              onPressed: (){
-                                registerController.isHidden.value = !registerController.isHidden.value;
-
-                              },
-                              icon: registerController.isHidden.value ? Icon(Icons.visibility_off) : Icon(Icons.visibility)
-                            ),
+                            // suffixIcon: IconButton(
+                            //   onPressed: (){
+                            //     registerController.isHidden.value = !registerController.isHidden.value;
+                            //
+                            //   },
+                            //   icon: registerController.isHidden.value ? Icon(Icons.visibility_off) : Icon(Icons.visibility)
+                            // ),
 
                             // labelText: 'Full Name',
                             // labelStyle: TextStyle(color:Colors.black,fontSize: 18,fontWeight: FontWeight.bold),
@@ -156,10 +157,10 @@ class CreateAccount extends GetView<RegisterController> {
                         controller: registerController.confirmPasswordController,
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              onPressed: (){},
-                              icon: Icon(Icons.visibility_off),
-                            ),
+                            // suffixIcon: IconButton(
+                            //   onPressed: (){},
+                            //   icon: Icon(Icons.visibility_off),
+                            // ),
                             // labelText: 'Full Name',
                             // labelStyle: TextStyle(color:Colors.black,fontSize: 18,fontWeight: FontWeight.bold),
                             focusedBorder: UnderlineInputBorder(
@@ -184,7 +185,7 @@ class CreateAccount extends GetView<RegisterController> {
                     onPressed: () {
                       if(formKey.currentState!.validate()){
                         registerController.register();
-                        Get.to(()=>YourProfile());
+                        Get.to(()=>MainWrapper());
                       }
 
 

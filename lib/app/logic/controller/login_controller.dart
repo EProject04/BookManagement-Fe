@@ -16,14 +16,18 @@ class LoginController extends GetxController {
   TextEditingController password = TextEditingController();
   RxString errorMessage = ''.obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
   String? usernameValidate(String? username) {
     if (username!.isEmpty) {
       return "Please enter your username";
     }
-    // if(!RegExp(r'^(?:[+0][1-9])?[0-9]{10,12}$').hasMatch(username)){
-    //   return "Incorrect phone number";
-    // }
+    if (RegExp(r'[!#$%&*"+/=?^_`{|}~-]').hasMatch(username)&&username.length<8) {
+      return "Length greater than 8 and no special key";
+    }
   }
 
   String? passwordValidate(String? password) {
@@ -31,7 +35,7 @@ class LoginController extends GetxController {
       return "Please enter your password";
     }
     //password.length < 0 ||
-    if (RegExp(r'[!#$%&*"+/=?^_`{|}~-]').hasMatch(password)) {
+    if (RegExp(r'[!#$%&*"+/=?^_`{|}~-]').hasMatch(password)&&password.length<8) {
       return "Length greater than 8 and no special key";
     }
   }
@@ -57,7 +61,7 @@ class LoginController extends GetxController {
         preferences.setString("username", '${user.username}');
         preferences.setString("email", '${user.email}');
         preferences.setBool('isLoggedIn', true);
-        Get.offAll(() => MainWrapper());
+        Get.off(() => MainWrapper());
 
       } else {
         errorMessage.value = 'Login failed. Please check your username or password!';
@@ -66,5 +70,10 @@ class LoginController extends GetxController {
     // } catch (e) {
     //   print(e);
     // }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

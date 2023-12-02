@@ -5,6 +5,6 @@ class HomeBinding implements Bindings {
   @override
   void dependencies() {
     // Add your dependencies here
-    Get.put(HomeController());
+    Get.lazyPut(()=>HomeController(), fenix: true);
   }
 }

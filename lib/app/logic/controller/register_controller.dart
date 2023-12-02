@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:frame/app/data/models/user.dart';
 import 'package:frame/app/data/models/user_profile.dart';
@@ -14,31 +15,36 @@ class RegisterController extends GetxController{
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-  String? usernameValidate(String? username){
-    if(username!.isEmpty){
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+  String? usernameValidate(String? username) {
+    if (username!.isEmpty) {
       return "Please enter your username";
     }
-    // if(!RegExp(r'^(?:[+0][1-9])?[0-9]{10,12}$').hasMatch(username)){
-    //   return "Incorrect phone number";
-    // }
+    if (RegExp(r'[!#$%&*"+/=?^_`{|}~-]').hasMatch(username)&&username.length<8) {
+      return "Length greater than 8 and no special key";
+    }
   }
 
   String? emailValidate(String? email){
     if(email!.isEmpty){
       return "Please enter your username";
     }
-    // if(!RegExp(r'^(?:[+0][1-9])?[0-9]{10,12}$').hasMatch(username)){
-    //   return "Incorrect phone number";
-    // }
+    if (!EmailValidator.validate(email)) {
+      return "Email not valid";
+    }
   }
 
 
-  String? passwordValidate(String? password){
-    if(password!.isEmpty){
+  String? passwordValidate(String? password) {
+    if (password!.isEmpty) {
       return "Please enter your password";
     }
     //password.length < 0 ||
-    if( RegExp(r'[!#$%&*"+/=?^_`{|}~-]').hasMatch(password)){
+    if (RegExp(r'[!#$%&*"+/=?^_`{|}~-]').hasMatch(password)&&password.length<8) {
       return "Length greater than 8 and no special key";
     }
   }
@@ -47,13 +53,13 @@ class RegisterController extends GetxController{
     if(confirmPassword!.isEmpty){
       return "Please enter your confirm password";
     }
-    if(confirmPassword != passwordController){
+    if(confirmPassword != passwordController.text){
       return "Your confirm password is not match";
     }
   }
 
   Future<void> register() async{
-
+    SharedPreferences preferences = await SharedPreferences.getInstance();
       var headers = {
         'Content-Type': 'application/json'
       };
@@ -71,6 +77,11 @@ class RegisterController extends GetxController{
       );
       if(response.statusCode == 200){
         final json = jsonDecode(response.body);
+        User user = User.fromJson(jsonDecode(response.body));
+        preferences.setString("id", '${json['id']}');
+        preferences.setString("username", '${json['username']}');
+        preferences.setString("email", '${json['email']}');
+        preferences.setBool('isLoggedIn', true);
         print(json);
       }else{
         print('false');

@@ -281,7 +281,7 @@ class RatingsAndReviewsView extends GetView<RatingsAndReviewsController> {
                                                 // Perform your actions based on the selected value
                                                 switch (value) {
                                                   case 1:
-                                                    Get.to(()=>RateView());
+                                                    Get.to(()=>RateView(),arguments: bookDetail);
                                                     break;
                                                   case 2:
                                                     ratingAndReviewsController

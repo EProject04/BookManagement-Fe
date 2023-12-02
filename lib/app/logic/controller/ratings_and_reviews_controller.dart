@@ -10,6 +10,11 @@ class RatingsAndReviewsController extends GetxController{
   RxBool isLoading = false.obs;
   RxList<Comment> comments = <Comment>[].obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
   Future<void> deleteComment(int id)async{
     isLoading(true);
     update();
@@ -27,6 +32,7 @@ class RatingsAndReviewsController extends GetxController{
       print('delete comment successful');
       isLoading(false);
       update();
+      refresh();
     }else{
       throw Exception('false to delete comment');
     }
@@ -63,5 +69,10 @@ class RatingsAndReviewsController extends GetxController{
     }else{
       print('false');
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

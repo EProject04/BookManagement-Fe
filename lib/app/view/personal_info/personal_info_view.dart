@@ -2,45 +2,53 @@
 import 'package:flutter/material.dart';
 import 'package:frame/app/logic/controller/account_controller.dart';
 import 'package:frame/app/logic/controller/profile_controller.dart';
+import 'package:frame/app/view/account/account_view.dart';
+import 'package:frame/main_wrapper.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
+class PersonalInfoView extends StatefulWidget {
+  const PersonalInfoView({super.key});
 
-class PersonalInfoView extends GetView<PersonalInfoView> {
-  // const PersonalInfoView({super.key});
-  // static final _pageInstance = PersonalInfoView._internal();
-  // factory PersonalInfoView() => _pageInstance;
-  // PersonalInfoView._internal();
+  @override
+  State<PersonalInfoView> createState() => _PersonalInfoViewState();
+}
+
+class _PersonalInfoViewState extends State<PersonalInfoView> {
   final ProfileController profileController = Get.put(ProfileController());
+  TextEditingController fullName = Get.arguments[0];
+  TextEditingController email = Get.arguments[1];
+  TextEditingController phoneNumber = Get.arguments[2];
+  TextEditingController dob = Get.arguments[3];
+
+  TextEditingController dobController = TextEditingController();
+  // DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1890),
+        lastDate: DateTime.now());
+    if (picked != null && picked.toString() != dob.text) {
+      setState(() {
+        // selectedDate = picked;
+        dob.text = DateFormat('dd-MM-yyyy').format(picked);
+
+
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    var argument = Get.arguments;
-    TextEditingController fullName = Get.arguments[0];
-    TextEditingController email = Get.arguments[1];
-    TextEditingController phoneNumber = Get.arguments[2];
-    TextEditingController dob = Get.arguments[3];
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Personal Info',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 30
-            ),
-          ),
-          actions: <Widget>[
-            IconButton(
-              onPressed: (){
-              },
-              icon: Icon(
-                Icons.edit_rounded,
-                size: 30,
-              ),
-            ),
-          ],
-        ),
-        body:
-        SingleChildScrollView(
+
+    return   Scaffold(
+      body:
+      SafeArea(
+        child: SingleChildScrollView(
           child: Container(
             padding:EdgeInsets.fromLTRB(20,0,20,0),
             width: MediaQuery.of(context).size.width,
@@ -48,13 +56,27 @@ class PersonalInfoView extends GetView<PersonalInfoView> {
             child: ListView(
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                Padding(
+                  padding:EdgeInsets.fromLTRB(0,10,20,0),
+                  child: Text('Complete Your Profile',
+                    style:GoogleFonts.inter(fontSize: 24,fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0,10,20,0),
+                  child:Text('Don\'t worry, only you can se your personal data.'
+                      ' No one else will be able to see it.' ,),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
                 Container(
                   // timf hieu ve thu vien chon anh upload anh,
                   width: 150,
                   height: 150,
                   child: Center(
                     child: Image(
-                      image:NetworkImage('https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp'),
+                      image: NetworkImage('https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp'),
                     ),
                   ),
                 ),
@@ -103,7 +125,6 @@ class PersonalInfoView extends GetView<PersonalInfoView> {
                             fontWeight: FontWeight.bold
                         ),
                       ),
-                      // Text('${profileController.email}'),
                       TextFormField(
                         controller: email,
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -165,11 +186,15 @@ class PersonalInfoView extends GetView<PersonalInfoView> {
                         ),
                       ),
                       TextFormField(
-                        controller: dob,
+                        readOnly: true,
+                        controller: TextEditingController(
+                            text: dob.text
+                        ),
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
-                              onPressed: (){},
+                              onPressed: () => _selectDate(context)
+                              ,
                               icon: Icon(Icons.calendar_month),
                             ),
                             // labelText: 'Full Name',
@@ -226,17 +251,11 @@ class PersonalInfoView extends GetView<PersonalInfoView> {
                 Container(
                   margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
-                      elevation: 0.0,
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25)
-                      ),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.orange)
                     ),
                     onPressed: () {
-                      // profileController.getUserProfileById();
-                      print('sdfsdf');
+                      // Get.to(()=>MainWrapper());
                     },
                     child: const Center(
                       child: Text('Save',style: TextStyle(color: Colors.white,fontSize: 18),),
@@ -251,5 +270,8 @@ class PersonalInfoView extends GetView<PersonalInfoView> {
     );
   }
 }
+
+
+
 
 

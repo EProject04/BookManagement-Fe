@@ -13,6 +13,11 @@ import 'package:http/http.dart' as http;
 
 class AccountController extends GetxController{
 
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
   Future<void> logout()async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.clear();

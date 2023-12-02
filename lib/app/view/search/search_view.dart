@@ -135,7 +135,7 @@ class SearchView extends GetView<SearchBookController> {
               //     ],
               //   ),
               // ),
-              SearchChoose(),
+              // SearchChoose(),
               Padding(
                 padding: EdgeInsets.fromLTRB(0,15,0,0),
                 child: Text('Search Result',

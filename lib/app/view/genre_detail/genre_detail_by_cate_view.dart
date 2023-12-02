@@ -273,8 +273,7 @@ class _GridViewGenreDetailByCateState extends State<GridViewGenreDetailByCate> {
   Widget build(BuildContext context) {
     GenreController genreController = Get.put(GenreController());
     final Size size = MediaQuery.of(context).size;
-    final double itemHeight = (size.height - kToolbarHeight - 24) / 2.2;
-    final double itemWidth = size.width / 2;
+
     return Expanded(
       child: Obx(
             () => genreController.isLoading.value
@@ -288,8 +287,9 @@ class _GridViewGenreDetailByCateState extends State<GridViewGenreDetailByCate> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
-                childAspectRatio: (size.width / size.height)*1.2
-            ),
+
+                childAspectRatio: (size.width/size.height)*1.2),
+
             itemBuilder: (BuildContext context, index) {
               final bookByCate = genreController.listBookByCate[index];
               return InkWell(

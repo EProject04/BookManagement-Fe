@@ -134,5 +134,8 @@ class HomeController extends GetxController {
   //   // Get.to(GenreDetailView());
   // }
 
-
+  @override
+  void dispose() {
+    super.dispose();
+  }
 }

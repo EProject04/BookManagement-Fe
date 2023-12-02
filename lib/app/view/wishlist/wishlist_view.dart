@@ -4,15 +4,17 @@ import 'package:frame/app/logic/controller/book_detail_controller.dart';
 import 'package:frame/app/logic/controller/wishlist_controller.dart';
 import 'package:frame/app/view/about_this_ebook/about_this_ebook_view.dart';
 import 'package:frame/app/view/bookdetail/book_detail_view.dart';
+import 'package:frame/app/view/home/home_view.dart';
 
 import 'package:get/get.dart';
 
 class WishlistView extends StatelessWidget {
   // WishlistView({super.key});
-  final wishlistController = Get.put(WishlistController());
-  final bookDetailController = Get.put(BookDetailController());
+
   @override
   Widget build(BuildContext context) {
+    final wishlistController = Get.put(WishlistController());
+    final bookDetailController = Get.put(BookDetailController());
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -55,7 +57,7 @@ class WishlistView extends StatelessWidget {
                 ? Center(
                     child: CircularProgressIndicator(
                     color: Colors.blueAccent,
-                  ))
+                  ),)
                 : ListView.builder(
                     itemCount: wishlistController.listBookByFollowing.length,
                     itemBuilder: (context, index) {
@@ -78,7 +80,7 @@ class WishlistView extends StatelessWidget {
                                       image: NetworkImage('${book.imagePath}'),
                                       fit: BoxFit.fill,
                                     ),
-                                    borderRadius: BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(10),),
                               ),
                               SizedBox(
                                 width: 10,
@@ -139,16 +141,6 @@ class WishlistView extends StatelessWidget {
                                             Text('Remove')
                                           ],
                                         )),
-                                    // PopupMenuItem(
-                                    //     value: 2,
-                                    //     child:  Row(
-                                    //       children: [
-                                    //         Icon(Icons.share),
-                                    //         SizedBox(width: 10,),
-                                    //         Text('Share')
-                                    //       ],
-                                    //     )
-                                    // ),
                                     PopupMenuItem(
                                       value: 2,
                                       child: Row(
@@ -165,15 +157,19 @@ class WishlistView extends StatelessWidget {
                                   onSelected: (value) {
                                     // Perform your actions based on the selected value
                                     switch (value) {
+
                                       case 1:
                                         bookDetailController
                                             .updateBookFollowing(book.id);
-                                        Get.reload();
+                                        // Get.reload();
+
                                         break;
                                       case 2:
-                                        Get.to(() => AboutThisEbookView());
+
                                         break;
+
                                     }
+
                                   },
                                 ),
                               ),

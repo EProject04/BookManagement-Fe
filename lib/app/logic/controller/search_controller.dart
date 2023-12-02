@@ -12,6 +12,13 @@ class SearchBookController extends GetxController{
   RxBool isLoading = false.obs;
   RxList<Books> listBookBySearch = <Books>[].obs;
   TextEditingController search = TextEditingController();
+
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
   Future<void> searchListBook(String keyword) async{
     isLoading(true);
     update(); // Notify GetX that the state has changed
@@ -37,5 +44,10 @@ class SearchBookController extends GetxController{
     }else{
       print('false');
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }
